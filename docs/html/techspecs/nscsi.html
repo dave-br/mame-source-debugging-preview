@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The new SCSI subsystem &mdash; MAME Documentation 0.277 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/documentation_options.js?v=561e49e2"></script>
+        <script src="../_static/doctools.js?v=9bcbadda"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="The new 6502 family implementation" href="m6502.html" />
+    <link rel="prev" title="The new floppy subsystem" href="floppy.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            MAME Documentation
+          </a>
+              <div class="version">
+                0.277
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../whatis.html">What is MAME</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../healthwarning.html">Health Warnings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../initialsetup/index.html">Getting MAME prepared</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usingmame/index.html">Basic MAME Usage and Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../commandline/index.html">MAME Command-line Usage and OS-Specific Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plugins/index.html">Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/index.html">Advanced configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debugger/index.html">MAME Debugger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../luascript/index.html">Lua Scripting Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">MAME External Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing to MAME</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Technical Specifications</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="naming.html">MAME Naming Conventions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="layout_files.html">MAME Layout Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="layout_script.html">MAME Layout Scripting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="object_finders.html">Object Finders</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inputsystem.html">Input System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="device_memory_interface.html">The device_memory_interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="device_rom_interface.html">The device_rom_interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="device_disasm_interface.html">The device_disasm_interface and the disassemblers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memory.html">Emulated system memory and address spaces management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpu_device.html">CPU devices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="floppy.html">The new floppy subsystem</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">The new SCSI subsystem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="m6502.html">The new 6502 family implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uml_instructions.html">UML Instruction Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="poly_manager.html">Software 3D Rendering in MAME</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../security.html">MAME and security concerns</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">The MAME License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">MAME Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Technical Specifications</a></li>
+      <li class="breadcrumb-item active">The new SCSI subsystem</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="the-new-scsi-subsystem">
+<h1>The new SCSI subsystem<a class="headerlink" href="#the-new-scsi-subsystem" title="Link to this heading">¶</a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">¶</a></h2>
+<p>The <strong>nscsi</strong> subsystem was created to allow an implementation to be closer to the physical reality, making it easier (hopefully) to implement new controller chips from the documentations.</p>
+</section>
+<section id="global-structure">
+<h2>Global structure<a class="headerlink" href="#global-structure" title="Link to this heading">¶</a></h2>
+<p>Parallel SCSI is built around a symmetric bus to which a number of devices are connected.  The bus is composed of 9 control lines (for
+now, later SCSI versions may have more) and up to 32 data lines (but currently implemented chips only handle 8).  All the lines are open
+collector, which means that either one or multiple chip connect the line to ground and the line, of course, goes to ground, or no chip
+drives anything and the line stays at Vcc.  Also, the bus uses inverted logic, where ground means 1.  SCSI chips traditionally work
+in logical and not physical levels, so the nscsi subsystem also works in logical levels and does a logical-or of all the outputs of the
+devices.</p>
+<p>Structurally, the implementation is done around two main classes: <strong>nscsi_bus_devices</strong> represents the bus, and <strong>nscsi_device</strong> represents an individual device.  A device only communicate with the bus, and the bus takes care of transparently handling the device discovery and communication.  In addition the <strong>nscsi_full_device</strong> class proposes a SCSI device with the SCSI protocol implemented making building generic SCSI devices like hard drives or CD-ROM readers easier.</p>
+</section>
+<section id="plugging-in-a-scsi-bus-in-a-driver">
+<h2>Plugging in a SCSI bus in a driver<a class="headerlink" href="#plugging-in-a-scsi-bus-in-a-driver" title="Link to this heading">¶</a></h2>
+<p>The nscsi subsystem leverages the slot interfaces and the device naming to allow for a configurable yet simple bus implementation.</p>
+<p>First you need to create a list of acceptable devices to plug on the bus.  This usually comprises of <strong>cdrom</strong>, <strong>harddisk</strong> and the controller chip.  For instance:</p>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line">static SLOT_INTERFACE_START( next_scsi_devices )</div>
+<div class="line-block">
+<div class="line">SLOT_INTERFACE(&quot;cdrom&quot;, NSCSI_CDROM)</div>
+<div class="line">SLOT_INTERFACE(&quot;harddisk&quot;, NSCSI_HARDDISK)</div>
+<div class="line">SLOT_INTERFACE_INTERNAL(&quot;ncr5390&quot;, NCR5390)</div>
+</div>
+<div class="line">SLOT_INTERFACE_END</div>
+<div class="line"><br /></div>
+</div>
+<p>The <strong>_INTERNAL</strong> interface indicates a device that is not user-selectable, which is useful for the controller.</p>
+<p>Then in the machine config (or in a fragment config) you need to first add the bus, and then the (potential) devices as sub-devices of the bus with the SCSI ID as the name.  For instance you can use:</p>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line-block">
+<div class="line">MCFG_NSCSI_BUS_ADD(&quot;scsibus&quot;)</div>
+<div class="line">MCFG_NSCSI_ADD(&quot;scsibus:0&quot;, next_scsi_devices, &quot;cdrom&quot;, 0, 0, 0, false)</div>
+<div class="line">MCFG_NSCSI_ADD(&quot;scsibus:1&quot;, next_scsi_devices, &quot;harddisk&quot;, 0, 0, 0, false)</div>
+<div class="line">MCFG_NSCSI_ADD(&quot;scsibus:2&quot;, next_scsi_devices, 0, 0, 0, 0, false)</div>
+<div class="line">MCFG_NSCSI_ADD(&quot;scsibus:3&quot;, next_scsi_devices, 0, 0, 0, 0, false)</div>
+<div class="line">MCFG_NSCSI_ADD(&quot;scsibus:4&quot;, next_scsi_devices, 0, 0, 0, 0, false)</div>
+<div class="line">MCFG_NSCSI_ADD(&quot;scsibus:5&quot;, next_scsi_devices, 0, 0, 0, 0, false)</div>
+<div class="line">MCFG_NSCSI_ADD(&quot;scsibus:6&quot;, next_scsi_devices, 0, 0, 0, 0, false)</div>
+<div class="line">MCFG_NSCSI_ADD(&quot;scsibus:7&quot;, next_scsi_devices, &quot;ncr5390&quot;, 0, &amp;next_ncr5390_interface, 10000000, true)</div>
+<div class="line"><br /></div>
+</div>
+</div>
+<p>That configuration puts as default a CD-ROM reader on SCSI ID 0 and a hard drive on SCSI ID 1, and forces the controller on ID 7.  The
+parameters of add are:</p>
+<ul class="simple">
+<li><p>device tag, comprised of bus-tag:scsi-id</p></li>
+<li><p>the list of acceptable devices</p></li>
+<li><p>the device name as per the list, if one is to be there by default</p></li>
+<li><p>the device input config, if any (and there usually isn't one)</p></li>
+<li><p>the device configuration structure, usually for the controller only</p></li>
+<li><p>the frequency, usually for the controller only</p></li>
+<li><p>&quot;<strong>false</strong>&quot; for a user-modifiable slot, &quot;<strong>true</strong>&quot; for a fixed slot</p></li>
+</ul>
+<p>The full device name, for mapping purposes, will be <strong>bus-tag:scsi-id:device-type</strong>, i.e. &quot;<em>scsibus:7:ncr5390</em>&quot; for our
+controller here.</p>
+</section>
+<section id="creating-a-new-scsi-device-using-nscsi-device">
+<h2>Creating a new SCSI device using nscsi_device<a class="headerlink" href="#creating-a-new-scsi-device-using-nscsi-device" title="Link to this heading">¶</a></h2>
+<p>The base class &quot;<strong>nscsi_device</strong>&quot; is to be used for down-to-the-metal devices, i.e. SCSI controller chips.  The class provides three
+variables and one method.  The first variable, <strong>scsi_bus</strong>, is a pointer to the <strong>nscsi_bus_device</strong>. The second, <strong>scsi_refid</strong>, is an opaque reference to pass to the bus on some operations. Finally, <strong>scsi_id</strong> gives the SCSI ID as per the device tag. It's written once at startup and never written or read afterwards, the device can do whatever it wants with the value or the variable.</p>
+<p>The virtual method <strong>scsi_ctrl_changed</strong> is called when watched-for control lines change. Which lines are watched is defined through the bus.</p>
+<p>The bus proposes five methods to access the lines.  The read methods are <strong>ctrl_r()</strong> and <strong>data_r()</strong>.  The meaning of the control bits are defined in the <strong>S_*</strong> enum of <strong>nscsi_device</strong>. The bottom three bits (<strong>INP</strong>, <strong>CTL</strong> and <strong>MSG</strong>) are setup so that masking with 7 (<strong>S_PHASE_MASK</strong>) gives the traditional numbers for the phases, which are also available with the <strong>S_PHASE_*</strong> enum.</p>
+<p>Writing the data lines is done with <strong>data_w(scsi_refid, value)</strong>.</p>
+<p>Writing the control lines is done with <strong>ctrl_w(scsi_refid, value, mask-of-lines-to-change)</strong>. To change all control lines in one call use <strong>S_ALL</strong> as the mask.</p>
+<p>Of course, what is read is the logical-or of all of what is driven by all devices.</p>
+<p>Finally, the method <strong>ctrl_wait_w(scsi_id, value, mask-of-wait-lines-to-change)</strong> allows to select which control lines are
+watched. The watch mask is per-device, and the device method <strong>scsi_ctrl_changed</strong> is called whenever a control line in the mask changes due to an action of another device (not itself, to avoid an annoying and somewhat useless recursion).</p>
+<p>Implementing the controller is then just a matter of following the state machines descriptions, at least if they're available.  The only
+part often not described is the arbitration/selection, which is documented in the SCSI standard though.  For an initiator (which is what the controller essentially always is), it goes like this:</p>
+<ul class="simple">
+<li><p>wait for the bus to be idle</p></li>
+<li><p>assert the data line which number is your scsi_id (1 &lt;&lt; scsi_id)</p></li>
+<li><p>assert the busy line</p></li>
+<li><p>wait the arbitration time</p></li>
+<li><p>check that the of the active data lines the one with the highest number is yours</p>
+<ul>
+<li><p>if no, the arbitration was lost, stop driving anything and restart at the beginning</p></li>
+</ul>
+</li>
+<li><p>assert the select line (at that point, the bus is yours)</p></li>
+<li><p>wait a short while</p></li>
+<li><p>keep your data line asserted, assert the data line which number is the SCSI ID of the target</p></li>
+<li><p>wait a short while</p></li>
+<li><p>assert the atn line if needed, de-assert busy</p></li>
+<li><p>wait for busy to be asserted or timeout</p>
+<ul>
+<li><p>timeout means nobody is answering at that id, de-assert everything and stop</p></li>
+</ul>
+</li>
+<li><p>wait a short while for de-skewing</p></li>
+<li><p>de-assert the data bus and the select line</p></li>
+<li><p>wait a short while</p></li>
+</ul>
+<p>and then you're done, you're connected with the target until the target de-asserts the busy line, either because you asked it to or just
+to annoy you. The de-assert is called a disconnect.</p>
+<p>The <strong>ncr5390</strong> is an example of how to use a two-level state machine to handle all the events.</p>
+</section>
+<section id="creating-a-new-scsi-device-using-nscsi-full-device">
+<h2>Creating a new SCSI device using <strong>nscsi_full_device</strong><a class="headerlink" href="#creating-a-new-scsi-device-using-nscsi-full-device" title="Link to this heading">¶</a></h2>
+<p>The base class &quot;<strong>nscsi_full_device</strong>&quot; is used to create HLE-d SCSI devices intended for generic uses, like hard drives, CD-ROMs, perhaps scanners, etc.  The class provides the SCSI protocol handling, leaving only the command handling and (optionally) the message handling to the implementation.</p>
+<p>The class currently only support target devices.</p>
+<p>The first method to implement is <strong>scsi_command()</strong>.  That method is called when a command has fully arrived. The command is available in <strong>scsi_cmdbuf[]</strong>, and its length is in <strong>scsi_cmdsize</strong> (but the length is generally useless, the command first byte giving it).  The 4096-bytes <strong>scsi_cmdbuf</strong> array is then freely modifiable.</p>
+<p>In <strong>scsi_command()</strong>, the device can either handle the command or pass it up with <strong>nscsi_full_device::scsi_command()</strong>.</p>
+<p>To handle the command, a number of methods are available:</p>
+<ul class="simple">
+<li><p><strong>get_lun(lua-set-in-command)</strong> will give you the LUN to work on (the in-command one can be overriden by a message-level one).</p></li>
+<li><p><strong>bad_lun()</strong> replies to the host that the specific LUN is unsupported.</p></li>
+<li><p><strong>scsi_data_in(buffer-id, size)</strong> sends size bytes from buffer <em>buffer-id</em></p></li>
+<li><p><strong>scsi_data_out(buffer-id, size)</strong> receives size bytes into buffer <em>buffer-id</em></p></li>
+<li><p><strong>scsi_status_complete(status)</strong> ends the command with a given status.</p></li>
+<li><p><strong>sense(deferred, key)</strong> prepares the sense buffer for a subsequent request-sense command, which is useful when returning a check-condition status.</p></li>
+</ul>
+<p>The <strong>scsi_data_*</strong> and <strong>scsi_status_complete</strong> commands are queued, the command handler should call them all without waiting.</p>
+<p><em>buffer-id</em> identifies a buffer.  0, aka <strong>SBUF_MAIN</strong>, targets the <strong>scsi_cmdbuf</strong> buffer. Other acceptable values are 2 or more. 2+ ids are handled through the <strong>scsi_get_data</strong> method for read and <strong>scsi_put_data</strong> for write.</p>
+<p><strong>UINT8 device::scsi_get_data(int id, int pos)</strong> must return byte pos of buffer id, upcalling in <strong>nscsi_full_device</strong> for id &lt; 2.</p>
+<p><strong>void device::scsi_put_data(int id, int pos, UINT8 data)</strong> must write byte pos in buffer id, upcalling in <strong>nscsi_full_device</strong> for id &lt; 2.</p>
+<p><strong>scsi_get_data</strong> and <strong>scsi_put_data</strong> should do the external reads/writes when needed.</p>
+<p>The device can also override <strong>scsi_message</strong> to handle SCSI messages other than the ones generically handled, and it can also override some of the timings (but a lot of them aren't used, beware).</p>
+<p>A number of enums are defined to make things easier. The <strong>SS_*</strong> enum gives status returns (with <strong>SS_GOOD</strong> for all's well).  The <strong>SC_*</strong> enum gives the scsi commands.  The <strong>SM_*</strong> enum gives the SCSI messages, with the exception of identify (which is <strong>80-ff</strong>, doesn't really fit in an enum).</p>
+</section>
+<section id="what-s-missing-in-scsi-full-device">
+<h2>What's missing in <strong>scsi_full_device</strong><a class="headerlink" href="#what-s-missing-in-scsi-full-device" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><strong>Initiator support</strong> We have no initiator device to HLE at that point.</p></li>
+<li><p><strong>Delays</strong> A scsi_delay command would help giving more realistic timings to the CD-ROM reader in particular.</p></li>
+<li><p><strong>Disconnected operation</strong> Would first require delays and in addition an emulated OS that can handle it.</p></li>
+<li><p><strong>16-bits wide operation</strong> needs an OS and an initiator that can handle it.</p></li>
+</ul>
+</section>
+<section id="what-s-missing-in-the-ncr5390-and-probably-future-other-controllers">
+<h2>What's missing in the ncr5390 (and probably future other controllers)<a class="headerlink" href="#what-s-missing-in-the-ncr5390-and-probably-future-other-controllers" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><strong>Bus free detection</strong> Right now the bus is considered free if the controllers isn't using it, which is true. This may change once disconnected operation is in.</p></li>
+<li><p><strong>Target commands</strong> We don't emulate (vs. HLE) any target yet.</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="floppy.html" class="btn btn-neutral float-left" title="The new floppy subsystem" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="m6502.html" class="btn btn-neutral float-right" title="The new 6502 family implementation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 1997-2025, MAMEdev and contributors.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

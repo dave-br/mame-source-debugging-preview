@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SDL-Specific Command-line Options &mdash; MAME Documentation 0.277 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/documentation_options.js?v=561e49e2"></script>
+        <script src="../_static/doctools.js?v=9bcbadda"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Command-line Index" href="commandline-index.html" />
+    <link rel="prev" title="Windows-Specific Command-line Options" href="windowsconfig.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            MAME Documentation
+          </a>
+              <div class="version">
+                0.277
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../whatis.html">What is MAME</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../healthwarning.html">Health Warnings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../initialsetup/index.html">Getting MAME prepared</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usingmame/index.html">Basic MAME Usage and Configuration</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">MAME Command-line Usage and OS-Specific Configuration</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="commandline-all.html">Universal Command-line Options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="windowsconfig.html">Windows-Specific Command-line Options</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">SDL-Specific Command-line Options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commandline-index.html">Command-line Index</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../plugins/index.html">Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/index.html">Advanced configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debugger/index.html">MAME Debugger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../luascript/index.html">Lua Scripting Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">MAME External Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing to MAME</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../techspecs/index.html">Technical Specifications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../security.html">MAME and security concerns</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">The MAME License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">MAME Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">MAME Command-line Usage and OS-Specific Configuration</a></li>
+      <li class="breadcrumb-item active">SDL-Specific Command-line Options</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="sdl-specific-command-line-options">
+<h1>SDL-Specific Command-line Options<a class="headerlink" href="#sdl-specific-command-line-options" title="Link to this heading">¶</a></h1>
+<p>This section contains configuration options that are specific to any build
+supported by SDL (including Windows when built with SDL instead of native).</p>
+<section id="performance-options">
+<h2>Performance Options<a class="headerlink" href="#performance-options" title="Link to this heading">¶</a></h2>
+<p id="mame-scommandline-sdlvideofps"><strong>-[no]sdlvideofps</strong></p>
+<blockquote>
+<div><p>Enable output of benchmark data on the SDL video subsystem, including your
+system’s video driver, X server (if applicable), and OpenGL stack in
+<strong>-video opengl</strong> mode.</p>
+</div></blockquote>
+</section>
+<section id="video-options">
+<h2>Video Options<a class="headerlink" href="#video-options" title="Link to this heading">¶</a></h2>
+<p id="mame-scommandline-centerh"><strong>-[no]centerh</strong></p>
+<blockquote>
+<div><p>Center horizontally within the view area. Default is ON (<strong>-centerh</strong>).</p>
+</div></blockquote>
+<p id="mame-scommandline-centerv"><strong>-[no]centerv</strong></p>
+<blockquote>
+<div><p>Center vertically within the view area. Default is ON (<strong>-centerv</strong>).</p>
+</div></blockquote>
+</section>
+<section id="video-soft-specific-options">
+<h2>Video Soft-Specific Options<a class="headerlink" href="#video-soft-specific-options" title="Link to this heading">¶</a></h2>
+<p id="mame-scommandline-scalemode"><strong>-scalemode</strong></p>
+<blockquote>
+<div><p>Scale mode: none, async, yv12, yuy2, yv12x2, yuy2x2 (<strong>-video soft</strong> only).
+Default is <em>none</em>.</p>
+</div></blockquote>
+</section>
+<section id="sdl-keyboard-mapping">
+<h2>SDL Keyboard Mapping<a class="headerlink" href="#sdl-keyboard-mapping" title="Link to this heading">¶</a></h2>
+<p id="mame-scommandline-keymap"><strong>-keymap</strong></p>
+<blockquote>
+<div><p>Enable keymap.  Default is OFF (<strong>-nokeymap</strong>)</p>
+</div></blockquote>
+<p id="mame-scommandline-keymapfile"><strong>-keymap_file</strong> <em>&lt;file&gt;</em></p>
+<blockquote>
+<div><p>Keymap file name.  Default is <code class="docutils literal notranslate"><span class="pre">keymap.dat</span></code>.</p>
+</div></blockquote>
+</section>
+<section id="sdl-input-options">
+<h2>SDL Input Options<a class="headerlink" href="#sdl-input-options" title="Link to this heading">¶</a></h2>
+<p id="mame-scommandline-enabletouch"><strong>-enable_touch</strong></p>
+<blockquote>
+<div><p>Enable support for touch input.  If this option is switched off, mouse input
+simulated from touch devices will be used instead.  Default is OFF
+(<strong>-noenable_touch</strong>)</p>
+</div></blockquote>
+<p id="mame-scommandline-sixaxis"><strong>-sixaxis</strong></p>
+<blockquote>
+<div><p>Use special handling for PlayStation 3 SixAxis controllers.  May cause
+undesirable behaviour with other controllers.  Only affects the <code class="docutils literal notranslate"><span class="pre">sdljoy</span></code>
+joystick provider.  Default is OFF (<strong>-nosixaxis</strong>)</p>
+</div></blockquote>
+<p id="mame-scommandline-duallightgun"><strong>-[no]dual_lightgun</strong> / <strong>-[no]dual</strong></p>
+<blockquote>
+<div><p>Controls whether or not MAME attempts to track two lightguns that appear as
+a single mouse.  This option requires the <a class="reference internal" href="commandline-all.html#mame-commandline-nolightgun"><span class="std std-ref">lightgun option</span></a> to be on and the <a class="reference internal" href="commandline-all.html#mame-commandline-lightgunprovider"><span class="std std-ref">lightgunprovider
+option</span></a> to be set to <em>sdl</em>.</p>
+<p>This option supports dual lightgun setups that work by setting the mouse
+pointer location at the moment a lightgun trigger is activated.  The primary
+and secondary triggers on the first lightgun correspond to the first and
+second mouse buttons, and the primary and secondary triggers on the second
+lightgun correspond to the third and fourth mouse buttons.</p>
+<p>The default is OFF (<strong>-nodual_lightgun</strong>).</p>
+</div></blockquote>
+</section>
+<section id="sdl-lightgun-mapping">
+<h2>SDL Lightgun Mapping<a class="headerlink" href="#sdl-lightgun-mapping" title="Link to this heading">¶</a></h2>
+<div class="line-block" id="mame-scommandline-lightgunindex">
+<div class="line"><br /></div>
+<div class="line"><strong>-lightgun_index1</strong> <em>&lt;name&gt;</em></div>
+<div class="line"><strong>-lightgun_index2</strong> <em>&lt;name&gt;</em></div>
+<div class="line">...</div>
+<div class="line"><strong>-lightgun_index8</strong> <em>&lt;name&gt;</em></div>
+<div class="line"><br /></div>
+</div>
+<p>Device name or ID mapped to a given lightgun slot.</p>
+</section>
+<section id="sdl-low-level-driver-options">
+<h2>SDL Low-level Driver Options<a class="headerlink" href="#sdl-low-level-driver-options" title="Link to this heading">¶</a></h2>
+<p id="mame-scommandline-videodriver"><strong>-videodriver</strong> <em>&lt;driver&gt;</em></p>
+<blockquote>
+<div><p>SDL video driver to use ('x11', 'directfb', ... or '<em>auto</em>' for SDL default)</p>
+</div></blockquote>
+<p id="mame-scommandline-audiodriver"><strong>-audiodriver</strong> <em>&lt;driver&gt;</em></p>
+<blockquote>
+<div><p>SDL audio driver to use ('alsa', 'arts', ... or '<em>auto</em>' for SDL default)</p>
+</div></blockquote>
+<p id="mame-scommandline-gllib"><strong>-gl_lib</strong> <em>&lt;driver&gt;</em></p>
+<blockquote>
+<div><p>Alternative <strong>libGL.so</strong> to use; '<em>auto</em>' for system default</p>
+</div></blockquote>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="windowsconfig.html" class="btn btn-neutral float-left" title="Windows-Specific Command-line Options" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="commandline-index.html" class="btn btn-neutral float-right" title="Command-line Index" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 1997-2025, MAMEdev and contributors.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

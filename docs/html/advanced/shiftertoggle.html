@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shifter Toggle Disable &mdash; MAME Documentation 0.277 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/documentation_options.js?v=561e49e2"></script>
+        <script src="../_static/doctools.js?v=9bcbadda"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="BGFX Effects for (nearly) Everyone" href="bgfx.html" />
+    <link rel="prev" title="MAME Path Handling" href="paths.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            MAME Documentation
+          </a>
+              <div class="version">
+                0.277
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../whatis.html">What is MAME</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../healthwarning.html">Health Warnings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../initialsetup/index.html">Getting MAME prepared</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usingmame/index.html">Basic MAME Usage and Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../commandline/index.html">MAME Command-line Usage and OS-Specific Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plugins/index.html">Plugins</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Advanced configuration</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="multiconfig.html">Multiple Configuration Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="paths.html">MAME Path Handling</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Shifter Toggle Disable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bgfx.html">BGFX Effects for (nearly) Everyone</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hlsl.html">HLSL Effects for Windows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glsl.html">GLSL Effects for *nix, OS X, and Windows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctrlr_config.html">Controller Configuration Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="devicemap.html">Stable Controller IDs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linux-lightguns.html">Linux Lightguns</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../debugger/index.html">MAME Debugger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../luascript/index.html">Lua Scripting Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">MAME External Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing to MAME</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../techspecs/index.html">Technical Specifications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../security.html">MAME and security concerns</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">The MAME License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">MAME Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Advanced configuration</a></li>
+      <li class="breadcrumb-item active">Shifter Toggle Disable</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="shifter-toggle-disable">
+<h1>Shifter Toggle Disable<a class="headerlink" href="#shifter-toggle-disable" title="Link to this heading">¶</a></h1>
+<p>This is an advanced feature for alternative shifter handling for certain older arcade machines such as Spy Hunter and Outrun that used a two-way toggle switch for the shifter. By default, the shifter is treated as a toggle switch. One press of the mapped control for the shifter will switch it from low to high, and another will switch it back. This may not be ideal if you have access to a physical shifter that works identically to how the original machines did. (The input is on when in one gear, the input is off otherwise)</p>
+<p>Note that this feature will <em>not</em> help controller users and will not help with games that have more than two shifter states (e.g. five gears in modern racing games)</p>
+<p>This feature is not exposed through the graphical user interface in any way, as it is an extremely advanced tweak intended explicitly for people who have this specific need, have the hardware to take advantage of it, and the knowledge to use it correctly.</p>
+<section id="disabling-and-enabling-shifter-toggle">
+<h2>Disabling and Enabling Shifter Toggle<a class="headerlink" href="#disabling-and-enabling-shifter-toggle" title="Link to this heading">¶</a></h2>
+<p>This example will use the game Spy Hunter (set <em>spyhunt</em>) to demonstrate the exact change needed:</p>
+<p>You will need to manually edit the game .CFG file in the CFG folder (e.g. <code class="docutils literal notranslate"><span class="pre">spyhunt.cfg</span></code>)</p>
+<p>Start by loading MAME with the game in question. In our case, that will be <strong>mame spyhunt</strong>.</p>
+<p>Set up the controls as you would please, including mapping the shifter. Exit MAME, open the .cfg file in your text editor of choice.</p>
+<p>Inside the <code class="docutils literal notranslate"><span class="pre">spyhunt.cfg</span></code> file, you will find the following for the input. The actual input code in the middle can and will vary depending on the controller number and what input you have mapped.</p>
+<div class="line-block">
+<div class="line"><strong>&lt;port tag=&quot;:ssio:IP0&quot; type=&quot;P1_BUTTON2&quot; mask=&quot;16&quot; defvalue=&quot;16&quot;&gt;</strong></div>
+<div class="line-block">
+<div class="line">&lt;newseq type=&quot;standard&quot;&gt;</div>
+<div class="line-block">
+<div class="line">JOYCODE_1_RYAXIS_NEG_SWITCH OR JOYCODE_1_RYAXIS_POS_SWITCH</div>
+</div>
+<div class="line">&lt;/newseq&gt;</div>
+</div>
+<div class="line">&lt;/port&gt;</div>
+<div class="line"><br /></div>
+</div>
+<p>The line you need to edit will be the port line defining the actual input. For Spy Hunter, that's going to be <em>P1_BUTTON2</em>. Add <strong>toggle=&quot;no&quot;</strong> to the end of the tag, like follows:</p>
+<div class="line-block">
+<div class="line"><strong>&lt;port tag=&quot;:ssio:IP0&quot; type=&quot;P1_BUTTON2&quot; mask=&quot;16&quot; defvalue=&quot;16&quot; toggle=&quot;no&quot;&gt;</strong></div>
+<div class="line-block">
+<div class="line">&lt;newseq type=&quot;standard&quot;&gt;</div>
+<div class="line-block">
+<div class="line">JOYCODE_1_RYAXIS_NEG_SWITCH OR JOYCODE_1_RYAXIS_POS_SWITCH</div>
+</div>
+<div class="line">&lt;/newseq&gt;</div>
+</div>
+<div class="line">&lt;/port&gt;</div>
+<div class="line"><br /></div>
+</div>
+<p>Save and exit. To disable this, simply remove the <strong>toggle=&quot;no&quot;</strong> from each desired .CFG input.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="paths.html" class="btn btn-neutral float-left" title="MAME Path Handling" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="bgfx.html" class="btn btn-neutral float-right" title="BGFX Effects for (nearly) Everyone" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 1997-2025, MAMEdev and contributors.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

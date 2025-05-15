@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Linux Lightguns &mdash; MAME Documentation 0.277 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/documentation_options.js?v=561e49e2"></script>
+        <script src="../_static/doctools.js?v=9bcbadda"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="MAME Debugger" href="../debugger/index.html" />
+    <link rel="prev" title="Stable Controller IDs" href="devicemap.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            MAME Documentation
+          </a>
+              <div class="version">
+                0.277
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../whatis.html">What is MAME</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../healthwarning.html">Health Warnings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../initialsetup/index.html">Getting MAME prepared</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usingmame/index.html">Basic MAME Usage and Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../commandline/index.html">MAME Command-line Usage and OS-Specific Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plugins/index.html">Plugins</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Advanced configuration</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="multiconfig.html">Multiple Configuration Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="paths.html">MAME Path Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="shiftertoggle.html">Shifter Toggle Disable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bgfx.html">BGFX Effects for (nearly) Everyone</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hlsl.html">HLSL Effects for Windows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glsl.html">GLSL Effects for *nix, OS X, and Windows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ctrlr_config.html">Controller Configuration Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="devicemap.html">Stable Controller IDs</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Linux Lightguns</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../debugger/index.html">MAME Debugger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../luascript/index.html">Lua Scripting Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">MAME External Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing to MAME</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../techspecs/index.html">Technical Specifications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../security.html">MAME and security concerns</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">The MAME License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">MAME Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Advanced configuration</a></li>
+      <li class="breadcrumb-item active">Linux Lightguns</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="linux-lightguns">
+<h1>Linux Lightguns<a class="headerlink" href="#linux-lightguns" title="Link to this heading">¶</a></h1>
+<p>Many lightguns (especially the Ultimarc AimTrak) may work better in MAME under Linux when using a slightly more complicated configuration. The instructions here are for getting an AimTrak working on Ubuntu using udev and Xorg, but other Linux distributions and lightguns may work with some changes to the steps.</p>
+<section id="configure-udev-rules">
+<h2>Configure udev rules<a class="headerlink" href="#configure-udev-rules" title="Link to this heading">¶</a></h2>
+<p>For the AimTrak, each lightgun exposes several USB devices once connected: 2 mouse emulation devices, and 1 joystick emulation device. We need to instruct libinput via udev to ignore all but the correct emulated mouse device. This prevents each lightgun from producing multiple mouse devices, which would result in non-deterministic selection between the &quot;good&quot; and &quot;bad&quot; emulated mouse devices by Xorg.</p>
+<p>Create a new file named <code class="docutils literal notranslate"><span class="pre">/etc/udev/rules.d/65-aimtrak.rules</span></code> and place the following contents into it:</p>
+<div class="line-block">
+<div class="line"># Set mode (0666) &amp; disable libinput handling to avoid X11 picking up the wrong</div>
+<div class="line"># interfaces/devices.</div>
+<div class="line">SUBSYSTEMS==&quot;usb&quot;, ATTRS{idVendor}==&quot;d209&quot;, ATTRS{idProduct}==&quot;160*&quot;,</div>
+<div class="line-block">
+<div class="line">MODE=&quot;0666&quot;, ENV{ID_INPUT}=&quot;&quot;, ENV{LIBINPUT_IGNORE_DEVICE}=&quot;1&quot;</div>
+<div class="line"><br /></div>
+</div>
+<div class="line"># For ID_USB_INTERFACE_NUM==2, re-enable libinput handling.</div>
+<div class="line">SUBSYSTEMS==&quot;usb&quot;, ATTRS{idVendor}==&quot;d209&quot;, ATTRS{idProduct}==&quot;160*&quot;,</div>
+<div class="line-block">
+<div class="line">ENV{ID_USB_INTERFACE_NUM}==&quot;02&quot;, ENV{ID_INPUT}=&quot;1&quot;,</div>
+<div class="line">ENV{LIBINPUT_IGNORE_DEVICE}=&quot;0&quot;</div>
+<div class="line"><br /></div>
+</div>
+</div>
+<p>This configuration will be correct for the AimTrak lightguns, however each brand of lightgun will require their own settings.</p>
+</section>
+<section id="configure-xorg-inputs">
+<h2>Configure Xorg inputs<a class="headerlink" href="#configure-xorg-inputs" title="Link to this heading">¶</a></h2>
+<p>Next, we'll configure Xorg to treat the lightguns as a &quot;Floating&quot; device. This is important for multiple lightguns to work correctly and ensures each gun's emulated mouse pointer is NOT merged with the main system mouse pointer.</p>
+<p>In <code class="docutils literal notranslate"><span class="pre">/etc/X11/xorg.conf.d/60-aimtrak.conf</span></code> we will need:</p>
+<div class="line-block">
+<div class="line">Section &quot;InputClass&quot;</div>
+<div class="line-block">
+<div class="line">Identifier &quot;AimTrak Guns&quot;</div>
+<div class="line">MatchDevicePath &quot;/dev/input/event*&quot;</div>
+<div class="line">MatchUSBID &quot;d209:160*&quot;</div>
+<div class="line">Driver &quot;libinput&quot;</div>
+<div class="line">Option &quot;Floating&quot; &quot;yes&quot;</div>
+<div class="line">Option &quot;AutoServerLayout&quot; &quot;no&quot;</div>
+</div>
+<div class="line">EndSection</div>
+<div class="line"><br /></div>
+</div>
+</section>
+<section id="configure-mame">
+<h2>Configure MAME<a class="headerlink" href="#configure-mame" title="Link to this heading">¶</a></h2>
+<p>Next, we'll need to configure MAME via <code class="docutils literal notranslate"><span class="pre">mame.ini</span></code> to use the new lightgun device(s).</p>
+<ul class="simple">
+<li><p>lightgun 1</p></li>
+<li><p>lightgun_device lightgun</p></li>
+<li><p>lightgunprovider x11</p></li>
+</ul>
+<p>These first three lines tell MAME to enable lightgun support, to tell MAME that we're using a lightgun instead of a mouse, and to use the x11 provider.</p>
+<ul class="simple">
+<li><p>lightgun_index1 &quot;Ultimarc ATRAK Device #1&quot;</p></li>
+<li><p>lightgun_index2 &quot;Ultimarc ATRAK Device #2&quot;</p></li>
+<li><p>lightgun_index3 &quot;Ultimarc ATRAK Device #3&quot;</p></li>
+<li><p>lightgun_index4 &quot;Ultimarc ATRAK Device #4&quot;</p></li>
+</ul>
+<p>These next lines then tell MAME to keep lightguns consistent across sessions.</p>
+<ul class="simple">
+<li><p>offscreen_reload 1</p></li>
+</ul>
+<p>Lastly, as most lightgun games require offscreen reloading and we're using a device that actually can point away from the screen, we enable that functionality.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="devicemap.html" class="btn btn-neutral float-left" title="Stable Controller IDs" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../debugger/index.html" class="btn btn-neutral float-right" title="MAME Debugger" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 1997-2025, MAMEdev and contributors.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

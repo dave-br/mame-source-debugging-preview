@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Code Annotation Debugger Commands &mdash; MAME Documentation 0.277 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/documentation_options.js?v=561e49e2"></script>
+        <script src="../_static/doctools.js?v=9bcbadda"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Cheat Debugger Commands" href="cheats.html" />
+    <link rel="prev" title="Exceptionpoint Debugger Commands" href="exceptionpoint.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            MAME Documentation
+          </a>
+              <div class="version">
+                0.277
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../whatis.html">What is MAME</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../healthwarning.html">Health Warnings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../initialsetup/index.html">Getting MAME prepared</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usingmame/index.html">Basic MAME Usage and Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../commandline/index.html">MAME Command-line Usage and OS-Specific Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plugins/index.html">Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/index.html">Advanced configuration</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">MAME Debugger</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="general.html">General Debugger Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memory.html">Memory Debugger Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="execution.html">Execution Debugger Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="breakpoint.html">Breakpoint Debugger Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="watchpoint.html">Watchpoint Debugger Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="registerpoints.html">Registerpoint Debugger Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptionpoint.html">Exceptionpoint Debugger Commands</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Code Annotation Debugger Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cheats.html">Cheat Debugger Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="image.html">Media Image Debugger Commands</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../luascript/index.html">Lua Scripting Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">MAME External Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing to MAME</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../techspecs/index.html">Technical Specifications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../security.html">MAME and security concerns</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">The MAME License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">MAME Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">MAME Debugger</a></li>
+      <li class="breadcrumb-item active">Code Annotation Debugger Commands</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="code-annotation-debugger-commands">
+<span id="debugger-annotation-list"></span><h1>Code Annotation Debugger Commands<a class="headerlink" href="#code-annotation-debugger-commands" title="Link to this heading">¶</a></h1>
+<dl class="simple">
+<dt><a class="reference internal" href="#debugger-command-comadd"><span class="std std-ref">comadd</span></a></dt><dd><p>adds a comment to the disassembled code at given address</p>
+</dd>
+<dt><a class="reference internal" href="#debugger-command-comdelete"><span class="std std-ref">comdelete</span></a></dt><dd><p>removes a comment from the given address</p>
+</dd>
+<dt><a class="reference internal" href="#debugger-command-comsave"><span class="std std-ref">comsave</span></a></dt><dd><p>save the current comments to file</p>
+</dd>
+<dt><a class="reference internal" href="#debugger-command-comlist"><span class="std std-ref">comlist</span></a></dt><dd><p>list comments stored in the comment file for the system</p>
+</dd>
+<dt><a class="reference internal" href="#debugger-command-commit"><span class="std std-ref">commit</span></a></dt><dd><p>combined <code class="docutils literal notranslate"><span class="pre">comadd</span></code> and <code class="docutils literal notranslate"><span class="pre">comsave</span></code> command</p>
+</dd>
+</dl>
+<section id="comadd">
+<span id="debugger-command-comadd"></span><h2>comadd<a class="headerlink" href="#comadd" title="Link to this heading">¶</a></h2>
+<p><strong>comadd &lt;address&gt;,&lt;comment&gt;</strong></p>
+<p>Sets the specified comment for the specified address in the disassembled
+code for the visible CPU.  This command may be abbreviated to <code class="docutils literal notranslate"><span class="pre">//</span></code>.</p>
+<p>Examples:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">comadd</span> <span class="pre">0,hello</span> <span class="pre">world.</span></code></dt><dd><p>Adds the comment “hello world.” to the code at address 0.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">//</span> <span class="pre">10,undocumented</span> <span class="pre">opcode!</span></code></dt><dd><p>Adds the comment “undocumented opcode!” to the code at address 10.</p>
+</dd>
+</dl>
+</section>
+<section id="comdelete">
+<span id="debugger-command-comdelete"></span><h2>comdelete<a class="headerlink" href="#comdelete" title="Link to this heading">¶</a></h2>
+<p><strong>comdelete</strong></p>
+<p>Deletes the comment at the specified address for the visible CPU.</p>
+<p>Examples:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">comdelete</span> <span class="pre">10</span></code></dt><dd><p>Deletes the comment at code address 10 for the visible CPU.</p>
+</dd>
+</dl>
+</section>
+<section id="comsave">
+<span id="debugger-command-comsave"></span><h2>comsave<a class="headerlink" href="#comsave" title="Link to this heading">¶</a></h2>
+<p><strong>comsave</strong></p>
+<p>Saves the current comments to the XML comment file for the emulated
+system.  This file will be loaded by the debugger the next time the
+system is run with debugging enabled.  The directory for saving these
+files is set using the
+<a class="reference internal" href="../commandline/commandline-all.html#mame-commandline-commentdirectory"><span class="std std-ref">comment_directory</span></a> option.</p>
+<p>Examples:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">comsave</span></code></dt><dd><p>Saves the current comments to the comment file for the system.</p>
+</dd>
+</dl>
+</section>
+<section id="comlist">
+<span id="debugger-command-comlist"></span><h2>comlist<a class="headerlink" href="#comlist" title="Link to this heading">¶</a></h2>
+<p><strong>comlist</strong></p>
+<p>Reads the comments stored in the XML comment file for the emulated
+system and prints them to the debugger console.  This command does not
+affect the comments for the current session, it reads the file directly.
+The directory for these files is set using the
+<a class="reference internal" href="../commandline/commandline-all.html#mame-commandline-commentdirectory"><span class="std std-ref">comment_directory</span></a> option.</p>
+<p>Examples:</p>
+<dl class="simple">
+<dt>comlist</dt><dd><p>Shows comments stored in the comment file for the system.</p>
+</dd>
+</dl>
+</section>
+<section id="commit">
+<span id="debugger-command-commit"></span><h2>commit<a class="headerlink" href="#commit" title="Link to this heading">¶</a></h2>
+<p><strong>commit &lt;address&gt;,&lt;comment&gt;</strong></p>
+<p>Sets the specified comment for the specified address in the disassembled
+code for the visible CPU, and saves comments to the file for the current
+emulated system (equivalent to <a class="reference internal" href="#debugger-command-comadd"><span class="std std-ref">comadd</span></a> followed
+by <a class="reference internal" href="#debugger-command-comsave"><span class="std std-ref">comsave</span></a>).  This command may be abbreviated to
+<code class="docutils literal notranslate"><span class="pre">/*</span></code>.</p>
+<p>Examples:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">commit</span> <span class="pre">0,hello</span> <span class="pre">world.</span></code></dt><dd><p>Adds the comment “hello world.” to the code at address 0 for the
+visible CPU and saves comments.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">/*</span> <span class="pre">10,undocumented</span> <span class="pre">opcode!</span></code></dt><dd><p>Adds the comment “undocumented opcode!” to the code at address 10
+for the visible CPU and saves comments.</p>
+</dd>
+</dl>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="exceptionpoint.html" class="btn btn-neutral float-left" title="Exceptionpoint Debugger Commands" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="cheats.html" class="btn btn-neutral float-right" title="Cheat Debugger Commands" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 1997-2025, MAMEdev and contributors.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

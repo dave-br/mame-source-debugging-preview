@@ -1,0 +1,2260 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UML Instruction Reference &mdash; MAME Documentation 0.277 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/documentation_options.js?v=561e49e2"></script>
+        <script src="../_static/doctools.js?v=9bcbadda"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Software 3D Rendering in MAME" href="poly_manager.html" />
+    <link rel="prev" title="The new 6502 family implementation" href="m6502.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            MAME Documentation
+          </a>
+              <div class="version">
+                0.277
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../whatis.html">What is MAME</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../healthwarning.html">Health Warnings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../initialsetup/index.html">Getting MAME prepared</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usingmame/index.html">Basic MAME Usage and Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../commandline/index.html">MAME Command-line Usage and OS-Specific Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plugins/index.html">Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/index.html">Advanced configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debugger/index.html">MAME Debugger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../luascript/index.html">Lua Scripting Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">MAME External Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing to MAME</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Technical Specifications</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="naming.html">MAME Naming Conventions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="layout_files.html">MAME Layout Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="layout_script.html">MAME Layout Scripting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="object_finders.html">Object Finders</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inputsystem.html">Input System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="device_memory_interface.html">The device_memory_interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="device_rom_interface.html">The device_rom_interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="device_disasm_interface.html">The device_disasm_interface and the disassemblers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memory.html">Emulated system memory and address spaces management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpu_device.html">CPU devices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="floppy.html">The new floppy subsystem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nscsi.html">The new SCSI subsystem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="m6502.html">The new 6502 family implementation</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">UML Instruction Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="poly_manager.html">Software 3D Rendering in MAME</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../security.html">MAME and security concerns</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">The MAME License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">MAME Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Technical Specifications</a></li>
+      <li class="breadcrumb-item active">UML Instruction Reference</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="uml-instruction-reference">
+<span id="umlinst"></span><h1>UML Instruction Reference<a class="headerlink" href="#uml-instruction-reference" title="Link to this heading">¶</a></h1>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#introduction" id="id71">Introduction</a></p></li>
+<li><p><a class="reference internal" href="#flow-control" id="id72">Flow control</a></p>
+<ul>
+<li><p><a class="reference internal" href="#comment" id="id73">COMMENT</a></p></li>
+<li><p><a class="reference internal" href="#nop" id="id74">NOP</a></p></li>
+<li><p><a class="reference internal" href="#label" id="id75">LABEL</a></p></li>
+<li><p><a class="reference internal" href="#handle" id="id76">HANDLE</a></p></li>
+<li><p><a class="reference internal" href="#hash" id="id77">HASH</a></p></li>
+<li><p><a class="reference internal" href="#jmp" id="id78">JMP</a></p></li>
+<li><p><a class="reference internal" href="#callh" id="id79">CALLH</a></p></li>
+<li><p><a class="reference internal" href="#exh" id="id80">EXH</a></p></li>
+<li><p><a class="reference internal" href="#ret" id="id81">RET</a></p></li>
+<li><p><a class="reference internal" href="#hashjmp" id="id82">HASHJMP</a></p></li>
+<li><p><a class="reference internal" href="#exit" id="id83">EXIT</a></p></li>
+<li><p><a class="reference internal" href="#callc" id="id84">CALLC</a></p></li>
+<li><p><a class="reference internal" href="#debug" id="id85">DEBUG</a></p></li>
+<li><p><a class="reference internal" href="#break" id="id86">BREAK</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#data-movement" id="id87">Data movement</a></p>
+<ul>
+<li><p><a class="reference internal" href="#mov" id="id88">MOV</a></p></li>
+<li><p><a class="reference internal" href="#fmov" id="id89">FMOV</a></p></li>
+<li><p><a class="reference internal" href="#fcopyi" id="id90">FCOPYI</a></p></li>
+<li><p><a class="reference internal" href="#icopyf" id="id91">ICOPYF</a></p></li>
+<li><p><a class="reference internal" href="#load" id="id92">LOAD</a></p></li>
+<li><p><a class="reference internal" href="#loads" id="id93">LOADS</a></p></li>
+<li><p><a class="reference internal" href="#store" id="id94">STORE</a></p></li>
+<li><p><a class="reference internal" href="#fload" id="id95">FLOAD</a></p></li>
+<li><p><a class="reference internal" href="#fstore" id="id96">FSTORE</a></p></li>
+<li><p><a class="reference internal" href="#getexp" id="id97">GETEXP</a></p></li>
+<li><p><a class="reference internal" href="#mapvar" id="id98">MAPVAR</a></p></li>
+<li><p><a class="reference internal" href="#recover" id="id99">RECOVER</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#emulated-memory-access" id="id100">Emulated memory access</a></p>
+<ul>
+<li><p><a class="reference internal" href="#read" id="id101">READ</a></p></li>
+<li><p><a class="reference internal" href="#readm" id="id102">READM</a></p></li>
+<li><p><a class="reference internal" href="#write" id="id103">WRITE</a></p></li>
+<li><p><a class="reference internal" href="#writem" id="id104">WRITEM</a></p></li>
+<li><p><a class="reference internal" href="#fread" id="id105">FREAD</a></p></li>
+<li><p><a class="reference internal" href="#fwrite" id="id106">FWRITE</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<section id="introduction">
+<span id="umlinst-intro"></span><h2><a class="toc-backref" href="#id71" role="doc-backlink">Introduction</a><a class="headerlink" href="#introduction" title="Link to this heading">¶</a></h2>
+<p>UML is the instruction set used by MAME’s recompiler framework.
+Front-ends translate code running on the guest CPUs to UML instructions,
+and back-ends convert the UML instructions to a form that can be
+executed or interpreted on the host system.</p>
+</section>
+<section id="flow-control">
+<span id="umlinst-flow"></span><h2><a class="toc-backref" href="#id72" role="doc-backlink">Flow control</a><a class="headerlink" href="#flow-control" title="Link to this heading">¶</a></h2>
+<section id="comment">
+<span id="umlinst-comment"></span><h3><a class="toc-backref" href="#id73" role="doc-backlink">COMMENT</a><a class="headerlink" href="#comment" title="Link to this heading">¶</a></h3>
+<p>Insert a comment into logged UML code.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Disassembly</p></th>
+<th class="head"><p>Usage</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">comment</span> <span class="n">string</span>
+</pre></div>
+</div>
+</td>
+<td><div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="n">UML_COMMENT</span><span class="p">(</span><span class="n">block</span><span class="p">,</span><span class="w"> </span><span class="n">string</span><span class="p">);</span>
+</pre></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<section id="operands">
+<h4>Operands<a class="headerlink" href="#operands" title="Link to this heading">¶</a></h4>
+<dl class="simple">
+<dt>string</dt><dd><p>The comment text as a pointer to a NUL-terminated string.  This must
+remain valid until code is generated for the block.</p>
+</dd>
+</dl>
+</section>
+<section id="flags">
+<h4>Flags<a class="headerlink" href="#flags" title="Link to this heading">¶</a></h4>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>carry (C)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+<tr class="row-even"><td><p>overflow (V)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+<tr class="row-odd"><td><p>zero (Z)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+<tr class="row-even"><td><p>sign (S)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+<tr class="row-odd"><td><p>unordered (U)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="nop">
+<span id="umlinst-nop"></span><h3><a class="toc-backref" href="#id74" role="doc-backlink">NOP</a><a class="headerlink" href="#nop" title="Link to this heading">¶</a></h3>
+<p>No operation.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Disassembly</p></th>
+<th class="head"><p>Usage</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nop</span>
+</pre></div>
+</div>
+</td>
+<td><div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="n">UML_NOP</span><span class="p">(</span><span class="n">block</span><span class="p">);</span>
+</pre></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<section id="id1">
+<h4>Flags<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h4>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>carry (C)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+<tr class="row-even"><td><p>overflow (V)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+<tr class="row-odd"><td><p>zero (Z)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+<tr class="row-even"><td><p>sign (S)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+<tr class="row-odd"><td><p>unordered (U)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="label">
+<span id="umlinst-label"></span><h3><a class="toc-backref" href="#id75" role="doc-backlink">LABEL</a><a class="headerlink" href="#label" title="Link to this heading">¶</a></h3>
+<p>Associate a location with a label number local to the current generated
+code block.  Label numbers must not be reused within a generated code
+block.  The <a class="reference internal" href="#umlinst-jmp"><span class="std std-ref">JMP</span></a> instruction may be used to transfer
+control to the location associated with a label number.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Disassembly</p></th>
+<th class="head"><p>Usage</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">label</span>   <span class="n">label</span>
+</pre></div>
+</div>
+</td>
+<td><div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="n">UML_LABEL</span><span class="p">(</span><span class="n">block</span><span class="p">,</span><span class="w"> </span><span class="n">label</span><span class="p">);</span>
+</pre></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<section id="id2">
+<h4>Operands<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h4>
+<dl class="simple">
+<dt>label (label number)</dt><dd><p>The label number to associate with the current location.  A label
+number must not be used more than once within a generated code
+block.</p>
+</dd>
+</dl>
+</section>
+<section id="id3">
+<h4>Flags<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h4>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>carry (C)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+<tr class="row-even"><td><p>overflow (V)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+<tr class="row-odd"><td><p>zero (Z)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+<tr class="row-even"><td><p>sign (S)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+<tr class="row-odd"><td><p>unordered (U)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="handle">
+<span id="umlinst-handle"></span><h3><a class="toc-backref" href="#id76" role="doc-backlink">HANDLE</a><a class="headerlink" href="#handle" title="Link to this heading">¶</a></h3>
+<p>Mark a location as an entry point of a subroutine.  Subroutines may be
+called using the <a class="reference internal" href="#umlinst-callh"><span class="std std-ref">CALLH</span></a> and <a class="reference internal" href="#umlinst-exh"><span class="std std-ref">EXH</span></a> instructions, and also by the <cite>HASHJMP &lt;umlinst-hashjmp&gt;</cite>
+if no location is associated with the specified mode and emulated
+program counter.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Disassembly</p></th>
+<th class="head"><p>Usage</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">handle</span>  <span class="n">handle</span>
+</pre></div>
+</div>
+</td>
+<td><div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="n">UML_HANDLE</span><span class="p">(</span><span class="n">block</span><span class="p">,</span><span class="w"> </span><span class="n">handle</span><span class="p">);</span>
+</pre></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<section id="id4">
+<h4>Operands<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h4>
+<dl class="simple">
+<dt>handle (code handle)</dt><dd><p>The code handle to bind to the current location.  The handle must
+already be allocated, and must not have been bound since the last
+generated code reset (all handles are implicitly unbound when
+resetting the generated code cache).</p>
+</dd>
+</dl>
+</section>
+<section id="id5">
+<h4>Flags<a class="headerlink" href="#id5" title="Link to this heading">¶</a></h4>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>carry (C)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+<tr class="row-even"><td><p>overflow (V)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+<tr class="row-odd"><td><p>zero (Z)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+<tr class="row-even"><td><p>sign (S)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+<tr class="row-odd"><td><p>unordered (U)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="hash">
+<span id="umlinst-hash"></span><h3><a class="toc-backref" href="#id77" role="doc-backlink">HASH</a><a class="headerlink" href="#hash" title="Link to this heading">¶</a></h3>
+<p>Associate a location with the specified mode and emulated program
+counter values.  The <a class="reference internal" href="#umlinst-hashjmp"><span class="std std-ref">HASHJMP</span></a> instruction may be
+used to transfer control to the location associated with a mode and
+emulated program counter value.</p>
+<p>This is usually used to mark the location of the generated code for an
+emulated instruction or sequence of instructions.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Disassembly</p></th>
+<th class="head"><p>Usage</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">hash</span>    <span class="n">mode</span><span class="p">,</span><span class="n">pc</span>
+</pre></div>
+</div>
+</td>
+<td><div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="n">UML_HASH</span><span class="p">(</span><span class="n">block</span><span class="p">,</span><span class="w"> </span><span class="n">mode</span><span class="p">,</span><span class="w"> </span><span class="n">pc</span><span class="p">);</span>
+</pre></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<section id="id6">
+<h4>Operands<a class="headerlink" href="#id6" title="Link to this heading">¶</a></h4>
+<dl class="simple">
+<dt>mode (32-bit – immediate, map variable)</dt><dd><p>The mode to associate with the current location in the generated
+code.  Must be greater than or equal to zero and less than the
+number of modes specified when creating the recompiler context.</p>
+</dd>
+<dt>pc (32-bit – immediate, map variable)</dt><dd><p>The emulated program counter value to associate with the current
+location in the generated code.</p>
+</dd>
+</dl>
+</section>
+<section id="id7">
+<h4>Flags<a class="headerlink" href="#id7" title="Link to this heading">¶</a></h4>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>carry (C)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+<tr class="row-even"><td><p>overflow (V)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+<tr class="row-odd"><td><p>zero (Z)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+<tr class="row-even"><td><p>sign (S)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+<tr class="row-odd"><td><p>unordered (U)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="jmp">
+<span id="umlinst-jmp"></span><h3><a class="toc-backref" href="#id78" role="doc-backlink">JMP</a><a class="headerlink" href="#jmp" title="Link to this heading">¶</a></h3>
+<p>Jump to the location associated with a label number within the current
+block.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Disassembly</p></th>
+<th class="head"><p>Usage</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">jmp</span>     <span class="n">label</span>
+<span class="n">jmp</span>     <span class="n">label</span><span class="p">,</span><span class="n">cond</span>
+</pre></div>
+</div>
+</td>
+<td><div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="n">UML_JMP</span><span class="p">(</span><span class="n">block</span><span class="p">,</span><span class="w"> </span><span class="n">label</span><span class="p">);</span>
+<span class="n">UML_JMPc</span><span class="p">(</span><span class="n">block</span><span class="p">,</span><span class="w"> </span><span class="n">cond</span><span class="p">,</span><span class="w"> </span><span class="n">label</span><span class="p">);</span>
+</pre></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<section id="id8">
+<h4>Operands<a class="headerlink" href="#id8" title="Link to this heading">¶</a></h4>
+<dl class="simple">
+<dt>label (label number)</dt><dd><p>The label number associated with the location to jump to in the
+current generated code block.  The label number must be associated
+with a location in the generated code block before the block is
+finalised.</p>
+</dd>
+<dt>cond (condition)</dt><dd><p>If supplied, a condition that must be met to jump to the specified
+label.  If the condition is not met, execution will continue with
+the following instruction.</p>
+</dd>
+</dl>
+</section>
+<section id="id9">
+<h4>Flags<a class="headerlink" href="#id9" title="Link to this heading">¶</a></h4>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>carry (C)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+<tr class="row-even"><td><p>overflow (V)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+<tr class="row-odd"><td><p>zero (Z)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+<tr class="row-even"><td><p>sign (S)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+<tr class="row-odd"><td><p>unordered (U)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="callh">
+<span id="umlinst-callh"></span><h3><a class="toc-backref" href="#id79" role="doc-backlink">CALLH</a><a class="headerlink" href="#callh" title="Link to this heading">¶</a></h3>
+<p>Call the subroutine beginning at the specified code handle.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Disassembly</p></th>
+<th class="head"><p>Usage</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">callh</span>   <span class="n">handle</span>
+<span class="n">callh</span>   <span class="n">handle</span><span class="p">,</span><span class="n">cond</span>
+</pre></div>
+</div>
+</td>
+<td><div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="n">UML_CALLH</span><span class="p">(</span><span class="n">block</span><span class="p">,</span><span class="w"> </span><span class="n">handle</span><span class="p">);</span>
+<span class="n">UML_CALLHc</span><span class="p">(</span><span class="n">block</span><span class="p">,</span><span class="w"> </span><span class="n">handle</span><span class="p">,</span><span class="w"> </span><span class="n">cond</span><span class="p">);</span>
+</pre></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<section id="id10">
+<h4>Operands<a class="headerlink" href="#id10" title="Link to this heading">¶</a></h4>
+<dl class="simple">
+<dt>handle (code handle)</dt><dd><p>Handle located at the entry point of the subroutine to call.  The
+handle must already be allocated but does not need to be bound until
+the instruction is executed.  Calling a handle that was unbound at
+code generation time may produce less efficient code than calling a
+handle that was already bound.</p>
+</dd>
+<dt>cond (condition)</dt><dd><p>If supplied, a condition that must be met for the subroutine to be
+called.  If the condition is not met, the subroutine will not be
+called.</p>
+</dd>
+</dl>
+</section>
+<section id="id11">
+<h4>Flags<a class="headerlink" href="#id11" title="Link to this heading">¶</a></h4>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>carry (C)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+<tr class="row-even"><td><p>overflow (V)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+<tr class="row-odd"><td><p>zero (Z)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+<tr class="row-even"><td><p>sign (S)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+<tr class="row-odd"><td><p>unordered (U)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="exh">
+<span id="umlinst-exh"></span><h3><a class="toc-backref" href="#id80" role="doc-backlink">EXH</a><a class="headerlink" href="#exh" title="Link to this heading">¶</a></h3>
+<p>Set the <code class="docutils literal notranslate"><span class="pre">EXP</span></code> register and call the subroutine beginning at the
+specified code handle.  The <code class="docutils literal notranslate"><span class="pre">EXP</span></code> register is a 32-bit special
+function register that may be retrieved with the <a class="reference internal" href="#umlinst-getexp"><span class="std std-ref">GETEXP</span></a> instruction.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Disassembly</p></th>
+<th class="head"><p>Usage</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">exh</span>     <span class="n">handle</span><span class="p">,</span><span class="n">arg</span>
+<span class="n">exh</span>     <span class="n">handle</span><span class="p">,</span><span class="n">arg</span><span class="p">,</span><span class="n">cond</span>
+</pre></div>
+</div>
+</td>
+<td><div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="n">UML_EXH</span><span class="p">(</span><span class="n">block</span><span class="p">,</span><span class="w"> </span><span class="n">handle</span><span class="p">,</span><span class="w"> </span><span class="n">arg</span><span class="p">);</span>
+<span class="n">UML_EXHc</span><span class="p">(</span><span class="n">block</span><span class="p">,</span><span class="w"> </span><span class="n">handle</span><span class="p">,</span><span class="w"> </span><span class="n">arg</span><span class="p">,</span><span class="w"> </span><span class="n">cond</span><span class="p">);</span>
+</pre></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<section id="id12">
+<h4>Operands<a class="headerlink" href="#id12" title="Link to this heading">¶</a></h4>
+<dl class="simple">
+<dt>handle (code handle)</dt><dd><p>Handle located at the entry point of the subroutine to call.  The
+handle must already be allocated but does not need to be bound until
+the instruction is executed.  Calling a handle that was unbound at
+code generation time may produce less efficient code than calling a
+handle that was already bound.</p>
+</dd>
+<dt>arg (32-bit – memory, integer register, immediate, map variable)</dt><dd><p>Value to store in the <code class="docutils literal notranslate"><span class="pre">EXP</span></code> register.</p>
+</dd>
+<dt>cond (condition)</dt><dd><p>If supplied, a condition that must be met for the subroutine to be
+called.  If the condition is not met, the subroutine will not be
+called and the <code class="docutils literal notranslate"><span class="pre">EXP</span></code> register will not be modified.</p>
+</dd>
+</dl>
+</section>
+<section id="id13">
+<h4>Flags<a class="headerlink" href="#id13" title="Link to this heading">¶</a></h4>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>carry (C)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+<tr class="row-even"><td><p>overflow (V)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+<tr class="row-odd"><td><p>zero (Z)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+<tr class="row-even"><td><p>sign (S)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+<tr class="row-odd"><td><p>unordered (U)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="simplification-rules">
+<h4>Simplification rules<a class="headerlink" href="#simplification-rules" title="Link to this heading">¶</a></h4>
+<ul class="simple">
+<li><p>Immediate values for the <code class="docutils literal notranslate"><span class="pre">arg</span></code> operand are truncated to 32 bits.</p></li>
+</ul>
+</section>
+</section>
+<section id="ret">
+<span id="umlinst-ret"></span><h3><a class="toc-backref" href="#id81" role="doc-backlink">RET</a><a class="headerlink" href="#ret" title="Link to this heading">¶</a></h3>
+<p>Return from a subroutine, transferring control to the instruction
+following the <a class="reference internal" href="#umlinst-callh"><span class="std std-ref">CALLH</span></a> or <a class="reference internal" href="#umlinst-exh"><span class="std std-ref">EXH</span></a>
+instruction used to call the subroutine.  This instruction must only be
+used within generated code subroutines.  The <a class="reference internal" href="#umlinst-exit"><span class="std std-ref">EXIT</span></a>
+instruction must be used to exit from the generated code.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Disassembly</p></th>
+<th class="head"><p>Usage</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ret</span>
+<span class="n">ret</span>     <span class="n">cond</span>
+</pre></div>
+</div>
+</td>
+<td><div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="n">UML_RET</span><span class="p">(</span><span class="n">block</span><span class="p">);</span>
+<span class="n">UML_RETc</span><span class="p">(</span><span class="n">block</span><span class="p">,</span><span class="w"> </span><span class="n">cond</span><span class="p">);</span>
+</pre></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<section id="id14">
+<h4>Operands<a class="headerlink" href="#id14" title="Link to this heading">¶</a></h4>
+<dl class="simple">
+<dt>cond (condition)</dt><dd><p>If supplied, a condition that must be met to return from the
+subroutine.  If the condition is not met, execution will continue
+with the following instruction.</p>
+</dd>
+</dl>
+</section>
+<section id="id15">
+<h4>Flags<a class="headerlink" href="#id15" title="Link to this heading">¶</a></h4>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>carry (C)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+<tr class="row-even"><td><p>overflow (V)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+<tr class="row-odd"><td><p>zero (Z)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+<tr class="row-even"><td><p>sign (S)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+<tr class="row-odd"><td><p>unordered (U)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="hashjmp">
+<span id="umlinst-hashjmp"></span><h3><a class="toc-backref" href="#id82" role="doc-backlink">HASHJMP</a><a class="headerlink" href="#hashjmp" title="Link to this heading">¶</a></h3>
+<p>Unwind all nested generated code subroutine frames and transfer control
+to the location associated with the specified mode and emulated program
+counter values.  If no location is associated with the specified mode
+and program counter values, call the subroutine beginning at the
+specified code handle.  Note that all nested generated code subroutine
+frames are unwound in either case.</p>
+<p>This is usually used to jump to the generated code corresponding to the
+emulated code at a particular address when it is not known to be in the
+current generated code block or when the mode changes.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Disassembly</p></th>
+<th class="head"><p>Usage</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hashjmp</span> <span class="n">mode</span><span class="p">,</span><span class="n">pc</span><span class="p">,</span><span class="n">handle</span>
+</pre></div>
+</div>
+</td>
+<td><div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="n">UML_HASHJMP</span><span class="p">(</span><span class="n">block</span><span class="p">,</span><span class="w"> </span><span class="n">mode</span><span class="p">,</span><span class="w"> </span><span class="n">pc</span><span class="p">,</span><span class="w"> </span><span class="n">handle</span><span class="p">);</span>
+</pre></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<section id="id16">
+<h4>Operands<a class="headerlink" href="#id16" title="Link to this heading">¶</a></h4>
+<dl class="simple">
+<dt>mode (32-bit – memory, integer register, immediate, map variable)</dt><dd><p>The mode associated with the location in the generated code to
+transfer control to.  Must be greater than or equal to zero and less
+than the number of modes specified when creating the recompiler
+context.</p>
+</dd>
+<dt>pc (32-bit – memory, integer register, immediate, map variable)</dt><dd><p>The emulated program counter value associated with the location in
+the generated code to transfer control to.</p>
+</dd>
+<dt>handle (code handle)</dt><dd><p>Handle located at the entry point of the subroutine to call if no
+location in the generated code is associated with the specified mode
+and emulated program counter values.  The handle must already be
+allocated but does not need to be bound until the instruction is
+executed.  Calling a handle that was unbound at code generation time
+may produce less efficient code than calling a handle that was
+already bound.</p>
+</dd>
+</dl>
+</section>
+<section id="id17">
+<h4>Flags<a class="headerlink" href="#id17" title="Link to this heading">¶</a></h4>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>carry (C)</p></td>
+<td><p>Undefined.</p></td>
+</tr>
+<tr class="row-even"><td><p>overflow (V)</p></td>
+<td><p>Undefined.</p></td>
+</tr>
+<tr class="row-odd"><td><p>zero (Z)</p></td>
+<td><p>Undefined.</p></td>
+</tr>
+<tr class="row-even"><td><p>sign (S)</p></td>
+<td><p>Undefined.</p></td>
+</tr>
+<tr class="row-odd"><td><p>unordered (U)</p></td>
+<td><p>Undefined.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="exit">
+<span id="umlinst-exit"></span><h3><a class="toc-backref" href="#id83" role="doc-backlink">EXIT</a><a class="headerlink" href="#exit" title="Link to this heading">¶</a></h3>
+<p>Exit from the generated code, returning control to the caller.  May be
+used from within any level of nested subroutine calls in the generated
+code.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Disassembly</p></th>
+<th class="head"><p>Usage</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">exit</span>    <span class="n">arg</span><span class="p">,</span>
+<span class="n">exit</span>    <span class="n">arg</span><span class="p">,,</span><span class="n">cond</span>
+</pre></div>
+</div>
+</td>
+<td><div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="n">UML_EXIT</span><span class="p">(</span><span class="n">block</span><span class="p">,</span><span class="w"> </span><span class="n">arg</span><span class="p">);</span>
+<span class="n">UML_EXITc</span><span class="p">(</span><span class="n">block</span><span class="p">,</span><span class="w"> </span><span class="n">arg</span><span class="p">,</span><span class="w"> </span><span class="n">cond</span><span class="p">);</span>
+</pre></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<section id="id18">
+<h4>Operands<a class="headerlink" href="#id18" title="Link to this heading">¶</a></h4>
+<dl class="simple">
+<dt>arg (32-bit – memory, integer register, immediate, map variable)</dt><dd><p>The value to return to the caller.</p>
+</dd>
+<dt>cond (condition)</dt><dd><p>If supplied, a condition that must be met to exit from the generated
+code.  If the condition is not met, execution will continue with the
+following instruction.</p>
+</dd>
+</dl>
+</section>
+<section id="id19">
+<h4>Flags<a class="headerlink" href="#id19" title="Link to this heading">¶</a></h4>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>carry (C)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+<tr class="row-even"><td><p>overflow (V)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+<tr class="row-odd"><td><p>zero (Z)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+<tr class="row-even"><td><p>sign (S)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+<tr class="row-odd"><td><p>unordered (U)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id20">
+<h4>Simplification rules<a class="headerlink" href="#id20" title="Link to this heading">¶</a></h4>
+<ul class="simple">
+<li><p>Immediate values for the <code class="docutils literal notranslate"><span class="pre">arg</span></code> operand are truncated to 32 bits.</p></li>
+</ul>
+</section>
+</section>
+<section id="callc">
+<span id="umlinst-callc"></span><h3><a class="toc-backref" href="#id84" role="doc-backlink">CALLC</a><a class="headerlink" href="#callc" title="Link to this heading">¶</a></h3>
+<p>Call a C function with the signature <code class="docutils literal notranslate"><span class="pre">void</span> <span class="pre">(*)(void</span> <span class="pre">*)</span></code>.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Disassembly</p></th>
+<th class="head"><p>Usage</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">callc</span>   <span class="n">func</span><span class="p">,</span><span class="n">arg</span>
+<span class="n">callc</span>   <span class="n">func</span><span class="p">,</span><span class="n">arg</span><span class="p">,</span><span class="n">cond</span>
+</pre></div>
+</div>
+</td>
+<td><div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="n">UML_CALLC</span><span class="p">(</span><span class="n">block</span><span class="p">,</span><span class="w"> </span><span class="n">func</span><span class="p">,</span><span class="w"> </span><span class="n">arg</span><span class="p">);</span>
+<span class="n">UML_CALLCc</span><span class="p">(</span><span class="n">block</span><span class="p">,</span><span class="w"> </span><span class="n">func</span><span class="p">,</span><span class="w"> </span><span class="n">arg</span><span class="p">,</span><span class="w"> </span><span class="n">cond</span><span class="p">);</span>
+</pre></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<section id="id21">
+<h4>Operands<a class="headerlink" href="#id21" title="Link to this heading">¶</a></h4>
+<dl class="simple">
+<dt>func (C function)</dt><dd><p>Function pointer to the function to call.</p>
+</dd>
+<dt>arg (memory)</dt><dd><p>Argument to pass to the function.</p>
+</dd>
+<dt>cond (condition)</dt><dd><p>If supplied, a condition that must be met for the function to be
+called.  If the condition is not met, the function will not be
+called.</p>
+</dd>
+</dl>
+</section>
+<section id="id22">
+<h4>Flags<a class="headerlink" href="#id22" title="Link to this heading">¶</a></h4>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>carry (C)</p></td>
+<td><p>Undefined.</p></td>
+</tr>
+<tr class="row-even"><td><p>overflow (V)</p></td>
+<td><p>Undefined.</p></td>
+</tr>
+<tr class="row-odd"><td><p>zero (Z)</p></td>
+<td><p>Undefined.</p></td>
+</tr>
+<tr class="row-even"><td><p>sign (S)</p></td>
+<td><p>Undefined.</p></td>
+</tr>
+<tr class="row-odd"><td><p>unordered (U)</p></td>
+<td><p>Undefined.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="debug">
+<span id="umlinst-debug"></span><h3><a class="toc-backref" href="#id85" role="doc-backlink">DEBUG</a><a class="headerlink" href="#debug" title="Link to this heading">¶</a></h3>
+<p>Call the debugger instruction hook function if appropriate.</p>
+<p>If the debugger is active, this should be executed before each emulated
+instruction.  Any emulated CPU state kept in UML registers should be
+flushed to memory before executing this instruction and reloaded
+afterwards to ensure the debugger can display and modify values
+correctly.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Disassembly</p></th>
+<th class="head"><p>Usage</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">debug</span>   <span class="n">pc</span>
+</pre></div>
+</div>
+</td>
+<td><div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="n">UML_DEBUG</span><span class="p">(</span><span class="n">block</span><span class="p">,</span><span class="w"> </span><span class="n">pc</span><span class="p">);</span>
+</pre></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<section id="id23">
+<h4>Operands<a class="headerlink" href="#id23" title="Link to this heading">¶</a></h4>
+<dl class="simple">
+<dt>pc (32-bit – memory, integer register, immediate, map variable)</dt><dd><p>The emulated program counter value to supply to the debugger
+instruction hook function.</p>
+</dd>
+</dl>
+</section>
+<section id="id24">
+<h4>Flags<a class="headerlink" href="#id24" title="Link to this heading">¶</a></h4>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>carry (C)</p></td>
+<td><p>Undefined.</p></td>
+</tr>
+<tr class="row-even"><td><p>overflow (V)</p></td>
+<td><p>Undefined.</p></td>
+</tr>
+<tr class="row-odd"><td><p>zero (Z)</p></td>
+<td><p>Undefined.</p></td>
+</tr>
+<tr class="row-even"><td><p>sign (S)</p></td>
+<td><p>Undefined.</p></td>
+</tr>
+<tr class="row-odd"><td><p>unordered (U)</p></td>
+<td><p>Undefined.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id25">
+<h4>Simplification rules<a class="headerlink" href="#id25" title="Link to this heading">¶</a></h4>
+<ul class="simple">
+<li><p>Immediate values for the <code class="docutils literal notranslate"><span class="pre">pc</span></code> operand are truncated to 32 bits.</p></li>
+</ul>
+</section>
+</section>
+<section id="break">
+<span id="umlinst-break"></span><h3><a class="toc-backref" href="#id86" role="doc-backlink">BREAK</a><a class="headerlink" href="#break" title="Link to this heading">¶</a></h3>
+<p>Break into the host debugger if attached.  Has no effect or crashes if
+no host debugger is attached depending on the host system and
+configuration.  This is intended as a developer aid and should not be
+left in final code.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Disassembly</p></th>
+<th class="head"><p>Usage</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">break</span>
+</pre></div>
+</div>
+</td>
+<td><div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="n">UML_BREAK</span><span class="p">(</span><span class="n">block</span><span class="p">);</span>
+</pre></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<section id="id26">
+<h4>Flags<a class="headerlink" href="#id26" title="Link to this heading">¶</a></h4>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>carry (C)</p></td>
+<td><p>Undefined.</p></td>
+</tr>
+<tr class="row-even"><td><p>overflow (V)</p></td>
+<td><p>Undefined.</p></td>
+</tr>
+<tr class="row-odd"><td><p>zero (Z)</p></td>
+<td><p>Undefined.</p></td>
+</tr>
+<tr class="row-even"><td><p>sign (S)</p></td>
+<td><p>Undefined.</p></td>
+</tr>
+<tr class="row-odd"><td><p>unordered (U)</p></td>
+<td><p>Undefined.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+</section>
+<section id="data-movement">
+<span id="umlinst-datamove"></span><h2><a class="toc-backref" href="#id87" role="doc-backlink">Data movement</a><a class="headerlink" href="#data-movement" title="Link to this heading">¶</a></h2>
+<section id="mov">
+<span id="umlinst-mov"></span><h3><a class="toc-backref" href="#id88" role="doc-backlink">MOV</a><a class="headerlink" href="#mov" title="Link to this heading">¶</a></h3>
+<p>Copy an integer value.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Disassembly</p></th>
+<th class="head"><p>Usage</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mov</span>     <span class="n">dst</span><span class="p">,</span><span class="n">src</span>
+<span class="n">mov</span>     <span class="n">dst</span><span class="p">,</span><span class="n">src</span><span class="p">,</span><span class="n">cond</span>
+<span class="n">dmov</span>    <span class="n">dst</span><span class="p">,</span><span class="n">src</span>
+<span class="n">dmov</span>    <span class="n">dst</span><span class="p">,</span><span class="n">src</span><span class="p">,</span><span class="n">cond</span>
+</pre></div>
+</div>
+</td>
+<td><div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="n">UML_MOV</span><span class="p">(</span><span class="n">block</span><span class="p">,</span><span class="w"> </span><span class="n">dst</span><span class="p">,</span><span class="w"> </span><span class="n">src</span><span class="p">);</span>
+<span class="n">UML_MOVc</span><span class="p">(</span><span class="n">block</span><span class="p">,</span><span class="w"> </span><span class="n">cond</span><span class="p">,</span><span class="w"> </span><span class="n">dst</span><span class="p">,</span><span class="w"> </span><span class="n">src</span><span class="p">);</span>
+<span class="n">UML_DMOV</span><span class="p">(</span><span class="n">block</span><span class="p">,</span><span class="w"> </span><span class="n">dst</span><span class="p">,</span><span class="w"> </span><span class="n">src</span><span class="p">);</span>
+<span class="n">UML_DMOVc</span><span class="p">(</span><span class="n">block</span><span class="p">,</span><span class="w"> </span><span class="n">cond</span><span class="p">,</span><span class="w"> </span><span class="n">dst</span><span class="p">,</span><span class="w"> </span><span class="n">src</span><span class="p">);</span>
+</pre></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<section id="id27">
+<h4>Operands<a class="headerlink" href="#id27" title="Link to this heading">¶</a></h4>
+<dl class="simple">
+<dt>dst (32-bit or 64-bit – memory, integer register)</dt><dd><p>The destination where the value will be copied to.</p>
+</dd>
+<dt>src (32-bit or 64-bit – memory, integer register, immediate, map variable)</dt><dd><p>The source value to copy.</p>
+</dd>
+<dt>cond (condition)</dt><dd><p>If supplied, a condition that must be met to copy the value.  If the
+condition is not met, the instruction will have no effect.</p>
+</dd>
+</dl>
+</section>
+<section id="id28">
+<h4>Flags<a class="headerlink" href="#id28" title="Link to this heading">¶</a></h4>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>carry (C)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+<tr class="row-even"><td><p>overflow (V)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+<tr class="row-odd"><td><p>zero (Z)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+<tr class="row-even"><td><p>sign (S)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+<tr class="row-odd"><td><p>unordered (U)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id29">
+<h4>Simplification rules<a class="headerlink" href="#id29" title="Link to this heading">¶</a></h4>
+<ul class="simple">
+<li><p>Immediate values for the <code class="docutils literal notranslate"><span class="pre">src</span></code> operand are truncated to the
+instruction size.</p></li>
+<li><p>Converted to <a class="reference internal" href="#umlinst-nop"><span class="std std-ref">NOP</span></a> if the <code class="docutils literal notranslate"><span class="pre">src</span></code> and <code class="docutils literal notranslate"><span class="pre">dst</span></code>
+operands refer to the same memory location or register and the
+instruction size is no larger than the destination size.</p></li>
+</ul>
+</section>
+</section>
+<section id="fmov">
+<span id="umlinst-fmov"></span><h3><a class="toc-backref" href="#id89" role="doc-backlink">FMOV</a><a class="headerlink" href="#fmov" title="Link to this heading">¶</a></h3>
+<p>Copy a floating point value.  The binary value will be preserved even if
+it is not a valid representation of a floating point number.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Disassembly</p></th>
+<th class="head"><p>Usage</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fsmov</span>   <span class="n">dst</span><span class="p">,</span><span class="n">src</span>
+<span class="n">fsmov</span>   <span class="n">dst</span><span class="p">,</span><span class="n">src</span><span class="p">,</span><span class="n">cond</span>
+<span class="n">fdmov</span>   <span class="n">dst</span><span class="p">,</span><span class="n">src</span>
+<span class="n">fdmov</span>   <span class="n">dst</span><span class="p">,</span><span class="n">src</span><span class="p">,</span><span class="n">cond</span>
+</pre></div>
+</div>
+</td>
+<td><div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="n">UML_FSMOV</span><span class="p">(</span><span class="n">block</span><span class="p">,</span><span class="w"> </span><span class="n">dst</span><span class="p">,</span><span class="w"> </span><span class="n">src</span><span class="p">);</span>
+<span class="n">UML_FSMOVc</span><span class="p">(</span><span class="n">block</span><span class="p">,</span><span class="w"> </span><span class="n">cond</span><span class="p">,</span><span class="w"> </span><span class="n">dst</span><span class="p">,</span><span class="w"> </span><span class="n">src</span><span class="p">);</span>
+<span class="n">UML_FDMOV</span><span class="p">(</span><span class="n">block</span><span class="p">,</span><span class="w"> </span><span class="n">dst</span><span class="p">,</span><span class="w"> </span><span class="n">src</span><span class="p">);</span>
+<span class="n">UML_FDMOVc</span><span class="p">(</span><span class="n">block</span><span class="p">,</span><span class="w"> </span><span class="n">cond</span><span class="p">,</span><span class="w"> </span><span class="n">dst</span><span class="p">,</span><span class="w"> </span><span class="n">src</span><span class="p">);</span>
+</pre></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<section id="id30">
+<h4>Operands<a class="headerlink" href="#id30" title="Link to this heading">¶</a></h4>
+<dl class="simple">
+<dt>dst (32-bit or 64-bit – memory, floating point register)</dt><dd><p>The destination where the value will be copied to.</p>
+</dd>
+<dt>src (32-bit or 64-bit – memory, floating point register)</dt><dd><p>The source value to copy.</p>
+</dd>
+<dt>cond (condition)</dt><dd><p>If supplied, a condition that must be met to copy the value.  If the
+condition is not met, the instruction will have no effect.</p>
+</dd>
+</dl>
+</section>
+<section id="id31">
+<h4>Flags<a class="headerlink" href="#id31" title="Link to this heading">¶</a></h4>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>carry (C)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+<tr class="row-even"><td><p>overflow (V)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+<tr class="row-odd"><td><p>zero (Z)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+<tr class="row-even"><td><p>sign (S)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+<tr class="row-odd"><td><p>unordered (U)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id32">
+<h4>Simplification rules<a class="headerlink" href="#id32" title="Link to this heading">¶</a></h4>
+<ul class="simple">
+<li><p>Converted to <a class="reference internal" href="#umlinst-nop"><span class="std std-ref">NOP</span></a> if the <code class="docutils literal notranslate"><span class="pre">src</span></code> and <code class="docutils literal notranslate"><span class="pre">dst</span></code>
+operands refer to the same memory location or register.</p></li>
+</ul>
+</section>
+</section>
+<section id="fcopyi">
+<span id="umlinst-fcopyi"></span><h3><a class="toc-backref" href="#id90" role="doc-backlink">FCOPYI</a><a class="headerlink" href="#fcopyi" title="Link to this heading">¶</a></h3>
+<p>Reinterpret an integer value as a floating point value.  The binary
+value will be preserved even if it is not a valid representation of a
+floating point number.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Disassembly</p></th>
+<th class="head"><p>Usage</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fscopyi</span> <span class="n">dst</span><span class="p">,</span><span class="n">src</span>
+<span class="n">fdcopyi</span> <span class="n">dst</span><span class="p">,</span><span class="n">src</span>
+</pre></div>
+</div>
+</td>
+<td><div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="n">UML_FSCOPYI</span><span class="p">(</span><span class="n">block</span><span class="p">,</span><span class="w"> </span><span class="n">dst</span><span class="p">,</span><span class="w"> </span><span class="n">src</span><span class="p">);</span>
+<span class="n">UML_FDCOPYI</span><span class="p">(</span><span class="n">block</span><span class="p">,</span><span class="w"> </span><span class="n">dst</span><span class="p">,</span><span class="w"> </span><span class="n">src</span><span class="p">);</span>
+</pre></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<section id="id33">
+<h4>Operands<a class="headerlink" href="#id33" title="Link to this heading">¶</a></h4>
+<dl class="simple">
+<dt>dst (32-bit or 64-bit – memory, floating point register)</dt><dd><p>The destination where the value will be copied to.</p>
+</dd>
+<dt>src (32-bit or 64-bit – memory, integer register)</dt><dd><p>The source value to copy.</p>
+</dd>
+</dl>
+</section>
+<section id="id34">
+<h4>Flags<a class="headerlink" href="#id34" title="Link to this heading">¶</a></h4>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>carry (C)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+<tr class="row-even"><td><p>overflow (V)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+<tr class="row-odd"><td><p>zero (Z)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+<tr class="row-even"><td><p>sign (S)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+<tr class="row-odd"><td><p>unordered (U)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="icopyf">
+<span id="umlinst-icopyf"></span><h3><a class="toc-backref" href="#id91" role="doc-backlink">ICOPYF</a><a class="headerlink" href="#icopyf" title="Link to this heading">¶</a></h3>
+<p>Reinterpret a floating point value as an integer value.  The binary
+value will be preserved even if it is not a valid representation of a
+floating point number.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Disassembly</p></th>
+<th class="head"><p>Usage</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">icopyfs</span> <span class="n">dst</span><span class="p">,</span><span class="n">src</span>
+<span class="n">icopyfd</span> <span class="n">dst</span><span class="p">,</span><span class="n">src</span>
+</pre></div>
+</div>
+</td>
+<td><div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="n">UML_ICOPYFS</span><span class="p">(</span><span class="n">block</span><span class="p">,</span><span class="w"> </span><span class="n">dst</span><span class="p">,</span><span class="w"> </span><span class="n">src</span><span class="p">);</span>
+<span class="n">UML_ICOPYFD</span><span class="p">(</span><span class="n">block</span><span class="p">,</span><span class="w"> </span><span class="n">dst</span><span class="p">,</span><span class="w"> </span><span class="n">src</span><span class="p">);</span>
+</pre></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<section id="id35">
+<h4>Operands<a class="headerlink" href="#id35" title="Link to this heading">¶</a></h4>
+<dl class="simple">
+<dt>dst (32-bit or 64-bit – memory, integer register)</dt><dd><p>The destination where the value will be copied to.</p>
+</dd>
+<dt>src (32-bit or 64-bit – memory, floating point register)</dt><dd><p>The source value to copy.</p>
+</dd>
+</dl>
+</section>
+<section id="id36">
+<h4>Flags<a class="headerlink" href="#id36" title="Link to this heading">¶</a></h4>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>carry (C)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+<tr class="row-even"><td><p>overflow (V)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+<tr class="row-odd"><td><p>zero (Z)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+<tr class="row-even"><td><p>sign (S)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+<tr class="row-odd"><td><p>unordered (U)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="load">
+<span id="umlinst-load"></span><h3><a class="toc-backref" href="#id92" role="doc-backlink">LOAD</a><a class="headerlink" href="#load" title="Link to this heading">¶</a></h3>
+<p>Load an unsigned integer value from a memory location with variable
+displacement.  The value is zero-extended to the size of the
+destination.  Host system rules for integer alignment must be followed.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Disassembly</p></th>
+<th class="head"><p>Usage</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">load</span>    <span class="n">dst</span><span class="p">,</span><span class="n">base</span><span class="p">,</span><span class="n">index</span><span class="p">,</span><span class="n">size_scale</span>
+<span class="n">dload</span>   <span class="n">dst</span><span class="p">,</span><span class="n">base</span><span class="p">,</span><span class="n">index</span><span class="p">,</span><span class="n">size_scale</span>
+</pre></div>
+</div>
+</td>
+<td><div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="n">UML_LOAD</span><span class="p">(</span><span class="n">block</span><span class="p">,</span><span class="w"> </span><span class="n">dst</span><span class="p">,</span><span class="w"> </span><span class="n">base</span><span class="p">,</span><span class="w"> </span><span class="n">index</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="p">,</span><span class="w"> </span><span class="n">scale</span><span class="p">);</span>
+<span class="n">UML_DLOAD</span><span class="p">(</span><span class="n">block</span><span class="p">,</span><span class="w"> </span><span class="n">dst</span><span class="p">,</span><span class="w"> </span><span class="n">base</span><span class="p">,</span><span class="w"> </span><span class="n">index</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="p">,</span><span class="w"> </span><span class="n">scale</span><span class="p">);</span>
+</pre></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<section id="id37">
+<h4>Operands<a class="headerlink" href="#id37" title="Link to this heading">¶</a></h4>
+<dl class="simple">
+<dt>dst (32-bit or 64-bit – memory, integer register)</dt><dd><p>The destination where the value read from memory will be stored.</p>
+</dd>
+<dt>base (memory)</dt><dd><p>The base address of the area of memory to read from.</p>
+</dd>
+<dt>index (32-bit – memory, integer register, immediate, map variable)</dt><dd><p>The displacement value added to the base address to calculate the
+address to read from.  This value may be scaled by a factor of 1, 2,
+4 or 8 depending on the <code class="docutils literal notranslate"><span class="pre">scale</span></code> operand.  Note that this is always
+a 32-bit operand interpreted as a signed integer, irrespective of
+the instruction size.</p>
+</dd>
+<dt>size (access size)</dt><dd><p>The size of the value to read.  Must be <code class="docutils literal notranslate"><span class="pre">SIZE_BYTE</span></code> (8-bit),
+<code class="docutils literal notranslate"><span class="pre">SIZE_WORD</span></code> (16-bit), <code class="docutils literal notranslate"><span class="pre">SIZE_DWORD</span></code> (32-bit) or <code class="docutils literal notranslate"><span class="pre">SIZE_QWORD</span></code>
+(64-bit).  Note that this operand controls the size of the value
+read from memory while the instruction size sets the size of the
+<code class="docutils literal notranslate"><span class="pre">dst</span></code> operand.</p>
+</dd>
+<dt>scale (index scale)</dt><dd><p>The scale factor to apply to the <code class="docutils literal notranslate"><span class="pre">index</span></code> operand.  Must be
+<code class="docutils literal notranslate"><span class="pre">SCALE_x1</span></code>, <code class="docutils literal notranslate"><span class="pre">SCALE_x2</span></code>, <code class="docutils literal notranslate"><span class="pre">SCALE_x4</span></code> or <code class="docutils literal notranslate"><span class="pre">SCALE_x8</span></code> to multiply
+by 1, 2, 4 or 8, respectively (shift left by 0, 1, 2 or 3 bits).</p>
+</dd>
+</dl>
+</section>
+<section id="id38">
+<h4>Flags<a class="headerlink" href="#id38" title="Link to this heading">¶</a></h4>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>carry (C)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+<tr class="row-even"><td><p>overflow (V)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+<tr class="row-odd"><td><p>zero (Z)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+<tr class="row-even"><td><p>sign (S)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+<tr class="row-odd"><td><p>unordered (U)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="loads">
+<span id="umlinst-loads"></span><h3><a class="toc-backref" href="#id93" role="doc-backlink">LOADS</a><a class="headerlink" href="#loads" title="Link to this heading">¶</a></h3>
+<p>Load a signed integer value from a memory location with variable
+displacement.  The value is sign-extended to the size of the
+destination.  Host system rules for integer alignment must be followed.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Disassembly</p></th>
+<th class="head"><p>Usage</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">loads</span>   <span class="n">dst</span><span class="p">,</span><span class="n">base</span><span class="p">,</span><span class="n">index</span><span class="p">,</span><span class="n">size_scale</span>
+<span class="n">dloads</span>  <span class="n">dst</span><span class="p">,</span><span class="n">base</span><span class="p">,</span><span class="n">index</span><span class="p">,</span><span class="n">size_scale</span>
+</pre></div>
+</div>
+</td>
+<td><div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="n">UML_LOADS</span><span class="p">(</span><span class="n">block</span><span class="p">,</span><span class="w"> </span><span class="n">dst</span><span class="p">,</span><span class="w"> </span><span class="n">base</span><span class="p">,</span><span class="w"> </span><span class="n">index</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="p">,</span><span class="w"> </span><span class="n">scale</span><span class="p">);</span>
+<span class="n">UML_DLOADS</span><span class="p">(</span><span class="n">block</span><span class="p">,</span><span class="w"> </span><span class="n">dst</span><span class="p">,</span><span class="w"> </span><span class="n">base</span><span class="p">,</span><span class="w"> </span><span class="n">index</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="p">,</span><span class="w"> </span><span class="n">scale</span><span class="p">);</span>
+</pre></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<section id="id39">
+<h4>Operands<a class="headerlink" href="#id39" title="Link to this heading">¶</a></h4>
+<dl class="simple">
+<dt>dst (32-bit or 64-bit – memory, integer register)</dt><dd><p>The destination where the value read from memory will be stored.</p>
+</dd>
+<dt>base (memory)</dt><dd><p>The base address of the area of memory to read from.</p>
+</dd>
+<dt>index (32-bit – memory, integer register, immediate, map variable)</dt><dd><p>The displacement value added to the base address to calculate the
+address to read from.  This value may be scaled by a factor of 1, 2,
+4 or 8 depending on the <code class="docutils literal notranslate"><span class="pre">scale</span></code> operand.  Note that this is always
+a 32-bit operand interpreted as a signed integer, irrespective of
+the instruction size.</p>
+</dd>
+<dt>size (access size)</dt><dd><p>The size of the value to read.  Must be <code class="docutils literal notranslate"><span class="pre">SIZE_BYTE</span></code> (8-bit),
+<code class="docutils literal notranslate"><span class="pre">SIZE_WORD</span></code> (16-bit), <code class="docutils literal notranslate"><span class="pre">SIZE_DWORD</span></code> (32-bit) or <code class="docutils literal notranslate"><span class="pre">SIZE_QWORD</span></code>
+(64-bit).  Note that this operand controls the size of the value
+read from memory while the instruction size sets the size of the
+<code class="docutils literal notranslate"><span class="pre">dst</span></code> operand.</p>
+</dd>
+<dt>scale (index scale)</dt><dd><p>The scale factor to apply to the <code class="docutils literal notranslate"><span class="pre">index</span></code> operand.  Must be
+<code class="docutils literal notranslate"><span class="pre">SCALE_x1</span></code>, <code class="docutils literal notranslate"><span class="pre">SCALE_x2</span></code>, <code class="docutils literal notranslate"><span class="pre">SCALE_x4</span></code> or <code class="docutils literal notranslate"><span class="pre">SCALE_x8</span></code> to multiply
+by 1, 2, 4 or 8, respectively (shift left by 0, 1, 2 or 3 bits).</p>
+</dd>
+</dl>
+</section>
+<section id="id40">
+<h4>Flags<a class="headerlink" href="#id40" title="Link to this heading">¶</a></h4>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>carry (C)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+<tr class="row-even"><td><p>overflow (V)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+<tr class="row-odd"><td><p>zero (Z)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+<tr class="row-even"><td><p>sign (S)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+<tr class="row-odd"><td><p>unordered (U)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="store">
+<span id="umlinst-store"></span><h3><a class="toc-backref" href="#id94" role="doc-backlink">STORE</a><a class="headerlink" href="#store" title="Link to this heading">¶</a></h3>
+<p>Store an integer value to a location in memory with variable
+displacement.  Host system rules for integer alignment must be followed.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Disassembly</p></th>
+<th class="head"><p>Usage</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">store</span>   <span class="n">base</span><span class="p">,</span><span class="n">index</span><span class="p">,</span><span class="n">src</span><span class="p">,</span><span class="n">size_scale</span>
+<span class="n">dstore</span>  <span class="n">base</span><span class="p">,</span><span class="n">index</span><span class="p">,</span><span class="n">src</span><span class="p">,</span><span class="n">size_scale</span>
+</pre></div>
+</div>
+</td>
+<td><div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="n">UML_STORE</span><span class="p">(</span><span class="n">block</span><span class="p">,</span><span class="w"> </span><span class="n">base</span><span class="p">,</span><span class="w"> </span><span class="n">index</span><span class="p">,</span><span class="w"> </span><span class="n">src</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="p">,</span><span class="w"> </span><span class="n">scale</span><span class="p">);</span>
+<span class="n">UML_DSTORE</span><span class="p">(</span><span class="n">block</span><span class="p">,</span><span class="w"> </span><span class="n">base</span><span class="p">,</span><span class="w"> </span><span class="n">index</span><span class="p">,</span><span class="w"> </span><span class="n">src</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="p">,</span><span class="w"> </span><span class="n">scale</span><span class="p">);</span>
+</pre></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<section id="id41">
+<h4>Operands<a class="headerlink" href="#id41" title="Link to this heading">¶</a></h4>
+<dl class="simple">
+<dt>base (memory)</dt><dd><p>The base address of the area of memory to write to.</p>
+</dd>
+<dt>index (32-bit – memory, integer register, immediate, map variable)</dt><dd><p>The displacement value added to the base address to calculate the
+address to write to.  This value may be scaled by a factor of 1, 2,
+4 or 8 depending on the <code class="docutils literal notranslate"><span class="pre">scale</span></code> operand.  Note that this is always
+a 32-bit operand interpreted as a signed integer, irrespective of
+the instruction size.</p>
+</dd>
+<dt>src (32-bit or 64-bit – memory, integer register, immediate, map variable)</dt><dd><p>The value to write to memory.</p>
+</dd>
+<dt>size (access size)</dt><dd><p>The size of the value to write.  Must be <code class="docutils literal notranslate"><span class="pre">SIZE_BYTE</span></code> (8-bit),
+<code class="docutils literal notranslate"><span class="pre">SIZE_WORD</span></code> (16-bit), <code class="docutils literal notranslate"><span class="pre">SIZE_DWORD</span></code> (32-bit) or <code class="docutils literal notranslate"><span class="pre">SIZE_QWORD</span></code>
+(64-bit).  Note that this operand controls the size of the value
+written to memory while the instruction size sets the size of the
+<code class="docutils literal notranslate"><span class="pre">src</span></code> operand.</p>
+</dd>
+<dt>scale (index scale)</dt><dd><p>The scale factor to apply to the <code class="docutils literal notranslate"><span class="pre">index</span></code> operand.  Must be
+<code class="docutils literal notranslate"><span class="pre">SCALE_x1</span></code>, <code class="docutils literal notranslate"><span class="pre">SCALE_x2</span></code>, <code class="docutils literal notranslate"><span class="pre">SCALE_x4</span></code> or <code class="docutils literal notranslate"><span class="pre">SCALE_x8</span></code> to multiply
+by 1, 2, 4 or 8, respectively (shift left by 0, 1, 2 or 3 bits).</p>
+</dd>
+</dl>
+</section>
+<section id="id42">
+<h4>Flags<a class="headerlink" href="#id42" title="Link to this heading">¶</a></h4>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>carry (C)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+<tr class="row-even"><td><p>overflow (V)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+<tr class="row-odd"><td><p>zero (Z)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+<tr class="row-even"><td><p>sign (S)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+<tr class="row-odd"><td><p>unordered (U)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="fload">
+<span id="umlinst-fload"></span><h3><a class="toc-backref" href="#id95" role="doc-backlink">FLOAD</a><a class="headerlink" href="#fload" title="Link to this heading">¶</a></h3>
+<p>Load a floating point value from a memory location with variable
+displacement.  The binary value will be preserved even if it is not a
+valid representation of a floating point number.  Host system rules for
+memory access alignment must be followed.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Disassembly</p></th>
+<th class="head"><p>Usage</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fsload</span>  <span class="n">dst</span><span class="p">,</span><span class="n">base</span><span class="p">,</span><span class="n">index</span>
+<span class="n">fdload</span>  <span class="n">dst</span><span class="p">,</span><span class="n">base</span><span class="p">,</span><span class="n">index</span>
+</pre></div>
+</div>
+</td>
+<td><div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="n">UML_FSLOAD</span><span class="p">(</span><span class="n">block</span><span class="p">,</span><span class="w"> </span><span class="n">dst</span><span class="p">,</span><span class="w"> </span><span class="n">base</span><span class="p">,</span><span class="w"> </span><span class="n">index</span><span class="p">);</span>
+<span class="n">UML_FDLOAD</span><span class="p">(</span><span class="n">block</span><span class="p">,</span><span class="w"> </span><span class="n">dst</span><span class="p">,</span><span class="w"> </span><span class="n">base</span><span class="p">,</span><span class="w"> </span><span class="n">index</span><span class="p">);</span>
+</pre></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<section id="id43">
+<h4>Operands<a class="headerlink" href="#id43" title="Link to this heading">¶</a></h4>
+<dl class="simple">
+<dt>dst (32-bit or 64-bit – memory, floating point register)</dt><dd><p>The destination where the value read from memory will be stored.</p>
+</dd>
+<dt>base (memory)</dt><dd><p>The base address of the area of memory to read from.</p>
+</dd>
+<dt>index (32-bit – memory, integer register, immediate, map variable)</dt><dd><p>The displacement value added to the base address to calculate the
+address to read from.  This value will be scaled by the instruction
+size (multiplied by 4 or 8).  Note that this is always a 32-bit
+operand interpreted as a signed integer, irrespective of the
+instruction size.</p>
+</dd>
+</dl>
+</section>
+<section id="id44">
+<h4>Flags<a class="headerlink" href="#id44" title="Link to this heading">¶</a></h4>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>carry (C)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+<tr class="row-even"><td><p>overflow (V)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+<tr class="row-odd"><td><p>zero (Z)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+<tr class="row-even"><td><p>sign (S)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+<tr class="row-odd"><td><p>unordered (U)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="fstore">
+<span id="umlinst-fstore"></span><h3><a class="toc-backref" href="#id96" role="doc-backlink">FSTORE</a><a class="headerlink" href="#fstore" title="Link to this heading">¶</a></h3>
+<p>Store a floating point value to a memory location with variable
+displacement.  The binary value will be preserved even if it is not a
+valid representation of a floating point number.  Host system rules for
+memory access alignment must be followed.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Disassembly</p></th>
+<th class="head"><p>Usage</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fsstore</span> <span class="n">base</span><span class="p">,</span><span class="n">index</span><span class="p">,</span><span class="n">src</span>
+<span class="n">fdstore</span> <span class="n">base</span><span class="p">,</span><span class="n">index</span><span class="p">,</span><span class="n">src</span>
+</pre></div>
+</div>
+</td>
+<td><div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="n">UML_FSSTORE</span><span class="p">(</span><span class="n">block</span><span class="p">,</span><span class="w"> </span><span class="n">base</span><span class="p">,</span><span class="w"> </span><span class="n">index</span><span class="p">,</span><span class="w"> </span><span class="n">src</span><span class="p">);</span>
+<span class="n">UML_FDSTORE</span><span class="p">(</span><span class="n">block</span><span class="p">,</span><span class="w"> </span><span class="n">base</span><span class="p">,</span><span class="w"> </span><span class="n">index</span><span class="p">,</span><span class="w"> </span><span class="n">src</span><span class="p">);</span>
+</pre></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<section id="id45">
+<h4>Operands<a class="headerlink" href="#id45" title="Link to this heading">¶</a></h4>
+<dl class="simple">
+<dt>base (memory)</dt><dd><p>The base address of the area of memory to write to.</p>
+</dd>
+<dt>index (32-bit – memory, integer register, immediate, map variable)</dt><dd><p>The displacement value added to the base address to calculate the
+address to write to.  This value will be scaled by the instruction
+size (multiplied by 4 or 8).  Note that this is always a 32-bit
+operand interpreted as a signed integer, irrespective of the
+instruction size.</p>
+</dd>
+<dt>src (32-bit or 64-bit – memory, floating point register)</dt><dd><p>The value to write to memory.</p>
+</dd>
+</dl>
+</section>
+<section id="id46">
+<h4>Flags<a class="headerlink" href="#id46" title="Link to this heading">¶</a></h4>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>carry (C)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+<tr class="row-even"><td><p>overflow (V)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+<tr class="row-odd"><td><p>zero (Z)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+<tr class="row-even"><td><p>sign (S)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+<tr class="row-odd"><td><p>unordered (U)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="getexp">
+<span id="umlinst-getexp"></span><h3><a class="toc-backref" href="#id97" role="doc-backlink">GETEXP</a><a class="headerlink" href="#getexp" title="Link to this heading">¶</a></h3>
+<p>Copy the value of the <code class="docutils literal notranslate"><span class="pre">EXP</span></code> register.  The <code class="docutils literal notranslate"><span class="pre">EXP</span></code> register can be set
+using the <a class="reference internal" href="#umlinst-exh"><span class="std std-ref">EXH</span></a> instruction.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Disassembly</p></th>
+<th class="head"><p>Usage</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">getexp</span>  <span class="n">dst</span>
+</pre></div>
+</div>
+</td>
+<td><div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="n">UML_GETEXP</span><span class="p">(</span><span class="n">block</span><span class="p">,</span><span class="w"> </span><span class="n">dst</span><span class="p">);</span>
+</pre></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<section id="id47">
+<h4>Operands<a class="headerlink" href="#id47" title="Link to this heading">¶</a></h4>
+<dl class="simple">
+<dt>dst (32-bit – memory, integer register)</dt><dd><p>The destination to copy the value of the <code class="docutils literal notranslate"><span class="pre">EXP</span></code> register to.  Note
+that the <code class="docutils literal notranslate"><span class="pre">EXP</span></code> register can only hold a 32-bit value.</p>
+</dd>
+</dl>
+</section>
+<section id="id48">
+<h4>Flags<a class="headerlink" href="#id48" title="Link to this heading">¶</a></h4>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>carry (C)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+<tr class="row-even"><td><p>overflow (V)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+<tr class="row-odd"><td><p>zero (Z)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+<tr class="row-even"><td><p>sign (S)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+<tr class="row-odd"><td><p>unordered (U)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="mapvar">
+<span id="umlinst-mapvar"></span><h3><a class="toc-backref" href="#id98" role="doc-backlink">MAPVAR</a><a class="headerlink" href="#mapvar" title="Link to this heading">¶</a></h3>
+<p>Set the value of a map variable starting at the current location in the
+current generated code block.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Disassembly</p></th>
+<th class="head"><p>Usage</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mapvar</span>  <span class="n">mapvar</span><span class="p">,</span><span class="n">value</span>
+</pre></div>
+</div>
+</td>
+<td><div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="n">UML_MAPVAR</span><span class="p">(</span><span class="n">block</span><span class="p">,</span><span class="w"> </span><span class="n">mapvar</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="p">);</span>
+</pre></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<section id="id49">
+<h4>Operands<a class="headerlink" href="#id49" title="Link to this heading">¶</a></h4>
+<dl class="simple">
+<dt>mapvar (map variable)</dt><dd><p>The map variable to set the value of.</p>
+</dd>
+<dt>value (32-bit – immediate, map variable)</dt><dd><p>The value to set the map variable to.  Note that map variables can
+only hold 32-bit values.</p>
+</dd>
+</dl>
+</section>
+<section id="id50">
+<h4>Flags<a class="headerlink" href="#id50" title="Link to this heading">¶</a></h4>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>carry (C)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+<tr class="row-even"><td><p>overflow (V)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+<tr class="row-odd"><td><p>zero (Z)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+<tr class="row-even"><td><p>sign (S)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+<tr class="row-odd"><td><p>unordered (U)</p></td>
+<td><p>Unchanged.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="recover">
+<span id="umlinst-recover"></span><h3><a class="toc-backref" href="#id99" role="doc-backlink">RECOVER</a><a class="headerlink" href="#recover" title="Link to this heading">¶</a></h3>
+<p>Retrieve the value of a map variable at the location of the call
+instruction in the outermost generated code frame.  This instruction
+should only be used from within a generated code subroutine.  Results
+are undefined if this instruction is executed from outside any
+generated code subroutines.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Disassembly</p></th>
+<th class="head"><p>Usage</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">recover</span> <span class="n">dst</span><span class="p">,</span><span class="n">mapvar</span>
+</pre></div>
+</div>
+</td>
+<td><div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="n">UML_RECOVER</span><span class="p">(</span><span class="n">block</span><span class="p">,</span><span class="w"> </span><span class="n">dst</span><span class="p">,</span><span class="w"> </span><span class="n">mapvar</span><span class="p">);</span>
+</pre></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<section id="id51">
+<h4>Operands<a class="headerlink" href="#id51" title="Link to this heading">¶</a></h4>
+<dl class="simple">
+<dt>dst (32-bit – memory, integer register)</dt><dd><p>The destination to copy the value of the map variable to.  Note that
+map variables can only hold 32-bit values.</p>
+</dd>
+<dt>mapvar (map variable)</dt><dd><p>The map variable to retrieve the value of from the outermost
+generated code frame.</p>
+</dd>
+</dl>
+</section>
+<section id="id52">
+<h4>Flags<a class="headerlink" href="#id52" title="Link to this heading">¶</a></h4>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>carry (C)</p></td>
+<td><p>Undefined.</p></td>
+</tr>
+<tr class="row-even"><td><p>overflow (V)</p></td>
+<td><p>Undefined.</p></td>
+</tr>
+<tr class="row-odd"><td><p>zero (Z)</p></td>
+<td><p>Undefined.</p></td>
+</tr>
+<tr class="row-even"><td><p>sign (S)</p></td>
+<td><p>Undefined.</p></td>
+</tr>
+<tr class="row-odd"><td><p>unordered (U)</p></td>
+<td><p>Undefined.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+</section>
+<section id="emulated-memory-access">
+<span id="umlinst-memaccess"></span><h2><a class="toc-backref" href="#id100" role="doc-backlink">Emulated memory access</a><a class="headerlink" href="#emulated-memory-access" title="Link to this heading">¶</a></h2>
+<section id="read">
+<span id="umlinst-read"></span><h3><a class="toc-backref" href="#id101" role="doc-backlink">READ</a><a class="headerlink" href="#read" title="Link to this heading">¶</a></h3>
+<p>Read from an emulated address space.  The access mask is implied to have
+all bits set.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Disassembly</p></th>
+<th class="head"><p>Usage</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">read</span>    <span class="n">dst</span><span class="p">,</span><span class="n">addr</span><span class="p">,</span><span class="n">space_size</span>
+<span class="n">dread</span>   <span class="n">dst</span><span class="p">,</span><span class="n">addr</span><span class="p">,</span><span class="n">space_size</span>
+</pre></div>
+</div>
+</td>
+<td><div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="n">UML_READ</span><span class="p">(</span><span class="n">block</span><span class="p">,</span><span class="w"> </span><span class="n">dst</span><span class="p">,</span><span class="w"> </span><span class="n">addr</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="p">,</span><span class="w"> </span><span class="n">space</span><span class="p">);</span>
+<span class="n">UML_DREAD</span><span class="p">(</span><span class="n">block</span><span class="p">,</span><span class="w"> </span><span class="n">dst</span><span class="p">,</span><span class="w"> </span><span class="n">addr</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="p">,</span><span class="w"> </span><span class="n">space</span><span class="p">);</span>
+</pre></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<section id="id53">
+<h4>Operands<a class="headerlink" href="#id53" title="Link to this heading">¶</a></h4>
+<dl class="simple">
+<dt>dst (32-bit or 64-bit – memory, integer register)</dt><dd><p>The destination where the value read from the emulated address space
+will be stored.</p>
+</dd>
+<dt>addr (32-bit – memory, integer register, immediate, map variable)</dt><dd><p>The address to read from in the emulated address space.  Note that
+this is always a 32-bit operand, irrespective of the instruction
+size.</p>
+</dd>
+<dt>size (access size)</dt><dd><p>The size of the emulated memory access.  Must be <code class="docutils literal notranslate"><span class="pre">SIZE_BYTE</span></code>
+(8-bit), <code class="docutils literal notranslate"><span class="pre">SIZE_WORD</span></code> (16-bit), <code class="docutils literal notranslate"><span class="pre">SIZE_DWORD</span></code> (32-bit) or
+<code class="docutils literal notranslate"><span class="pre">SIZE_QWORD</span></code> (64-bit).  Note that this operand controls the size
+of the emulated memory access while the instruction size sets the
+size of the <code class="docutils literal notranslate"><span class="pre">dst</span></code> operand.</p>
+</dd>
+<dt>space (address space number)</dt><dd><p>An integer identifying the address space to read from.  May be
+<code class="docutils literal notranslate"><span class="pre">SPACE_PROGRAM</span></code>, <code class="docutils literal notranslate"><span class="pre">SPACE_DATA</span></code>, <code class="docutils literal notranslate"><span class="pre">SPACE_IO</span></code> or <code class="docutils literal notranslate"><span class="pre">SPACE_OPCODES</span></code>
+for one of the common CPU address spaces, or a non-negative integer
+cast to <code class="docutils literal notranslate"><span class="pre">memory_space</span></code>.</p>
+</dd>
+</dl>
+</section>
+<section id="id54">
+<h4>Flags<a class="headerlink" href="#id54" title="Link to this heading">¶</a></h4>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>carry (C)</p></td>
+<td><p>Undefined.</p></td>
+</tr>
+<tr class="row-even"><td><p>overflow (V)</p></td>
+<td><p>Undefined.</p></td>
+</tr>
+<tr class="row-odd"><td><p>zero (Z)</p></td>
+<td><p>Undefined.</p></td>
+</tr>
+<tr class="row-even"><td><p>sign (S)</p></td>
+<td><p>Undefined.</p></td>
+</tr>
+<tr class="row-odd"><td><p>unordered (U)</p></td>
+<td><p>Undefined.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id55">
+<h4>Simplification rules<a class="headerlink" href="#id55" title="Link to this heading">¶</a></h4>
+<ul class="simple">
+<li><p>Immediate values for the <code class="docutils literal notranslate"><span class="pre">addr</span></code> operand are truncated to 32 bits.</p></li>
+</ul>
+</section>
+</section>
+<section id="readm">
+<span id="umlinst-readm"></span><h3><a class="toc-backref" href="#id102" role="doc-backlink">READM</a><a class="headerlink" href="#readm" title="Link to this heading">¶</a></h3>
+<p>Read from an emulated address space with access mask specified.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Disassembly</p></th>
+<th class="head"><p>Usage</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">readm</span>   <span class="n">dst</span><span class="p">,</span><span class="n">addr</span><span class="p">,</span><span class="n">mask</span><span class="p">,</span><span class="n">space_size</span>
+<span class="n">dreadm</span>  <span class="n">dst</span><span class="p">,</span><span class="n">addr</span><span class="p">,</span><span class="n">mask</span><span class="p">,</span><span class="n">space_size</span>
+</pre></div>
+</div>
+</td>
+<td><div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="n">UML_READM</span><span class="p">(</span><span class="n">block</span><span class="p">,</span><span class="w"> </span><span class="n">dst</span><span class="p">,</span><span class="w"> </span><span class="n">addr</span><span class="p">,</span><span class="w"> </span><span class="n">mask</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="p">,</span><span class="w"> </span><span class="n">space</span><span class="p">);</span>
+<span class="n">UML_DREADM</span><span class="p">(</span><span class="n">block</span><span class="p">,</span><span class="w"> </span><span class="n">dst</span><span class="p">,</span><span class="w"> </span><span class="n">addr</span><span class="p">,</span><span class="w"> </span><span class="n">mask</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="p">,</span><span class="w"> </span><span class="n">space</span><span class="p">);</span>
+</pre></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<section id="id56">
+<h4>Operands<a class="headerlink" href="#id56" title="Link to this heading">¶</a></h4>
+<dl class="simple">
+<dt>dst (32-bit or 64-bit – memory, integer register)</dt><dd><p>The destination where the value read from the emulated address space
+will be stored.</p>
+</dd>
+<dt>addr (32-bit – memory, integer register, immediate, map variable)</dt><dd><p>The address to read from in the emulated address space.  Note that
+this is always a 32-bit operand, irrespective of the instruction
+size.</p>
+</dd>
+<dt>mask (32-bit or 64-bit – memory, integer register, immediate, map variable)</dt><dd><p>The access mask for the emulated memory access.</p>
+</dd>
+<dt>size (access size)</dt><dd><p>The size of the emulated memory access.  Must be <code class="docutils literal notranslate"><span class="pre">SIZE_BYTE</span></code>
+(8-bit), <code class="docutils literal notranslate"><span class="pre">SIZE_WORD</span></code> (16-bit), <code class="docutils literal notranslate"><span class="pre">SIZE_DWORD</span></code> (32-bit) or
+<code class="docutils literal notranslate"><span class="pre">SIZE_QWORD</span></code> (64-bit).  Note that this operand controls the size
+of the emulated memory access while the instruction size sets the
+size of the <code class="docutils literal notranslate"><span class="pre">dst</span></code> and <code class="docutils literal notranslate"><span class="pre">mask</span></code> operands.</p>
+</dd>
+<dt>space (address space number)</dt><dd><p>An integer identifying the address space to read from.  May be
+<code class="docutils literal notranslate"><span class="pre">SPACE_PROGRAM</span></code>, <code class="docutils literal notranslate"><span class="pre">SPACE_DATA</span></code>, <code class="docutils literal notranslate"><span class="pre">SPACE_IO</span></code> or <code class="docutils literal notranslate"><span class="pre">SPACE_OPCODES</span></code>
+for one of the common CPU address spaces, or a non-negative integer
+cast to <code class="docutils literal notranslate"><span class="pre">memory_space</span></code>.</p>
+</dd>
+</dl>
+</section>
+<section id="id57">
+<h4>Flags<a class="headerlink" href="#id57" title="Link to this heading">¶</a></h4>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>carry (C)</p></td>
+<td><p>Undefined.</p></td>
+</tr>
+<tr class="row-even"><td><p>overflow (V)</p></td>
+<td><p>Undefined.</p></td>
+</tr>
+<tr class="row-odd"><td><p>zero (Z)</p></td>
+<td><p>Undefined.</p></td>
+</tr>
+<tr class="row-even"><td><p>sign (S)</p></td>
+<td><p>Undefined.</p></td>
+</tr>
+<tr class="row-odd"><td><p>unordered (U)</p></td>
+<td><p>Undefined.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id58">
+<h4>Simplification rules<a class="headerlink" href="#id58" title="Link to this heading">¶</a></h4>
+<ul class="simple">
+<li><p>Immediate values for the <code class="docutils literal notranslate"><span class="pre">addr</span></code> operand are truncated to 32 bits.</p></li>
+<li><p>Immediate values for the <code class="docutils literal notranslate"><span class="pre">mask</span></code> operand are truncated to the access
+size.</p></li>
+<li><p>Converted to <a class="reference internal" href="#umlinst-read"><span class="std std-ref">READ</span></a> if the <code class="docutils literal notranslate"><span class="pre">mask</span></code> operand is an
+immediate value with all bits set.</p></li>
+</ul>
+</section>
+</section>
+<section id="write">
+<span id="umlinst-write"></span><h3><a class="toc-backref" href="#id103" role="doc-backlink">WRITE</a><a class="headerlink" href="#write" title="Link to this heading">¶</a></h3>
+<p>Write to an emulated address space.  The access mask is implied to have
+all bits set.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Disassembly</p></th>
+<th class="head"><p>Usage</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">write</span>   <span class="n">addr</span><span class="p">,</span><span class="n">src</span><span class="p">,</span><span class="n">space_size</span>
+<span class="n">dwrite</span>  <span class="n">addr</span><span class="p">,</span><span class="n">src</span><span class="p">,</span><span class="n">space_size</span>
+</pre></div>
+</div>
+</td>
+<td><div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="n">UML_WRITE</span><span class="p">(</span><span class="n">block</span><span class="p">,</span><span class="w"> </span><span class="n">addr</span><span class="p">,</span><span class="w"> </span><span class="n">src</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="p">,</span><span class="w"> </span><span class="n">space</span><span class="p">);</span>
+<span class="n">UML_DWRITE</span><span class="p">(</span><span class="n">block</span><span class="p">,</span><span class="w"> </span><span class="n">addr</span><span class="p">,</span><span class="w"> </span><span class="n">src</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="p">,</span><span class="w"> </span><span class="n">space</span><span class="p">);</span>
+</pre></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<section id="id59">
+<h4>Operands<a class="headerlink" href="#id59" title="Link to this heading">¶</a></h4>
+<dl class="simple">
+<dt>addr (32-bit – memory, integer register, immediate, map variable)</dt><dd><p>The address to write to in the emulated address space.  Note that
+this is always a 32-bit operand, irrespective of the instruction
+size.</p>
+</dd>
+<dt>src (32-bit or 64-bit – memory, integer register, immediate, map variable)</dt><dd><p>The value to write to the emulated address space.</p>
+</dd>
+<dt>size (access size)</dt><dd><p>The size of the emulated memory access.  Must be <code class="docutils literal notranslate"><span class="pre">SIZE_BYTE</span></code>
+(8-bit), <code class="docutils literal notranslate"><span class="pre">SIZE_WORD</span></code> (16-bit), <code class="docutils literal notranslate"><span class="pre">SIZE_DWORD</span></code> (32-bit) or
+<code class="docutils literal notranslate"><span class="pre">SIZE_QWORD</span></code> (64-bit).  Note that this operand controls the size
+of the emulated memory access while the instruction size sets the
+size of the <code class="docutils literal notranslate"><span class="pre">src</span></code> operand.</p>
+</dd>
+<dt>space (address space number)</dt><dd><p>An integer identifying the address space to read from.  May be
+<code class="docutils literal notranslate"><span class="pre">SPACE_PROGRAM</span></code>, <code class="docutils literal notranslate"><span class="pre">SPACE_DATA</span></code>, <code class="docutils literal notranslate"><span class="pre">SPACE_IO</span></code> or <code class="docutils literal notranslate"><span class="pre">SPACE_OPCODES</span></code>
+for one of the common CPU address spaces, or a non-negative integer
+cast to <code class="docutils literal notranslate"><span class="pre">memory_space</span></code>.</p>
+</dd>
+</dl>
+</section>
+<section id="id60">
+<h4>Flags<a class="headerlink" href="#id60" title="Link to this heading">¶</a></h4>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>carry (C)</p></td>
+<td><p>Undefined.</p></td>
+</tr>
+<tr class="row-even"><td><p>overflow (V)</p></td>
+<td><p>Undefined.</p></td>
+</tr>
+<tr class="row-odd"><td><p>zero (Z)</p></td>
+<td><p>Undefined.</p></td>
+</tr>
+<tr class="row-even"><td><p>sign (S)</p></td>
+<td><p>Undefined.</p></td>
+</tr>
+<tr class="row-odd"><td><p>unordered (U)</p></td>
+<td><p>Undefined.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id61">
+<h4>Simplification rules<a class="headerlink" href="#id61" title="Link to this heading">¶</a></h4>
+<ul class="simple">
+<li><p>Immediate values for the <code class="docutils literal notranslate"><span class="pre">addr</span></code> operand are truncated to 32 bits.</p></li>
+<li><p>Immediate values for the <code class="docutils literal notranslate"><span class="pre">src</span></code> operand are truncated to the access
+size.</p></li>
+</ul>
+</section>
+</section>
+<section id="writem">
+<span id="umlinst-writem"></span><h3><a class="toc-backref" href="#id104" role="doc-backlink">WRITEM</a><a class="headerlink" href="#writem" title="Link to this heading">¶</a></h3>
+<p>Write to an emulated address space with access mask specified.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Disassembly</p></th>
+<th class="head"><p>Usage</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">writem</span>  <span class="n">addr</span><span class="p">,</span><span class="n">src</span><span class="p">,</span><span class="n">mask</span><span class="p">,</span><span class="n">space_size</span>
+<span class="n">dwritem</span> <span class="n">addr</span><span class="p">,</span><span class="n">src</span><span class="p">,</span><span class="n">mask</span><span class="p">,</span><span class="n">space_size</span>
+</pre></div>
+</div>
+</td>
+<td><div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="n">UML_WRITEM</span><span class="p">(</span><span class="n">block</span><span class="p">,</span><span class="w"> </span><span class="n">addr</span><span class="p">,</span><span class="w"> </span><span class="n">src</span><span class="p">,</span><span class="w"> </span><span class="n">mask</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="p">,</span><span class="w"> </span><span class="n">space</span><span class="p">);</span>
+<span class="n">UML_DWRITEM</span><span class="p">(</span><span class="n">block</span><span class="p">,</span><span class="w"> </span><span class="n">addr</span><span class="p">,</span><span class="w"> </span><span class="n">src</span><span class="p">,</span><span class="w"> </span><span class="n">mask</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="p">,</span><span class="w"> </span><span class="n">space</span><span class="p">);</span>
+</pre></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<section id="id62">
+<h4>Operands<a class="headerlink" href="#id62" title="Link to this heading">¶</a></h4>
+<dl class="simple">
+<dt>addr (32-bit – memory, integer register, immediate, map variable)</dt><dd><p>The address to write to in the emulated address space.  Note that
+this is always a 32-bit operand, irrespective of the instruction
+size.</p>
+</dd>
+<dt>src (32-bit or 64-bit – memory, integer register, immediate, map variable)</dt><dd><p>The value to write to the emulated address space.</p>
+</dd>
+<dt>mask (32-bit or 64-bit – memory, integer register, immediate, map variable)</dt><dd><p>The access mask for the emulated memory access.</p>
+</dd>
+<dt>size (access size)</dt><dd><p>The size of the emulated memory access.  Must be <code class="docutils literal notranslate"><span class="pre">SIZE_BYTE</span></code>
+(8-bit), <code class="docutils literal notranslate"><span class="pre">SIZE_WORD</span></code> (16-bit), <code class="docutils literal notranslate"><span class="pre">SIZE_DWORD</span></code> (32-bit) or
+<code class="docutils literal notranslate"><span class="pre">SIZE_QWORD</span></code> (64-bit).  Note that this operand controls the size
+of the emulated memory access while the instruction size sets the
+size of the <code class="docutils literal notranslate"><span class="pre">src</span></code> and <code class="docutils literal notranslate"><span class="pre">mask</span></code> operands.</p>
+</dd>
+<dt>space (address space number)</dt><dd><p>An integer identifying the address space to read from.  May be
+<code class="docutils literal notranslate"><span class="pre">SPACE_PROGRAM</span></code>, <code class="docutils literal notranslate"><span class="pre">SPACE_DATA</span></code>, <code class="docutils literal notranslate"><span class="pre">SPACE_IO</span></code> or <code class="docutils literal notranslate"><span class="pre">SPACE_OPCODES</span></code>
+for one of the common CPU address spaces, or a non-negative integer
+cast to <code class="docutils literal notranslate"><span class="pre">memory_space</span></code>.</p>
+</dd>
+</dl>
+</section>
+<section id="id63">
+<h4>Flags<a class="headerlink" href="#id63" title="Link to this heading">¶</a></h4>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>carry (C)</p></td>
+<td><p>Undefined.</p></td>
+</tr>
+<tr class="row-even"><td><p>overflow (V)</p></td>
+<td><p>Undefined.</p></td>
+</tr>
+<tr class="row-odd"><td><p>zero (Z)</p></td>
+<td><p>Undefined.</p></td>
+</tr>
+<tr class="row-even"><td><p>sign (S)</p></td>
+<td><p>Undefined.</p></td>
+</tr>
+<tr class="row-odd"><td><p>unordered (U)</p></td>
+<td><p>Undefined.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id64">
+<h4>Simplification rules<a class="headerlink" href="#id64" title="Link to this heading">¶</a></h4>
+<ul class="simple">
+<li><p>Immediate values for the <code class="docutils literal notranslate"><span class="pre">addr</span></code> operand are truncated to 32 bits.</p></li>
+<li><p>Immediate values for the <code class="docutils literal notranslate"><span class="pre">src</span></code> and <code class="docutils literal notranslate"><span class="pre">mask</span></code> operands are truncated
+to the access size.</p></li>
+<li><p>Converted to <a class="reference internal" href="#umlinst-read"><span class="std std-ref">WRITE</span></a> if the <code class="docutils literal notranslate"><span class="pre">mask</span></code> operand is an
+immediate value with all bits set.</p></li>
+</ul>
+</section>
+</section>
+<section id="fread">
+<span id="umlinst-fread"></span><h3><a class="toc-backref" href="#id105" role="doc-backlink">FREAD</a><a class="headerlink" href="#fread" title="Link to this heading">¶</a></h3>
+<p>Read a floating point value from an emulated address space.  The binary
+value will be preserved even if it is not a valid representation of a
+floating point number.  The access mask is implied to have all bits set.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Disassembly</p></th>
+<th class="head"><p>Usage</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fsread</span>  <span class="n">dst</span><span class="p">,</span><span class="n">addr</span><span class="p">,</span><span class="n">space_size</span>
+<span class="n">fdread</span>  <span class="n">dst</span><span class="p">,</span><span class="n">addr</span><span class="p">,</span><span class="n">space_size</span>
+</pre></div>
+</div>
+</td>
+<td><div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="n">UML_FSREAD</span><span class="p">(</span><span class="n">block</span><span class="p">,</span><span class="w"> </span><span class="n">dst</span><span class="p">,</span><span class="w"> </span><span class="n">addr</span><span class="p">,</span><span class="w"> </span><span class="n">space</span><span class="p">);</span>
+<span class="n">UML_FDREAD</span><span class="p">(</span><span class="n">block</span><span class="p">,</span><span class="w"> </span><span class="n">dst</span><span class="p">,</span><span class="w"> </span><span class="n">addr</span><span class="p">,</span><span class="w"> </span><span class="n">space</span><span class="p">);</span>
+</pre></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<section id="id65">
+<h4>Operands<a class="headerlink" href="#id65" title="Link to this heading">¶</a></h4>
+<dl class="simple">
+<dt>dst (32-bit or 64-bit – memory, floating point register)</dt><dd><p>The destination where the value read from the emulated address space
+will be stored.</p>
+</dd>
+<dt>addr (32-bit – memory, integer register, immediate, map variable)</dt><dd><p>The address to read from in the emulated address space.  Note that
+this is always a 32-bit operand, irrespective of the instruction
+size.</p>
+</dd>
+<dt>space (address space number)</dt><dd><p>An integer identifying the address space to read from.  May be
+<code class="docutils literal notranslate"><span class="pre">SPACE_PROGRAM</span></code>, <code class="docutils literal notranslate"><span class="pre">SPACE_DATA</span></code>, <code class="docutils literal notranslate"><span class="pre">SPACE_IO</span></code> or <code class="docutils literal notranslate"><span class="pre">SPACE_OPCODES</span></code>
+for one of the common CPU address spaces, or a non-negative integer
+cast to <code class="docutils literal notranslate"><span class="pre">memory_space</span></code>.</p>
+</dd>
+</dl>
+</section>
+<section id="id66">
+<h4>Flags<a class="headerlink" href="#id66" title="Link to this heading">¶</a></h4>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>carry (C)</p></td>
+<td><p>Undefined.</p></td>
+</tr>
+<tr class="row-even"><td><p>overflow (V)</p></td>
+<td><p>Undefined.</p></td>
+</tr>
+<tr class="row-odd"><td><p>zero (Z)</p></td>
+<td><p>Undefined.</p></td>
+</tr>
+<tr class="row-even"><td><p>sign (S)</p></td>
+<td><p>Undefined.</p></td>
+</tr>
+<tr class="row-odd"><td><p>unordered (U)</p></td>
+<td><p>Undefined.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id67">
+<h4>Simplification rules<a class="headerlink" href="#id67" title="Link to this heading">¶</a></h4>
+<ul class="simple">
+<li><p>Immediate values for the <code class="docutils literal notranslate"><span class="pre">addr</span></code> operand are truncated to 32 bits.</p></li>
+</ul>
+</section>
+</section>
+<section id="fwrite">
+<span id="umlinst-fwrite"></span><h3><a class="toc-backref" href="#id106" role="doc-backlink">FWRITE</a><a class="headerlink" href="#fwrite" title="Link to this heading">¶</a></h3>
+<p>Write a floating point value to an emulated address space.  The binary
+value will be preserved even if it is not a valid representation of a
+floating point number.  The access mask is implied to have all bits set.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Disassembly</p></th>
+<th class="head"><p>Usage</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fswrite</span> <span class="n">addr</span><span class="p">,</span><span class="n">src</span><span class="p">,</span><span class="n">space_size</span>
+<span class="n">fdwrite</span> <span class="n">addr</span><span class="p">,</span><span class="n">src</span><span class="p">,</span><span class="n">space_size</span>
+</pre></div>
+</div>
+</td>
+<td><div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="n">UML_FSWRITE</span><span class="p">(</span><span class="n">block</span><span class="p">,</span><span class="w"> </span><span class="n">addr</span><span class="p">,</span><span class="w"> </span><span class="n">src</span><span class="p">,</span><span class="w"> </span><span class="n">space</span><span class="p">);</span>
+<span class="n">UML_FDWRITE</span><span class="p">(</span><span class="n">block</span><span class="p">,</span><span class="w"> </span><span class="n">addr</span><span class="p">,</span><span class="w"> </span><span class="n">src</span><span class="p">,</span><span class="w"> </span><span class="n">space</span><span class="p">);</span>
+</pre></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<section id="id68">
+<h4>Operands<a class="headerlink" href="#id68" title="Link to this heading">¶</a></h4>
+<dl class="simple">
+<dt>addr (32-bit – memory, integer register, immediate, map variable)</dt><dd><p>The address to write to in the emulated address space.  Note that
+this is always a 32-bit operand, irrespective of the instruction
+size.</p>
+</dd>
+<dt>src (32-bit or 64-bit – memory, floating point register)</dt><dd><p>The value to write to the emulated address space.
+will be stored.</p>
+</dd>
+<dt>space (address space number)</dt><dd><p>An integer identifying the address space to read from.  May be
+<code class="docutils literal notranslate"><span class="pre">SPACE_PROGRAM</span></code>, <code class="docutils literal notranslate"><span class="pre">SPACE_DATA</span></code>, <code class="docutils literal notranslate"><span class="pre">SPACE_IO</span></code> or <code class="docutils literal notranslate"><span class="pre">SPACE_OPCODES</span></code>
+for one of the common CPU address spaces, or a non-negative integer
+cast to <code class="docutils literal notranslate"><span class="pre">memory_space</span></code>.</p>
+</dd>
+</dl>
+</section>
+<section id="id69">
+<h4>Flags<a class="headerlink" href="#id69" title="Link to this heading">¶</a></h4>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>carry (C)</p></td>
+<td><p>Undefined.</p></td>
+</tr>
+<tr class="row-even"><td><p>overflow (V)</p></td>
+<td><p>Undefined.</p></td>
+</tr>
+<tr class="row-odd"><td><p>zero (Z)</p></td>
+<td><p>Undefined.</p></td>
+</tr>
+<tr class="row-even"><td><p>sign (S)</p></td>
+<td><p>Undefined.</p></td>
+</tr>
+<tr class="row-odd"><td><p>unordered (U)</p></td>
+<td><p>Undefined.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id70">
+<h4>Simplification rules<a class="headerlink" href="#id70" title="Link to this heading">¶</a></h4>
+<ul class="simple">
+<li><p>Immediate values for the <code class="docutils literal notranslate"><span class="pre">addr</span></code> operand are truncated to 32 bits.</p></li>
+</ul>
+</section>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="m6502.html" class="btn btn-neutral float-left" title="The new 6502 family implementation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="poly_manager.html" class="btn btn-neutral float-right" title="Software 3D Rendering in MAME" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 1997-2025, MAMEdev and contributors.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,2072 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Imgtool - A generic image manipulation tool for MAME &mdash; MAME Documentation 0.277 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/documentation_options.js?v=561e49e2"></script>
+        <script src="../_static/doctools.js?v=9bcbadda"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Castool - A generic cassette image manipulation tool for MAME" href="castool.html" />
+    <link rel="prev" title="chdman – CHD (Compressed Hunks of Data) File Manager" href="chdman.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            MAME Documentation
+          </a>
+              <div class="version">
+                0.277
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../whatis.html">What is MAME</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../healthwarning.html">Health Warnings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../initialsetup/index.html">Getting MAME prepared</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usingmame/index.html">Basic MAME Usage and Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../commandline/index.html">MAME Command-line Usage and OS-Specific Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plugins/index.html">Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced/index.html">Advanced configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../debugger/index.html">MAME Debugger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../luascript/index.html">Lua Scripting Interface</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">MAME External Tools</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="chdman.html">chdman – CHD (Compressed Hunks of Data) File Manager</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Imgtool - <em>A generic image manipulation tool for MAME</em></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#imgtool-format-info">Imgtool Format Info</a></li>
+<li class="toctree-l2"><a class="reference internal" href="castool.html">Castool - <em>A generic cassette image manipulation tool for MAME</em></a></li>
+<li class="toctree-l2"><a class="reference internal" href="floptool.html">Floptool - <em>A generic floppy image manipulation tool for MAME</em></a></li>
+<li class="toctree-l2"><a class="reference internal" href="othertools.html">Other tools included with MAME</a></li>
+<li class="toctree-l2"><a class="reference internal" href="othertools.html#developer-focused-tools-included-with-mame">Developer-focused tools included with MAME</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing to MAME</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../techspecs/index.html">Technical Specifications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../security.html">MAME and security concerns</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">The MAME License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">MAME Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">MAME External Tools</a></li>
+      <li class="breadcrumb-item active">Imgtool - <em>A generic image manipulation tool for MAME</em></li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="imgtool-a-generic-image-manipulation-tool-for-mame">
+<h1>Imgtool - <em>A generic image manipulation tool for MAME</em><a class="headerlink" href="#imgtool-a-generic-image-manipulation-tool-for-mame" title="Link to this heading">¶</a></h1>
+<p>Imgtool is a tool for the maintenance and manipulation of disk and other types of images that MAME users need to deal with. Functions include retrieving and storing files and CRC checking/validation.</p>
+<p>Imgtool is part of the MAME project. It shares large portions of code with MAME, and its existence would not be if it were not for MAME. As such, the distribution terms are the same as MAME. Please read the MAME license thoroughly.</p>
+<p><strong>Some portions of Imgtool are Copyright (c) 1989, 1993 The Regents of the University of California.  All rights reserved.</strong></p>
+<section id="using-imgtool">
+<h2>Using Imgtool<a class="headerlink" href="#using-imgtool" title="Link to this heading">¶</a></h2>
+<p>Imgtool is a command line program that contains several &quot;subcommands&quot; that actually do all of the work.  Most commands are invoked in a manner along the lines of this:</p>
+<blockquote>
+<div><p><strong>imgtool &lt;subcommand&gt; &lt;format&gt; &lt;image&gt; ...</strong></p>
+</div></blockquote>
+<ul class="simple">
+<li><p><strong>&lt;subcommand&gt;</strong> is the name of the subcommand</p></li>
+<li><p><strong>&lt;format&gt;</strong> is the format of the image</p></li>
+<li><p><strong>&lt;image&gt;</strong> is the filename of the image</p></li>
+</ul>
+<dl>
+<dt>Example usage:</dt><dd><p>imgtool dir coco_jvc_rsdos myimageinazip.zip</p>
+<p>imgtool get coco_jvc_rsdos myimage.dsk myfile.bin mynewfile.txt</p>
+<p>imgtool getall coco_jvc_rsdos myimage.dsk</p>
+</dd>
+</dl>
+<p>Further details vary with each subcommand.  Also note that not all subcommands are applicable or supported for different image formats.</p>
+</section>
+<section id="imgtool-subcommands">
+<h2>Imgtool Subcommands<a class="headerlink" href="#imgtool-subcommands" title="Link to this heading">¶</a></h2>
+<p><strong>create</strong></p>
+<blockquote>
+<div><p><strong>imgtool create &lt;format&gt; &lt;imagename&gt; [--(createoption)=value]</strong></p>
+<ul class="simple">
+<li><p>&lt;format&gt; is the image format, e.g. coco_jvc_rsdos</p></li>
+<li><p>&lt;imagename&gt; is the image filename; can specify a ZIP file for image name</p></li>
+</ul>
+<p>Creates an image</p>
+</div></blockquote>
+<p><strong>dir</strong></p>
+<blockquote>
+<div><p><strong>imgtool dir &lt;format&gt; &lt;imagename&gt; [path]</strong></p>
+<ul class="simple">
+<li><p>&lt;format&gt; is the image format, e.g. coco_jvc_rsdos</p></li>
+<li><p>&lt;imagename&gt; is the image filename; can specify a ZIP file for image name</p></li>
+</ul>
+<p>Lists the contents of an image</p>
+</div></blockquote>
+<p><strong>get</strong></p>
+<blockquote>
+<div><p><strong>imgtool get &lt;format&gt; &lt;imagename&gt; &lt;filename&gt; [newname] [--filter=filter] [--fork=fork]</strong></p>
+<ul class="simple">
+<li><p>&lt;format&gt; is the image format, e.g. coco_jvc_rsdos</p></li>
+<li><p>&lt;imagename&gt; is the image filename; can specify a ZIP file for image name</p></li>
+</ul>
+<p>Gets a single file from an image</p>
+</div></blockquote>
+<p><strong>put</strong></p>
+<blockquote>
+<div><p><strong>imgtool put &lt;format&gt; &lt;imagename&gt; &lt;filename&gt;... &lt;destname&gt; [--(fileoption)=value] [--filter=filter] [--fork=fork]</strong></p>
+<ul class="simple">
+<li><p>&lt;format&gt; is the image format, e.g. coco_jvc_rsdos</p></li>
+<li><p>&lt;imagename&gt; is the image filename; can specify a ZIP file for image name</p></li>
+</ul>
+<p>Puts a single file on an image (wildcards supported)</p>
+</div></blockquote>
+<p><strong>getall</strong></p>
+<blockquote>
+<div><p><strong>imgtool getall &lt;format&gt; &lt;imagename&gt; [path] [--filter=filter]</strong></p>
+<ul class="simple">
+<li><p>&lt;format&gt; is the image format, e.g. coco_jvc_rsdos</p></li>
+<li><p>&lt;imagename&gt; is the image filename; can specify a ZIP file for image name</p></li>
+</ul>
+<p>Gets all files off an image</p>
+</div></blockquote>
+<p><strong>del</strong></p>
+<blockquote>
+<div><p><strong>imgtool del &lt;format&gt; &lt;imagename&gt; &lt;filename&gt;...</strong></p>
+<ul class="simple">
+<li><p>&lt;format&gt; is the image format, e.g. coco_jvc_rsdos</p></li>
+<li><p>&lt;imagename&gt; is the image filename; can specify a ZIP file for image name</p></li>
+</ul>
+<p>Deletes a file on an image</p>
+</div></blockquote>
+<p><strong>mkdir</strong></p>
+<blockquote>
+<div><p><strong>imgtool mkdir &lt;format&gt; &lt;imagename&gt; &lt;dirname&gt;</strong></p>
+<ul class="simple">
+<li><p>&lt;format&gt; is the image format, e.g. coco_jvc_rsdos</p></li>
+<li><p>&lt;imagename&gt; is the image filename; can specify a ZIP file for image name</p></li>
+</ul>
+<p>Creates a subdirectory on an image</p>
+</div></blockquote>
+<p><strong>rmdir</strong></p>
+<blockquote>
+<div><p><strong>imgtool rmdir &lt;format&gt; &lt;imagename&gt; &lt;dirname&gt;...</strong></p>
+<ul class="simple">
+<li><p>&lt;format&gt; is the image format, e.g. coco_jvc_rsdos</p></li>
+<li><p>&lt;imagename&gt; is the image filename; can specify a ZIP file for image name</p></li>
+</ul>
+<p>Deletes a subdirectory on an image</p>
+</div></blockquote>
+<p><strong>readsector</strong></p>
+<blockquote>
+<div><p><strong>imgtool readsector &lt;format&gt; &lt;imagename&gt; &lt;track&gt; &lt;head&gt; &lt;sector&gt; &lt;filename&gt;</strong></p>
+<ul class="simple">
+<li><p>&lt;format&gt; is the image format, e.g. coco_jvc_rsdos</p></li>
+<li><p>&lt;imagename&gt; is the image filename; can specify a ZIP file for image name</p></li>
+</ul>
+<p>Read a sector on an image and output it to specified &lt;filename&gt;</p>
+</div></blockquote>
+<p><strong>writesector</strong></p>
+<blockquote>
+<div><p><strong>imgtool writesector &lt;format&gt; &lt;imagename&gt; &lt;track&gt; &lt;head&gt; &lt;sector&gt; &lt;filename&gt;</strong></p>
+<ul class="simple">
+<li><p>&lt;format&gt; is the image format, e.g. coco_jvc_rsdos</p></li>
+<li><p>&lt;imagename&gt; is the image filename; can specify a ZIP file for image name</p></li>
+</ul>
+<p>Write a sector to an image from specified &lt;filename&gt;</p>
+</div></blockquote>
+<p><strong>identify</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>&lt;format&gt; is the image format, e.g. coco_jvc_rsdos</p></li>
+<li><p>&lt;imagename&gt; is the image filename; can specify a ZIP file for image name</p></li>
+</ul>
+<p><strong>imgtool identify &lt;imagename&gt;</strong></p>
+</div></blockquote>
+<p><strong>listformats</strong></p>
+<blockquote>
+<div><p>Lists all image file formats supported by imgtool</p>
+</div></blockquote>
+<p><strong>listfilters</strong></p>
+<blockquote>
+<div><p>Lists all filters supported by imgtool</p>
+</div></blockquote>
+<p><strong>listdriveroptions</strong></p>
+<blockquote>
+<div><p><strong>imgtool listdriveroptions &lt;format&gt;</strong></p>
+<ul class="simple">
+<li><p>&lt;format&gt; is the image format, e.g. coco_jvc_rsdos</p></li>
+</ul>
+<p>Lists all format-specific options for the 'put' and 'create' commands</p>
+</div></blockquote>
+</section>
+<section id="imgtool-filters">
+<h2>Imgtool Filters<a class="headerlink" href="#imgtool-filters" title="Link to this heading">¶</a></h2>
+<p>Filters are a means to process data being written into or read out of an image in a certain way.  Filters can be specified on the get, put, and getall commands by specifying --filter=xxxx on the command line.  Currently, the following filters are supported:</p>
+<p><strong>ascii</strong></p>
+<blockquote>
+<div><p>Translates end-of-lines to the appropriate format</p>
+</div></blockquote>
+<p><strong>cocobas</strong></p>
+<blockquote>
+<div><p>Processes tokenized TRS-80 Color Computer (CoCo) BASIC programs</p>
+</div></blockquote>
+<p><strong>dragonbas</strong></p>
+<blockquote>
+<div><p>Processes tokenized Tano/Dragon Data Dragon 32/64 BASIC programs</p>
+</div></blockquote>
+<p><strong>macbinary</strong></p>
+<blockquote>
+<div><p>Processes Apple MacBinary-formatted (merged forks) files</p>
+</div></blockquote>
+<p><strong>vzsnapshot</strong></p>
+<blockquote>
+<div><p>[todo: VZ Snapshot? Find out what this is...]</p>
+</div></blockquote>
+<p><strong>vzbas</strong></p>
+<blockquote>
+<div><p>Processes Laser/VZ Tokenized Basic Files</p>
+</div></blockquote>
+<p><strong>thombas5</strong></p>
+<blockquote>
+<div><p>Thomson MO5 w/ BASIC 1.0, Tokenized Files (read-only, auto-decrypt)</p>
+</div></blockquote>
+<p><strong>thombas7</strong></p>
+<blockquote>
+<div><p>Thomson TO7 w/ BASIC 1.0, Tokenized Files (read-only, auto-decrypt)</p>
+</div></blockquote>
+<p><strong>thombas128</strong></p>
+<blockquote>
+<div><p>Thomson w/ BASIC 128/512, Tokenized Files (read-only, auto-decrypt)</p>
+</div></blockquote>
+<p><strong>thomcrypt</strong></p>
+<blockquote>
+<div><p>Thomson BASIC, Protected file encryption (no tokenization)</p>
+</div></blockquote>
+<p><strong>bm13bas</strong></p>
+<blockquote>
+<div><p>Basic Master Level 3 Tokenized Basic Files</p>
+</div></blockquote>
+</section>
+</section>
+<section id="imgtool-format-info">
+<h1>Imgtool Format Info<a class="headerlink" href="#imgtool-format-info" title="Link to this heading">¶</a></h1>
+<section id="amiga-floppy-disk-image-ofs-ffs-format-amiga-floppy">
+<h2>Amiga floppy disk image (OFS/FFS format) -  (<em>amiga_floppy</em>)<a class="headerlink" href="#amiga-floppy-disk-image-ofs-ffs-format-amiga-floppy" title="Link to this heading">¶</a></h2>
+<p>Driver specific options for module 'amiga_floppy':</p>
+<p>No image specific file options</p>
+<p>Image specific creation options (usable on the 'create' command):</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Option</p></td>
+<td><p>Allowed values</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p>--density</p></td>
+<td><p>dd/hd</p></td>
+<td><p>Density</p></td>
+</tr>
+<tr class="row-odd"><td><p>--filesystem</p></td>
+<td><p>ofs/ffs</p></td>
+<td><p>File system</p></td>
+</tr>
+<tr class="row-even"><td><p>--mode</p></td>
+<td><p>none/intl/dirc</p></td>
+<td><p>File system options</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="apple-dos-order-disk-image-prodos-format-apple2-do-prodos-525">
+<h2>Apple ][ DOS order disk image (ProDOS format) -  (<em>apple2_do_prodos_525</em>)<a class="headerlink" href="#apple-dos-order-disk-image-prodos-format-apple2-do-prodos-525" title="Link to this heading">¶</a></h2>
+<p>Driver specific options for module 'apple2_do_prodos_525':</p>
+<p>No image specific file options</p>
+<p>Image specific creation options (usable on the 'create' command):</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Option</p></td>
+<td><p>Allowed values</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p>--heads</p></td>
+<td><p>1</p></td>
+<td><p>Heads</p></td>
+</tr>
+<tr class="row-odd"><td><p>--tracks</p></td>
+<td><p>35</p></td>
+<td><p>Tracks</p></td>
+</tr>
+<tr class="row-even"><td><p>--sectors</p></td>
+<td><p>16</p></td>
+<td><p>Sectors</p></td>
+</tr>
+<tr class="row-odd"><td><p>--sectorlength</p></td>
+<td><p>256</p></td>
+<td><p>Sector Bytes</p></td>
+</tr>
+<tr class="row-even"><td><p>--firstsectorid</p></td>
+<td><p>0</p></td>
+<td><p>First Sector</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="apple-nibble-order-disk-image-prodos-format-apple2-nib-prodos-525">
+<h2>Apple ][ Nibble order disk image (ProDOS format) -  (<em>apple2_nib_prodos_525</em>)<a class="headerlink" href="#apple-nibble-order-disk-image-prodos-format-apple2-nib-prodos-525" title="Link to this heading">¶</a></h2>
+<p>Driver specific options for module 'apple2_nib_prodos_525':</p>
+<p>No image specific file options</p>
+<p>Image specific creation options (usable on the 'create' command):</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Option</p></td>
+<td><p>Allowed values</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p>--heads</p></td>
+<td><p>1</p></td>
+<td><p>Heads</p></td>
+</tr>
+<tr class="row-odd"><td><p>--tracks</p></td>
+<td><p>35</p></td>
+<td><p>Tracks</p></td>
+</tr>
+<tr class="row-even"><td><p>--sectors</p></td>
+<td><p>16</p></td>
+<td><p>Sectors</p></td>
+</tr>
+<tr class="row-odd"><td><p>--sectorlength</p></td>
+<td><p>256</p></td>
+<td><p>Sector Bytes</p></td>
+</tr>
+<tr class="row-even"><td><p>--firstsectorid</p></td>
+<td><p>0</p></td>
+<td><p>First Sector</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="apple-prodos-order-disk-image-prodos-format-apple2-po-prodos-525">
+<h2>Apple ][ ProDOS order disk image (ProDOS format) -  (<em>apple2_po_prodos_525</em>)<a class="headerlink" href="#apple-prodos-order-disk-image-prodos-format-apple2-po-prodos-525" title="Link to this heading">¶</a></h2>
+<p>Driver specific options for module 'apple2_po_prodos_525':</p>
+<p>No image specific file options</p>
+<p>Image specific creation options (usable on the 'create' command):</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Option</p></td>
+<td><p>Allowed values</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p>--heads</p></td>
+<td><p>1</p></td>
+<td><p>Heads</p></td>
+</tr>
+<tr class="row-odd"><td><p>--tracks</p></td>
+<td><p>35</p></td>
+<td><p>Tracks</p></td>
+</tr>
+<tr class="row-even"><td><p>--sectors</p></td>
+<td><p>16</p></td>
+<td><p>Sectors</p></td>
+</tr>
+<tr class="row-odd"><td><p>--sectorlength</p></td>
+<td><p>256</p></td>
+<td><p>Sector Bytes</p></td>
+</tr>
+<tr class="row-even"><td><p>--firstsectorid</p></td>
+<td><p>0</p></td>
+<td><p>First Sector</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="apple-gs-2img-disk-image-prodos-format-apple35-2img-prodos-35">
+<h2>Apple ][gs 2IMG disk image (ProDOS format) -  (<em>apple35_2img_prodos_35</em>)<a class="headerlink" href="#apple-gs-2img-disk-image-prodos-format-apple35-2img-prodos-35" title="Link to this heading">¶</a></h2>
+<p>Driver specific options for module 'apple35_2img_prodos_35':</p>
+<p>No image specific file options</p>
+<p>Image specific creation options (usable on the 'create' command):</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Option</p></td>
+<td><p>Allowed values</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p>--heads</p></td>
+<td><p>1-2</p></td>
+<td><p>Heads</p></td>
+</tr>
+<tr class="row-odd"><td><p>--tracks</p></td>
+<td><p>80</p></td>
+<td><p>Tracks</p></td>
+</tr>
+<tr class="row-even"><td><p>--sectorlength</p></td>
+<td><p>512</p></td>
+<td><p>Sector Bytes</p></td>
+</tr>
+<tr class="row-odd"><td><p>--firstsectorid</p></td>
+<td><p>0</p></td>
+<td><p>First Sector</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="apple-diskcopy-disk-image-mac-hfs-floppy-apple35-dc-mac-hfs">
+<h2>Apple DiskCopy disk image (Mac HFS Floppy) -  (<em>apple35_dc_mac_hfs</em>)<a class="headerlink" href="#apple-diskcopy-disk-image-mac-hfs-floppy-apple35-dc-mac-hfs" title="Link to this heading">¶</a></h2>
+<p>Driver specific options for module 'apple35_dc_mac_hfs':</p>
+<p>No image specific file options</p>
+<p>Image specific creation options (usable on the 'create' command):</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Option</p></td>
+<td><p>Allowed values</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p>--heads</p></td>
+<td><p>1-2</p></td>
+<td><p>Heads</p></td>
+</tr>
+<tr class="row-odd"><td><p>--tracks</p></td>
+<td><p>80</p></td>
+<td><p>Tracks</p></td>
+</tr>
+<tr class="row-even"><td><p>--sectorlength</p></td>
+<td><p>512</p></td>
+<td><p>Sector Bytes</p></td>
+</tr>
+<tr class="row-odd"><td><p>--firstsectorid</p></td>
+<td><p>0</p></td>
+<td><p>First Sector</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="apple-diskcopy-disk-image-mac-mfs-floppy-apple35-dc-mac-mfs">
+<h2>Apple DiskCopy disk image (Mac MFS Floppy) -  (<em>apple35_dc_mac_mfs</em>)<a class="headerlink" href="#apple-diskcopy-disk-image-mac-mfs-floppy-apple35-dc-mac-mfs" title="Link to this heading">¶</a></h2>
+<p>Driver specific options for module 'apple35_dc_mac_mfs':</p>
+<p>No image specific file options</p>
+<p>Image specific creation options (usable on the 'create' command):</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Option</p></td>
+<td><p>Allowed values</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p>--heads</p></td>
+<td><p>1-2</p></td>
+<td><p>Heads</p></td>
+</tr>
+<tr class="row-odd"><td><p>--tracks</p></td>
+<td><p>80</p></td>
+<td><p>Tracks</p></td>
+</tr>
+<tr class="row-even"><td><p>--sectorlength</p></td>
+<td><p>512</p></td>
+<td><p>Sector Bytes</p></td>
+</tr>
+<tr class="row-odd"><td><p>--firstsectorid</p></td>
+<td><p>0</p></td>
+<td><p>First Sector</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="apple-diskcopy-disk-image-prodos-format-apple35-dc-prodos-35">
+<h2>Apple DiskCopy disk image (ProDOS format)  - (<em>apple35_dc_prodos_35</em>)<a class="headerlink" href="#apple-diskcopy-disk-image-prodos-format-apple35-dc-prodos-35" title="Link to this heading">¶</a></h2>
+<p>Driver specific options for module 'apple35_dc_prodos_35':</p>
+<p>No image specific file options</p>
+<p>Image specific creation options (usable on the 'create' command):</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Option</p></td>
+<td><p>Allowed values</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p>--heads</p></td>
+<td><p>1-2</p></td>
+<td><p>Heads</p></td>
+</tr>
+<tr class="row-odd"><td><p>--tracks</p></td>
+<td><p>80</p></td>
+<td><p>Tracks</p></td>
+</tr>
+<tr class="row-even"><td><p>--sectorlength</p></td>
+<td><p>512</p></td>
+<td><p>Sector Bytes</p></td>
+</tr>
+<tr class="row-odd"><td><p>--firstsectorid</p></td>
+<td><p>0</p></td>
+<td><p>First Sector</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="apple-raw-3-5-disk-image-mac-hfs-floppy-apple35-raw-mac-hfs">
+<h2>Apple raw 3.5&quot; disk image (Mac HFS Floppy) -  (<em>apple35_raw_mac_hfs</em>)<a class="headerlink" href="#apple-raw-3-5-disk-image-mac-hfs-floppy-apple35-raw-mac-hfs" title="Link to this heading">¶</a></h2>
+<p>Driver specific options for module 'apple35_raw_mac_hfs':</p>
+<p>No image specific file options</p>
+<p>Image specific creation options (usable on the 'create' command):</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Option</p></td>
+<td><p>Allowed values</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p>--heads</p></td>
+<td><p>1-2</p></td>
+<td><p>Heads</p></td>
+</tr>
+<tr class="row-odd"><td><p>--tracks</p></td>
+<td><p>80</p></td>
+<td><p>Tracks</p></td>
+</tr>
+<tr class="row-even"><td><p>--sectorlength</p></td>
+<td><p>512</p></td>
+<td><p>Sector Bytes</p></td>
+</tr>
+<tr class="row-odd"><td><p>--firstsectorid</p></td>
+<td><p>0</p></td>
+<td><p>First Sector</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="apple-raw-3-5-disk-image-mac-mfs-floppy-apple35-raw-mac-mfs">
+<h2>Apple raw 3.5&quot; disk image (Mac MFS Floppy) -  (<em>apple35_raw_mac_mfs</em>)<a class="headerlink" href="#apple-raw-3-5-disk-image-mac-mfs-floppy-apple35-raw-mac-mfs" title="Link to this heading">¶</a></h2>
+<p>Driver specific options for module 'apple35_raw_mac_mfs':</p>
+<p>No image specific file options</p>
+<p>Image specific creation options (usable on the 'create' command):</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Option</p></td>
+<td><p>Allowed values</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p>--heads</p></td>
+<td><p>1-2</p></td>
+<td><p>Heads</p></td>
+</tr>
+<tr class="row-odd"><td><p>--tracks</p></td>
+<td><p>80</p></td>
+<td><p>Tracks</p></td>
+</tr>
+<tr class="row-even"><td><p>--sectorlength</p></td>
+<td><p>512</p></td>
+<td><p>Sector Bytes</p></td>
+</tr>
+<tr class="row-odd"><td><p>--firstsectorid</p></td>
+<td><p>0</p></td>
+<td><p>First Sector</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="apple-raw-3-5-disk-image-prodos-format-apple35-raw-prodos-35">
+<h2>Apple raw 3.5&quot; disk image (ProDOS format) - (<em>apple35_raw_prodos_35</em>)<a class="headerlink" href="#apple-raw-3-5-disk-image-prodos-format-apple35-raw-prodos-35" title="Link to this heading">¶</a></h2>
+<p>Driver specific options for module 'apple35_raw_prodos_35':</p>
+<p>No image specific file options</p>
+<p>Image specific creation options (usable on the 'create' command):</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Option</p></td>
+<td><p>Allowed values</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p>--heads</p></td>
+<td><p>1-2</p></td>
+<td><p>Heads</p></td>
+</tr>
+<tr class="row-odd"><td><p>--tracks</p></td>
+<td><p>80</p></td>
+<td><p>Tracks</p></td>
+</tr>
+<tr class="row-even"><td><p>--sectorlength</p></td>
+<td><p>512</p></td>
+<td><p>Sector Bytes</p></td>
+</tr>
+<tr class="row-odd"><td><p>--firstsectorid</p></td>
+<td><p>0</p></td>
+<td><p>First Sector</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="coco-dmk-disk-image-os-9-format-coco-dmk-os9">
+<h2>CoCo DMK disk image (OS-9 format) -  (<em>coco_dmk_os9</em>)<a class="headerlink" href="#coco-dmk-disk-image-os-9-format-coco-dmk-os9" title="Link to this heading">¶</a></h2>
+<p>Driver specific options for module 'coco_dmk_os9':</p>
+<p>No image specific file options</p>
+<p>Image specific creation options (usable on the 'create' command):</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Option</p></td>
+<td><p>Allowed values</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p>--heads</p></td>
+<td><p>1-2</p></td>
+<td><p>Heads</p></td>
+</tr>
+<tr class="row-odd"><td><p>--tracks</p></td>
+<td><p>35-255</p></td>
+<td><p>Tracks</p></td>
+</tr>
+<tr class="row-even"><td><p>--sectors</p></td>
+<td><p>1-18</p></td>
+<td><p>Sectors</p></td>
+</tr>
+<tr class="row-odd"><td><p>--sectorlength</p></td>
+<td><p>128/256/512/1024/2048/4096/8192</p></td>
+<td><p>Sector Bytes</p></td>
+</tr>
+<tr class="row-even"><td><p>--interleave</p></td>
+<td><p>0-17</p></td>
+<td><p>Interleave</p></td>
+</tr>
+<tr class="row-odd"><td><p>--firstsectorid</p></td>
+<td><p>0-1</p></td>
+<td><p>First Sector</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="coco-dmk-disk-image-rs-dos-format-coco-dmk-rsdos">
+<h2>CoCo DMK disk image (RS-DOS format) -  (<em>coco_dmk_rsdos</em>)<a class="headerlink" href="#coco-dmk-disk-image-rs-dos-format-coco-dmk-rsdos" title="Link to this heading">¶</a></h2>
+<p>Driver specific options for module 'coco_dmk_rsdos':</p>
+<p>Image specific file options (usable on the 'put' command):</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Option</p></td>
+<td><p>Allowed values</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p>--ftype</p></td>
+<td><p>basic/data/binary/assembler</p></td>
+<td><p>File type</p></td>
+</tr>
+<tr class="row-odd"><td><p>--ascii</p></td>
+<td><p>ascii/binary</p></td>
+<td><p>ASCII flag</p></td>
+</tr>
+</tbody>
+</table>
+<p>Image specific creation options (usable on the 'create' command):</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Option</p></td>
+<td><p>Allowed values</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p>--heads</p></td>
+<td><p>1-2</p></td>
+<td><p>Heads</p></td>
+</tr>
+<tr class="row-odd"><td><p>--tracks</p></td>
+<td><p>35-255</p></td>
+<td><p>Tracks</p></td>
+</tr>
+<tr class="row-even"><td><p>--sectors</p></td>
+<td><p>1-18</p></td>
+<td><p>Sectors</p></td>
+</tr>
+<tr class="row-odd"><td><p>--sectorlength</p></td>
+<td><p>128/256/512/1024/2048/4096/8192</p></td>
+<td><p>Sector Bytes</p></td>
+</tr>
+<tr class="row-even"><td><p>--interleave</p></td>
+<td><p>0-17</p></td>
+<td><p>Interleave</p></td>
+</tr>
+<tr class="row-odd"><td><p>--firstsectorid</p></td>
+<td><p>0-1</p></td>
+<td><p>First Sector</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="coco-jvc-disk-image-os-9-format-coco-jvc-os9">
+<h2>CoCo JVC disk image (OS-9 format) -  (<em>coco_jvc_os9</em>)<a class="headerlink" href="#coco-jvc-disk-image-os-9-format-coco-jvc-os9" title="Link to this heading">¶</a></h2>
+<p>Driver specific options for module 'coco_jvc_os9':</p>
+<p>No image specific file options</p>
+<p>Image specific creation options (usable on the 'create' command):</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Option</p></td>
+<td><p>Allowed values</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p>--heads</p></td>
+<td><p>1-2</p></td>
+<td><p>Heads</p></td>
+</tr>
+<tr class="row-odd"><td><p>--tracks</p></td>
+<td><p>35-255</p></td>
+<td><p>Tracks</p></td>
+</tr>
+<tr class="row-even"><td><p>--sectors</p></td>
+<td><p>1-255</p></td>
+<td><p>Sectors</p></td>
+</tr>
+<tr class="row-odd"><td><p>--sectorlength</p></td>
+<td><p>128/256/512/1024</p></td>
+<td><p>Sector Bytes</p></td>
+</tr>
+<tr class="row-even"><td><p>--firstsectorid</p></td>
+<td><p>0-1</p></td>
+<td><p>First Sector</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="coco-jvc-disk-image-rs-dos-format-coco-jvc-rsdos">
+<h2>CoCo JVC disk image (RS-DOS format) -  (<em>coco_jvc_rsdos</em>)<a class="headerlink" href="#coco-jvc-disk-image-rs-dos-format-coco-jvc-rsdos" title="Link to this heading">¶</a></h2>
+<p>Driver specific options for module 'coco_jvc_rsdos':</p>
+<p>Image specific file options (usable on the 'put' command):</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Option</p></td>
+<td><p>Allowed values</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p>--ftype</p></td>
+<td><p>basic/data/binary/assembler</p></td>
+<td><p>File type</p></td>
+</tr>
+<tr class="row-odd"><td><p>--ascii</p></td>
+<td><p>ascii/binary</p></td>
+<td><p>ASCII flag</p></td>
+</tr>
+</tbody>
+</table>
+<p>Image specific creation options (usable on the 'create' command):</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Option</p></td>
+<td><p>Allowed values</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p>--heads</p></td>
+<td><p>1-2</p></td>
+<td><p>Heads</p></td>
+</tr>
+<tr class="row-odd"><td><p>--tracks</p></td>
+<td><p>35-255</p></td>
+<td><p>Tracks</p></td>
+</tr>
+<tr class="row-even"><td><p>--sectors</p></td>
+<td><p>1-255</p></td>
+<td><p>Sectors</p></td>
+</tr>
+<tr class="row-odd"><td><p>--sectorlength</p></td>
+<td><p>128/256/512/1024</p></td>
+<td><p>Sector Bytes</p></td>
+</tr>
+<tr class="row-even"><td><p>--firstsectorid</p></td>
+<td><p>0-1</p></td>
+<td><p>First Sector</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="coco-os-9-disk-image-os-9-format-coco-os9-os9">
+<h2>CoCo OS-9 disk image (OS-9 format) -  (<em>coco_os9_os9</em>)<a class="headerlink" href="#coco-os-9-disk-image-os-9-format-coco-os9-os9" title="Link to this heading">¶</a></h2>
+<p>Driver specific options for module 'coco_os9_os9':</p>
+<p>No image specific file options</p>
+<p>Image specific creation options (usable on the 'create' command):</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Option</p></td>
+<td><p>Allowed values</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p>--heads</p></td>
+<td><p>1-2</p></td>
+<td><p>Heads</p></td>
+</tr>
+<tr class="row-odd"><td><p>--tracks</p></td>
+<td><p>35-255</p></td>
+<td><p>Tracks</p></td>
+</tr>
+<tr class="row-even"><td><p>--sectors</p></td>
+<td><p>1-255</p></td>
+<td><p>Sectors</p></td>
+</tr>
+<tr class="row-odd"><td><p>--sectorlength</p></td>
+<td><p>128/256/512/1024</p></td>
+<td><p>Sector Bytes</p></td>
+</tr>
+<tr class="row-even"><td><p>--firstsectorid</p></td>
+<td><p>1</p></td>
+<td><p>First Sector</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="coco-vdk-disk-image-os-9-format-coco-vdk-os9">
+<h2>CoCo VDK disk image (OS-9 format) -  (<em>coco_vdk_os9</em>)<a class="headerlink" href="#coco-vdk-disk-image-os-9-format-coco-vdk-os9" title="Link to this heading">¶</a></h2>
+<p>Driver specific options for module 'coco_vdk_os9':</p>
+<p>No image specific file options</p>
+<p>Image specific creation options (usable on the 'create' command):</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Option</p></td>
+<td><p>Allowed values</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p>--heads</p></td>
+<td><p>1-2</p></td>
+<td><p>Heads</p></td>
+</tr>
+<tr class="row-odd"><td><p>--tracks</p></td>
+<td><p>35-255</p></td>
+<td><p>Tracks</p></td>
+</tr>
+<tr class="row-even"><td><p>--sectors</p></td>
+<td><p>18</p></td>
+<td><p>Sectors</p></td>
+</tr>
+<tr class="row-odd"><td><p>--sectorlength</p></td>
+<td><p>256</p></td>
+<td><p>Sector Bytes</p></td>
+</tr>
+<tr class="row-even"><td><p>--firstsectorid</p></td>
+<td><p>1</p></td>
+<td><p>First Sector</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="coco-vdk-disk-image-rs-dos-format-coco-vdk-rsdos">
+<h2>CoCo VDK disk image (RS-DOS format) -  (<em>coco_vdk_rsdos</em>)<a class="headerlink" href="#coco-vdk-disk-image-rs-dos-format-coco-vdk-rsdos" title="Link to this heading">¶</a></h2>
+<p>Driver specific options for module 'coco_vdk_rsdos':</p>
+<p>Image specific file options (usable on the 'put' command):</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Option</p></td>
+<td><p>Allowed values</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p>--ftype</p></td>
+<td><p>basic/data/binary/assembler</p></td>
+<td><p>File type</p></td>
+</tr>
+<tr class="row-odd"><td><p>--ascii</p></td>
+<td><p>ascii/binary</p></td>
+<td><p>ASCII flag</p></td>
+</tr>
+</tbody>
+</table>
+<p>Image specific creation options (usable on the 'create' command):</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Option</p></td>
+<td><p>Allowed values</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p>--heads</p></td>
+<td><p>1-2</p></td>
+<td><p>Heads</p></td>
+</tr>
+<tr class="row-odd"><td><p>--tracks</p></td>
+<td><p>35-255</p></td>
+<td><p>Tracks</p></td>
+</tr>
+<tr class="row-even"><td><p>--sectors</p></td>
+<td><p>18</p></td>
+<td><p>Sectors</p></td>
+</tr>
+<tr class="row-odd"><td><p>--sectorlength</p></td>
+<td><p>256</p></td>
+<td><p>Sector Bytes</p></td>
+</tr>
+<tr class="row-even"><td><p>--firstsectorid</p></td>
+<td><p>1</p></td>
+<td><p>First Sector</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="concept-floppy-disk-image-concept">
+<h2>Concept floppy disk image -  (<em>concept</em>)<a class="headerlink" href="#concept-floppy-disk-image-concept" title="Link to this heading">¶</a></h2>
+<p>Driver specific options for module 'concept':</p>
+<p>No image specific file options</p>
+<p>No image specific creation options</p>
+</section>
+<section id="copyqm-floppy-disk-image-basic-master-level-3-format-cqm-bml3">
+<h2>CopyQM floppy disk image (Basic Master Level 3 format) -  (<em>cqm_bml3</em>)<a class="headerlink" href="#copyqm-floppy-disk-image-basic-master-level-3-format-cqm-bml3" title="Link to this heading">¶</a></h2>
+<p>Driver specific options for module 'cqm_bml3':</p>
+<p>Image specific file options (usable on the 'put' command):</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Option</p></td>
+<td><p>Allowed values</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p>--ftype</p></td>
+<td><p>basic/data/binary/assembler</p></td>
+<td><p>File type</p></td>
+</tr>
+<tr class="row-odd"><td><p>--ascii</p></td>
+<td><p>ascii/binary</p></td>
+<td><p>ASCII flag</p></td>
+</tr>
+</tbody>
+</table>
+<p>No image specific creation options</p>
+</section>
+<section id="copyqm-floppy-disk-image-fat-format-cqm-fat">
+<h2>CopyQM floppy disk image (FAT format) -  (<em>cqm_fat</em>)<a class="headerlink" href="#copyqm-floppy-disk-image-fat-format-cqm-fat" title="Link to this heading">¶</a></h2>
+<p>Driver specific options for module 'cqm_fat':</p>
+<p>No image specific file options</p>
+<p>No image specific creation options</p>
+</section>
+<section id="copyqm-floppy-disk-image-mac-hfs-floppy-cqm-mac-hfs">
+<h2>CopyQM floppy disk image (Mac HFS Floppy) -  (<em>cqm_mac_hfs</em>)<a class="headerlink" href="#copyqm-floppy-disk-image-mac-hfs-floppy-cqm-mac-hfs" title="Link to this heading">¶</a></h2>
+<p>Driver specific options for module 'cqm_mac_hfs':</p>
+<p>No image specific file options</p>
+<p>No image specific creation options</p>
+</section>
+<section id="copyqm-floppy-disk-image-mac-mfs-floppy-cqm-mac-mfs">
+<h2>CopyQM floppy disk image (Mac MFS Floppy) -  (<em>cqm_mac_mfs</em>)<a class="headerlink" href="#copyqm-floppy-disk-image-mac-mfs-floppy-cqm-mac-mfs" title="Link to this heading">¶</a></h2>
+<p>Driver specific options for module 'cqm_mac_mfs':</p>
+<p>No image specific file options</p>
+<p>No image specific creation options</p>
+</section>
+<section id="copyqm-floppy-disk-image-os-9-format-cqm-os9">
+<h2>CopyQM floppy disk image (OS-9 format) -  (<em>cqm_os9</em>)<a class="headerlink" href="#copyqm-floppy-disk-image-os-9-format-cqm-os9" title="Link to this heading">¶</a></h2>
+<p>Driver specific options for module 'cqm_os9':</p>
+<p>No image specific file options</p>
+<p>No image specific creation options</p>
+</section>
+<section id="copyqm-floppy-disk-image-prodos-format-cqm-prodos-35">
+<h2>CopyQM floppy disk image (ProDOS format) -  (<em>cqm_prodos_35</em>)<a class="headerlink" href="#copyqm-floppy-disk-image-prodos-format-cqm-prodos-35" title="Link to this heading">¶</a></h2>
+<p>Driver specific options for module 'cqm_prodos_35':</p>
+<p>No image specific file options</p>
+<p>No image specific creation options</p>
+</section>
+<section id="copyqm-floppy-disk-image-prodos-format-cqm-prodos-525">
+<h2>CopyQM floppy disk image (ProDOS format) -  (<em>cqm_prodos_525</em>)<a class="headerlink" href="#copyqm-floppy-disk-image-prodos-format-cqm-prodos-525" title="Link to this heading">¶</a></h2>
+<p>Driver specific options for module 'cqm_prodos_525':</p>
+<p>No image specific file options</p>
+<p>No image specific creation options</p>
+</section>
+<section id="copyqm-floppy-disk-image-rs-dos-format-cqm-rsdos">
+<h2>CopyQM floppy disk image (RS-DOS format) -  (<em>cqm_rsdos</em>)<a class="headerlink" href="#copyqm-floppy-disk-image-rs-dos-format-cqm-rsdos" title="Link to this heading">¶</a></h2>
+<p>Driver specific options for module 'cqm_rsdos':</p>
+<p>Image specific file options (usable on the 'put' command):</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Option</p></td>
+<td><p>Allowed values</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p>--ftype</p></td>
+<td><p>basic/data/binary/assembler</p></td>
+<td><p>File type</p></td>
+</tr>
+<tr class="row-odd"><td><p>--ascii</p></td>
+<td><p>ascii/binary</p></td>
+<td><p>ASCII flag</p></td>
+</tr>
+</tbody>
+</table>
+<p>No image specific creation options</p>
+</section>
+<section id="copyqm-floppy-disk-image-vz-dos-format-cqm-vzdos">
+<h2>CopyQM floppy disk image (VZ-DOS format) -  (<em>cqm_vzdos</em>)<a class="headerlink" href="#copyqm-floppy-disk-image-vz-dos-format-cqm-vzdos" title="Link to this heading">¶</a></h2>
+<p>Driver specific options for module 'cqm_vzdos':</p>
+<p>Image specific file options (usable on the 'put' command):</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Option</p></td>
+<td><p>Allowed values</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p>--ftype</p></td>
+<td><p>basic/binary/data</p></td>
+<td><p>File type</p></td>
+</tr>
+<tr class="row-odd"><td><p>--fname</p></td>
+<td><p>intern/extern</p></td>
+<td><p>Filename</p></td>
+</tr>
+</tbody>
+</table>
+<p>No image specific creation options</p>
+</section>
+<section id="cybiko-classic-file-system-cybiko">
+<h2>Cybiko Classic File System -  (<em>cybiko</em>)<a class="headerlink" href="#cybiko-classic-file-system-cybiko" title="Link to this heading">¶</a></h2>
+<p>Driver specific options for module 'cybiko':</p>
+<p>No image specific file options</p>
+<p>Image specific creation options (usable on the 'create' command):</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Option</p></td>
+<td><p>Allowed values</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p>--flash</p></td>
+<td><p>AT45DB041/AT45DB081/AT45DB161</p></td>
+<td><p>Flash Type</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="cybiko-xtreme-file-system-cybikoxt">
+<h2>Cybiko Xtreme File System -  (<em>cybikoxt</em>)<a class="headerlink" href="#cybiko-xtreme-file-system-cybikoxt" title="Link to this heading">¶</a></h2>
+<p>Driver specific options for module 'cybikoxt':</p>
+<p>No image specific file options</p>
+<p>No image specific creation options</p>
+</section>
+<section id="d88-floppy-disk-image-basic-master-level-3-format-d88-bml3">
+<h2>D88 Floppy Disk image (Basic Master Level 3 format) -  (<em>d88_bml3</em>)<a class="headerlink" href="#d88-floppy-disk-image-basic-master-level-3-format-d88-bml3" title="Link to this heading">¶</a></h2>
+<p>Driver specific options for module 'd88_bml3':</p>
+<p>Image specific file options (usable on the 'put' command):</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Option</p></td>
+<td><p>Allowed values</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p>--ftype</p></td>
+<td><p>basic/data/binary/assembler</p></td>
+<td><p>File type</p></td>
+</tr>
+<tr class="row-odd"><td><p>--ascii</p></td>
+<td><p>ascii/binary</p></td>
+<td><p>ASCII flag</p></td>
+</tr>
+</tbody>
+</table>
+<p>No image specific creation options</p>
+</section>
+<section id="d88-floppy-disk-image-fat-format-d88-fat">
+<h2>D88 Floppy Disk image (FAT format) -  (<em>d88_fat</em>)<a class="headerlink" href="#d88-floppy-disk-image-fat-format-d88-fat" title="Link to this heading">¶</a></h2>
+<p>Driver specific options for module 'd88_fat':</p>
+<p>No image specific file options</p>
+<p>No image specific creation options</p>
+</section>
+<section id="d88-floppy-disk-image-mac-hfs-floppy-d88-mac-hfs">
+<h2>D88 Floppy Disk image (Mac HFS Floppy) -  (<em>d88_mac_hfs</em>)<a class="headerlink" href="#d88-floppy-disk-image-mac-hfs-floppy-d88-mac-hfs" title="Link to this heading">¶</a></h2>
+<p>Driver specific options for module 'd88_mac_hfs':</p>
+<p>No image specific file options</p>
+<p>No image specific creation options</p>
+</section>
+<section id="d88-floppy-disk-image-mac-mfs-floppy-d88-mac-mfs">
+<h2>D88 Floppy Disk image (Mac MFS Floppy) -  (<em>d88_mac_mfs</em>)<a class="headerlink" href="#d88-floppy-disk-image-mac-mfs-floppy-d88-mac-mfs" title="Link to this heading">¶</a></h2>
+<p>Driver specific options for module 'd88_mac_mfs':</p>
+<p>No image specific file options</p>
+<p>No image specific creation options</p>
+</section>
+<section id="d88-floppy-disk-image-os-9-format-d88-os9">
+<h2>D88 Floppy Disk image (OS-9 format) -  (<em>d88_os9</em>)<a class="headerlink" href="#d88-floppy-disk-image-os-9-format-d88-os9" title="Link to this heading">¶</a></h2>
+<p>Driver specific options for module 'd88_os9':</p>
+<p>No image specific file options</p>
+<p>No image specific creation options</p>
+</section>
+<section id="id1">
+<h2>D88 Floppy Disk image (OS-9 format) -  (<em>d88_os9</em>)<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h2>
+<p>Driver specific options for module 'd88_prodos_35':</p>
+<p>No image specific file options</p>
+<p>No image specific creation options</p>
+</section>
+<section id="d88-floppy-disk-image-prodos-format-d88-prodos-525">
+<h2>D88 Floppy Disk image (ProDOS format) -  (<em>d88_prodos_525</em>)<a class="headerlink" href="#d88-floppy-disk-image-prodos-format-d88-prodos-525" title="Link to this heading">¶</a></h2>
+<p>Driver specific options for module 'd88_prodos_525':</p>
+<p>No image specific file options</p>
+<p>No image specific creation options</p>
+</section>
+<section id="d88-floppy-disk-image-rs-dos-format-d88-rsdos">
+<h2>D88 Floppy Disk image (RS-DOS format) -  (<em>d88_rsdos</em>)<a class="headerlink" href="#d88-floppy-disk-image-rs-dos-format-d88-rsdos" title="Link to this heading">¶</a></h2>
+<p>Driver specific options for module 'd88_rsdos':</p>
+<p>Image specific file options (usable on the 'put' command):</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Option</p></td>
+<td><p>Allowed values</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p>--ftype</p></td>
+<td><p>basic/data/binary/assembler</p></td>
+<td><p>File type</p></td>
+</tr>
+<tr class="row-odd"><td><p>--ascii</p></td>
+<td><p>ascii/binary</p></td>
+<td><p>ASCII flag</p></td>
+</tr>
+</tbody>
+</table>
+<p>No image specific creation options</p>
+</section>
+<section id="d88-floppy-disk-image-vz-dos-format-d88-vzdos">
+<h2>D88 Floppy Disk image (VZ-DOS format) -  (<em>d88_vzdos</em>)<a class="headerlink" href="#d88-floppy-disk-image-vz-dos-format-d88-vzdos" title="Link to this heading">¶</a></h2>
+<p>Driver specific options for module 'd88_vzdos':</p>
+<p>Image specific file options (usable on the 'put' command):</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Option</p></td>
+<td><p>Allowed values</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p>--ftype</p></td>
+<td><p>basic/binary/data</p></td>
+<td><p>File type</p></td>
+</tr>
+<tr class="row-odd"><td><p>--fname</p></td>
+<td><p>intern/extern</p></td>
+<td><p>Filename</p></td>
+</tr>
+</tbody>
+</table>
+<p>No image specific creation options</p>
+</section>
+<section id="dsk-floppy-disk-image-basic-master-level-3-format-dsk-bml3">
+<h2>DSK floppy disk image (Basic Master Level 3 format) -  (<em>dsk_bml3</em>)<a class="headerlink" href="#dsk-floppy-disk-image-basic-master-level-3-format-dsk-bml3" title="Link to this heading">¶</a></h2>
+<p>Driver specific options for module 'dsk_bml3':</p>
+<p>Image specific file options (usable on the 'put' command):</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Option</p></td>
+<td><p>Allowed values</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p>--ftype</p></td>
+<td><p>basic/data/binary/assembler</p></td>
+<td><p>File type</p></td>
+</tr>
+<tr class="row-odd"><td><p>--ascii</p></td>
+<td><p>ascii/binary</p></td>
+<td><p>ASCII flag</p></td>
+</tr>
+</tbody>
+</table>
+<p>No image specific creation options</p>
+</section>
+<section id="dsk-floppy-disk-image-fat-format-dsk-fat">
+<h2>DSK floppy disk image (FAT format) -  (<em>dsk_fat</em>)<a class="headerlink" href="#dsk-floppy-disk-image-fat-format-dsk-fat" title="Link to this heading">¶</a></h2>
+<p>Driver specific options for module 'dsk_fat':</p>
+<p>No image specific file options</p>
+<p>No image specific creation options</p>
+</section>
+<section id="dsk-floppy-disk-image-mac-hfs-floppy-dsk-mac-hfs">
+<h2>DSK floppy disk image (Mac HFS Floppy) -  (<em>dsk_mac_hfs</em>)<a class="headerlink" href="#dsk-floppy-disk-image-mac-hfs-floppy-dsk-mac-hfs" title="Link to this heading">¶</a></h2>
+<p>Driver specific options for module 'dsk_mac_hfs':</p>
+<p>No image specific file options</p>
+<p>No image specific creation options</p>
+</section>
+<section id="dsk-floppy-disk-image-mac-mfs-floppy-dsk-mac-mfs">
+<h2>DSK floppy disk image (Mac MFS Floppy) -  (<em>dsk_mac_mfs</em>)<a class="headerlink" href="#dsk-floppy-disk-image-mac-mfs-floppy-dsk-mac-mfs" title="Link to this heading">¶</a></h2>
+<p>Driver specific options for module 'dsk_mac_mfs':</p>
+<p>No image specific file options</p>
+<p>No image specific creation options</p>
+</section>
+<section id="dsk-floppy-disk-image-os-9-format-dsk-os9">
+<h2>DSK floppy disk image (OS-9 format) -  (<em>dsk_os9</em>)<a class="headerlink" href="#dsk-floppy-disk-image-os-9-format-dsk-os9" title="Link to this heading">¶</a></h2>
+<p>Driver specific options for module 'dsk_os9':</p>
+<p>No image specific file options</p>
+<p>No image specific creation options</p>
+</section>
+<section id="dsk-floppy-disk-image-prodos-format-dsk-prodos-35">
+<h2>DSK floppy disk image (ProDOS format) -  (<em>dsk_prodos_35</em>)<a class="headerlink" href="#dsk-floppy-disk-image-prodos-format-dsk-prodos-35" title="Link to this heading">¶</a></h2>
+<p>Driver specific options for module 'dsk_prodos_35':</p>
+<p>No image specific file options</p>
+<p>No image specific creation options</p>
+</section>
+<section id="dsk-floppy-disk-image-prodos-format-dsk-prodos-525">
+<h2>DSK floppy disk image (ProDOS format) -  (<em>dsk_prodos_525</em>)<a class="headerlink" href="#dsk-floppy-disk-image-prodos-format-dsk-prodos-525" title="Link to this heading">¶</a></h2>
+<p>Driver specific options for module 'dsk_prodos_525':</p>
+<p>No image specific file options</p>
+<p>No image specific creation options</p>
+</section>
+<section id="dsk-floppy-disk-image-rs-dos-format-dsk-rsdos">
+<h2>DSK floppy disk image (RS-DOS format) -  (<em>dsk_rsdos</em>)<a class="headerlink" href="#dsk-floppy-disk-image-rs-dos-format-dsk-rsdos" title="Link to this heading">¶</a></h2>
+<p>Driver specific options for module 'dsk_rsdos':</p>
+<p>Image specific file options (usable on the 'put' command):</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Option</p></td>
+<td><p>Allowed values</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p>--ftype</p></td>
+<td><p>basic/data/binary/assembler</p></td>
+<td><p>File type</p></td>
+</tr>
+<tr class="row-odd"><td><p>--ascii</p></td>
+<td><p>ascii/binary</p></td>
+<td><p>ASCII flag</p></td>
+</tr>
+</tbody>
+</table>
+<p>No image specific creation options</p>
+</section>
+<section id="dsk-floppy-disk-image-vz-dos-format-dsk-vzdos">
+<h2>DSK floppy disk image (VZ-DOS format) -  (<em>dsk_vzdos</em>)<a class="headerlink" href="#dsk-floppy-disk-image-vz-dos-format-dsk-vzdos" title="Link to this heading">¶</a></h2>
+<p>Driver specific options for module 'dsk_vzdos':</p>
+<p>Image specific file options (usable on the 'put' command):</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Option</p></td>
+<td><p>Allowed values</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p>--ftype</p></td>
+<td><p>basic/binary/data</p></td>
+<td><p>File type</p></td>
+</tr>
+<tr class="row-odd"><td><p>--fname</p></td>
+<td><p>intern/extern</p></td>
+<td><p>Filename</p></td>
+</tr>
+</tbody>
+</table>
+<p>No image specific creation options</p>
+</section>
+<section id="formatted-disk-image-basic-master-level-3-format-fdi-bml3">
+<h2>Formatted Disk Image (Basic Master Level 3 format) -  (<em>fdi_bml3</em>)<a class="headerlink" href="#formatted-disk-image-basic-master-level-3-format-fdi-bml3" title="Link to this heading">¶</a></h2>
+<p>Driver specific options for module 'fdi_bml3':</p>
+<p>Image specific file options (usable on the 'put' command):</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Option</p></td>
+<td><p>Allowed values</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p>--ftype</p></td>
+<td><p>basic/data/binary/assembler</p></td>
+<td><p>File type</p></td>
+</tr>
+<tr class="row-odd"><td><p>--ascii</p></td>
+<td><p>ascii/binary</p></td>
+<td><p>ASCII flag</p></td>
+</tr>
+</tbody>
+</table>
+<p>No image specific creation options</p>
+</section>
+<section id="formatted-disk-image-fat-format-fdi-fat">
+<h2>Formatted Disk Image (FAT format) -  (<em>fdi_fat</em>)<a class="headerlink" href="#formatted-disk-image-fat-format-fdi-fat" title="Link to this heading">¶</a></h2>
+<p>Driver specific options for module 'fdi_fat':</p>
+<p>No image specific file options</p>
+<p>No image specific creation options</p>
+</section>
+<section id="formatted-disk-image-mac-hfs-floppy-fdi-mac-hfs">
+<h2>Formatted Disk Image (Mac HFS Floppy) -  (<em>fdi_mac_hfs</em>)<a class="headerlink" href="#formatted-disk-image-mac-hfs-floppy-fdi-mac-hfs" title="Link to this heading">¶</a></h2>
+<p>Driver specific options for module 'fdi_mac_hfs':</p>
+<p>No image specific file options</p>
+<p>No image specific creation options</p>
+</section>
+<section id="formatted-disk-image-mac-mfs-floppy-fdi-mac-mfs">
+<h2>Formatted Disk Image (Mac MFS Floppy) -  (<em>fdi_mac_mfs</em>)<a class="headerlink" href="#formatted-disk-image-mac-mfs-floppy-fdi-mac-mfs" title="Link to this heading">¶</a></h2>
+<p>Driver specific options for module 'fdi_mac_mfs':</p>
+<p>No image specific file options</p>
+<p>No image specific creation options</p>
+</section>
+<section id="formatted-disk-image-os-9-format-fdi-os9">
+<h2>Formatted Disk Image (OS-9 format) -  (<em>fdi_os9</em>)<a class="headerlink" href="#formatted-disk-image-os-9-format-fdi-os9" title="Link to this heading">¶</a></h2>
+<p>Driver specific options for module 'fdi_os9':</p>
+<p>No image specific file options</p>
+<p>No image specific creation options</p>
+</section>
+<section id="formatted-disk-image-prodos-format-fdi-prodos-35">
+<h2>Formatted Disk Image (ProDOS format) -  (<em>fdi_prodos_35</em>)<a class="headerlink" href="#formatted-disk-image-prodos-format-fdi-prodos-35" title="Link to this heading">¶</a></h2>
+<p>Driver specific options for module 'fdi_prodos_35':</p>
+<p>No image specific file options</p>
+<p>No image specific creation options</p>
+</section>
+<section id="formatted-disk-image-prodos-format-fdi-prodos-525">
+<h2>Formatted Disk Image (ProDOS format) -  (<em>fdi_prodos_525</em>)<a class="headerlink" href="#formatted-disk-image-prodos-format-fdi-prodos-525" title="Link to this heading">¶</a></h2>
+<p>Driver specific options for module 'fdi_prodos_525':</p>
+<p>No image specific file options</p>
+<p>No image specific creation options</p>
+</section>
+<section id="formatted-disk-image-rs-dos-format-fdi-rsdos">
+<h2>Formatted Disk Image (RS-DOS format) -  (<em>fdi_rsdos</em>)<a class="headerlink" href="#formatted-disk-image-rs-dos-format-fdi-rsdos" title="Link to this heading">¶</a></h2>
+<p>Driver specific options for module 'fdi_rsdos':</p>
+<p>Image specific file options (usable on the 'put' command):</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Option</p></td>
+<td><p>Allowed values</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p>--ftype</p></td>
+<td><p>basic/data/binary/assembler</p></td>
+<td><p>File type</p></td>
+</tr>
+<tr class="row-odd"><td><p>--ascii</p></td>
+<td><p>ascii/binary</p></td>
+<td><p>ASCII flag</p></td>
+</tr>
+</tbody>
+</table>
+<p>No image specific creation options</p>
+</section>
+<section id="formatted-disk-image-vz-dos-format-fdi-vzdos">
+<h2>Formatted Disk Image (VZ-DOS format) -  (<em>fdi_vzdos</em>)<a class="headerlink" href="#formatted-disk-image-vz-dos-format-fdi-vzdos" title="Link to this heading">¶</a></h2>
+<p>Driver specific options for module 'fdi_vzdos':</p>
+<p>Image specific file options (usable on the 'put' command):</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Option</p></td>
+<td><p>Allowed values</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p>--ftype</p></td>
+<td><p>basic/binary/data</p></td>
+<td><p>File type</p></td>
+</tr>
+<tr class="row-odd"><td><p>--fname</p></td>
+<td><p>intern/extern</p></td>
+<td><p>Filename</p></td>
+</tr>
+</tbody>
+</table>
+<p>No image specific creation options</p>
+</section>
+<section id="hp48-sx-gx-memory-card-hp48">
+<h2>HP48 SX/GX memory card -  (<em>hp48</em>)<a class="headerlink" href="#hp48-sx-gx-memory-card-hp48" title="Link to this heading">¶</a></h2>
+<p>Driver specific options for module 'hp48':</p>
+<p>No image specific file options</p>
+<p>Image specific creation options (usable on the 'create' command):</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Option</p></td>
+<td><p>Allowed values</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p>--size</p></td>
+<td><p>32/64/128/256/512/1024/2048/4096</p></td>
+<td><p>Size in KB</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="imd-floppy-disk-image-basic-master-level-3-format-imd-bml3">
+<h2>IMD floppy disk image (Basic Master Level 3 format) -  (<em>imd_bml3</em>)<a class="headerlink" href="#imd-floppy-disk-image-basic-master-level-3-format-imd-bml3" title="Link to this heading">¶</a></h2>
+<p>Driver specific options for module 'imd_bml3':</p>
+<p>Image specific file options (usable on the 'put' command):</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Option</p></td>
+<td><p>Allowed values</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p>--ftype</p></td>
+<td><p>basic/data/binary/assembler</p></td>
+<td><p>File type</p></td>
+</tr>
+<tr class="row-odd"><td><p>--ascii</p></td>
+<td><p>ascii/binary</p></td>
+<td><p>ASCII flag</p></td>
+</tr>
+</tbody>
+</table>
+<p>No image specific creation options</p>
+</section>
+<section id="imd-floppy-disk-image-fat-format-imd-fat">
+<h2>IMD floppy disk image (FAT format) -  (<em>imd_fat</em>)<a class="headerlink" href="#imd-floppy-disk-image-fat-format-imd-fat" title="Link to this heading">¶</a></h2>
+<p>Driver specific options for module 'imd_fat':</p>
+<p>No image specific file options</p>
+<p>No image specific creation options</p>
+</section>
+<section id="imd-floppy-disk-image-mac-hfs-floppy-imd-mac-hfs">
+<h2>IMD floppy disk image (Mac HFS Floppy) -  (<em>imd_mac_hfs</em>)<a class="headerlink" href="#imd-floppy-disk-image-mac-hfs-floppy-imd-mac-hfs" title="Link to this heading">¶</a></h2>
+<p>Driver specific options for module 'imd_mac_hfs':</p>
+<p>No image specific file options</p>
+<p>No image specific creation options</p>
+</section>
+<section id="imd-floppy-disk-image-mac-mfs-floppy-imd-mac-mfs">
+<h2>IMD floppy disk image (Mac MFS Floppy) -  (<em>imd_mac_mfs</em>)<a class="headerlink" href="#imd-floppy-disk-image-mac-mfs-floppy-imd-mac-mfs" title="Link to this heading">¶</a></h2>
+<p>Driver specific options for module 'imd_mac_mfs':</p>
+<p>No image specific file options</p>
+<p>No image specific creation options</p>
+</section>
+<section id="imd-floppy-disk-image-os-9-format-imd-os9">
+<h2>IMD floppy disk image (OS-9 format) -  (<em>imd_os9</em>)<a class="headerlink" href="#imd-floppy-disk-image-os-9-format-imd-os9" title="Link to this heading">¶</a></h2>
+<p>Driver specific options for module 'imd_os9':</p>
+<p>No image specific file options</p>
+<p>No image specific creation options</p>
+</section>
+<section id="imd-floppy-disk-image-prodos-format-imd-prodos-35">
+<h2>IMD floppy disk image (ProDOS format) -  (<em>imd_prodos_35</em>)<a class="headerlink" href="#imd-floppy-disk-image-prodos-format-imd-prodos-35" title="Link to this heading">¶</a></h2>
+<p>Driver specific options for module 'imd_prodos_35':</p>
+<p>No image specific file options</p>
+<p>No image specific creation options</p>
+</section>
+<section id="imd-floppy-disk-image-prodos-format-imd-prodos-525">
+<h2>IMD floppy disk image (ProDOS format) -  (<em>imd_prodos_525</em>)<a class="headerlink" href="#imd-floppy-disk-image-prodos-format-imd-prodos-525" title="Link to this heading">¶</a></h2>
+<p>Driver specific options for module 'imd_prodos_525':</p>
+<p>No image specific file options</p>
+<p>No image specific creation options</p>
+</section>
+<section id="imd-floppy-disk-image-rs-dos-format-imd-rsdos">
+<h2>IMD floppy disk image (RS-DOS format) -  (<em>imd_rsdos</em>)<a class="headerlink" href="#imd-floppy-disk-image-rs-dos-format-imd-rsdos" title="Link to this heading">¶</a></h2>
+<p>Driver specific options for module 'imd_rsdos':</p>
+<p>Image specific file options (usable on the 'put' command):</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Option</p></td>
+<td><p>Allowed values</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p>--ftype</p></td>
+<td><p>basic/data/binary/assembler</p></td>
+<td><p>File type</p></td>
+</tr>
+<tr class="row-odd"><td><p>--ascii</p></td>
+<td><p>ascii/binary</p></td>
+<td><p>ASCII flag</p></td>
+</tr>
+</tbody>
+</table>
+<p>No image specific creation options</p>
+</section>
+<section id="imd-floppy-disk-image-vz-dos-format-imd-vzdos">
+<h2>IMD floppy disk image (VZ-DOS format) -  (<em>imd_vzdos</em>)<a class="headerlink" href="#imd-floppy-disk-image-vz-dos-format-imd-vzdos" title="Link to this heading">¶</a></h2>
+<p>Driver specific options for module 'imd_vzdos':</p>
+<p>Image specific file options (usable on the 'put' command):</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Option</p></td>
+<td><p>Allowed values</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p>--ftype</p></td>
+<td><p>basic/binary/data</p></td>
+<td><p>File type</p></td>
+</tr>
+<tr class="row-odd"><td><p>--fname</p></td>
+<td><p>intern/extern</p></td>
+<td><p>Filename</p></td>
+</tr>
+</tbody>
+</table>
+<p>No image specific creation options</p>
+</section>
+<section id="mess-hard-disk-image-mess-hd">
+<h2>MESS hard disk image -  (<em>mess_hd</em>)<a class="headerlink" href="#mess-hard-disk-image-mess-hd" title="Link to this heading">¶</a></h2>
+<p>Driver specific options for module 'mess_hd':</p>
+<p>No image specific file options</p>
+<p>Image specific creation options (usable on the 'create' command):</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Option</p></td>
+<td><p>Allowed values</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p>--blocksize</p></td>
+<td><p>1-2048</p></td>
+<td><p>Sectors Per Block</p></td>
+</tr>
+<tr class="row-odd"><td><p>--cylinders</p></td>
+<td><p>1-65536</p></td>
+<td><p>Cylinders</p></td>
+</tr>
+<tr class="row-even"><td><p>--heads</p></td>
+<td><p>1-64</p></td>
+<td><p>Heads</p></td>
+</tr>
+<tr class="row-odd"><td><p>--sectors</p></td>
+<td><p>1-4096</p></td>
+<td><p>Total Sectors</p></td>
+</tr>
+<tr class="row-even"><td><p>--seclen</p></td>
+<td><p>128/256/512/1024/2048/4096/8192/16384/32768/65536</p></td>
+<td><p>Sector Bytes</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="ti99-diskette-pc99-fm-format-pc99fm">
+<h2>TI99 Diskette (PC99 FM format) -  (<em>pc99fm</em>)<a class="headerlink" href="#ti99-diskette-pc99-fm-format-pc99fm" title="Link to this heading">¶</a></h2>
+<p>Driver specific options for module 'pc99fm':</p>
+<p>No image specific file options</p>
+<p>No image specific creation options</p>
+</section>
+<section id="ti99-diskette-pc99-mfm-format-pc99mfm">
+<h2>TI99 Diskette (PC99 MFM format) -  (<em>pc99mfm</em>)<a class="headerlink" href="#ti99-diskette-pc99-mfm-format-pc99mfm" title="Link to this heading">¶</a></h2>
+<p>Driver specific options for module 'pc99mfm':</p>
+<p>No image specific file options</p>
+<p>No image specific creation options</p>
+</section>
+<section id="pc-chd-disk-image-pc-chd">
+<h2>PC CHD disk image -  (<em>pc_chd</em>)<a class="headerlink" href="#pc-chd-disk-image-pc-chd" title="Link to this heading">¶</a></h2>
+<p>Driver specific options for module 'pc_chd':</p>
+<p>No image specific file options</p>
+<p>Image specific creation options (usable on the 'create' command):</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Option</p></td>
+<td><p>Allowed values</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p>--cylinders</p></td>
+<td><p>10/20/30/40/50/60/70/80/90/100/110/120/130/140/150/160/170/180/190/200</p></td>
+<td><p>Cylinders</p></td>
+</tr>
+<tr class="row-odd"><td><p>--heads</p></td>
+<td><p>1-16</p></td>
+<td><p>Heads</p></td>
+</tr>
+<tr class="row-even"><td><p>--sectors</p></td>
+<td><p>1-63</p></td>
+<td><p>Sectors</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="pc-floppy-disk-image-fat-format-pc-dsk-fat">
+<h2>PC floppy disk image (FAT format) -  (<em>pc_dsk_fat</em>)<a class="headerlink" href="#pc-floppy-disk-image-fat-format-pc-dsk-fat" title="Link to this heading">¶</a></h2>
+<p>Driver specific options for module 'pc_dsk_fat':</p>
+<p>No image specific file options</p>
+<p>Image specific creation options (usable on the 'create' command):</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Option</p></td>
+<td><p>Allowed values</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p>--heads</p></td>
+<td><p>1-2</p></td>
+<td><p>Heads</p></td>
+</tr>
+<tr class="row-odd"><td><p>--tracks</p></td>
+<td><p>40/80</p></td>
+<td><p>Tracks</p></td>
+</tr>
+<tr class="row-even"><td><p>--sectors</p></td>
+<td><p>8/9/10/15/18/36</p></td>
+<td><p>Sectors</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="psion-organiser-ii-datapack-psionpack">
+<h2>Psion Organiser II Datapack -  (<em>psionpack</em>)<a class="headerlink" href="#psion-organiser-ii-datapack-psionpack" title="Link to this heading">¶</a></h2>
+<p>Driver specific options for module 'psionpack':</p>
+<p>Image specific file options (usable on the 'put' command):</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Option</p></td>
+<td><p>Allowed values</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p>--type</p></td>
+<td><p>OB3/OPL/ODB</p></td>
+<td><p>file type</p></td>
+</tr>
+<tr class="row-odd"><td><p>--id</p></td>
+<td><p>0/145-255</p></td>
+<td><p>File ID</p></td>
+</tr>
+</tbody>
+</table>
+<p>Image specific creation options (usable on the 'create' command):</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Option</p></td>
+<td><p>Allowed values</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p>--size</p></td>
+<td><p>8k/16k/32k/64k/128k</p></td>
+<td><p>datapack size</p></td>
+</tr>
+<tr class="row-odd"><td><p>--ram</p></td>
+<td><p>0/1</p></td>
+<td><p>EPROM/RAM datapack</p></td>
+</tr>
+<tr class="row-even"><td><p>--paged</p></td>
+<td><p>0/1</p></td>
+<td><p>linear/paged datapack</p></td>
+</tr>
+<tr class="row-odd"><td><p>--protect</p></td>
+<td><p>0/1</p></td>
+<td><p>write-protected datapack</p></td>
+</tr>
+<tr class="row-even"><td><p>--boot</p></td>
+<td><p>0/1</p></td>
+<td><p>bootable datapack</p></td>
+</tr>
+<tr class="row-odd"><td><p>--copy</p></td>
+<td><p>0/1</p></td>
+<td><p>copyable datapack</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="teledisk-floppy-disk-image-basic-master-level-3-format-td0-bml3">
+<h2>Teledisk floppy disk image (Basic Master Level 3 format) -  (<em>td0_bml3</em>)<a class="headerlink" href="#teledisk-floppy-disk-image-basic-master-level-3-format-td0-bml3" title="Link to this heading">¶</a></h2>
+<p>Driver specific options for module 'td0_bml3':</p>
+<p>Image specific file options (usable on the 'put' command):</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Option</p></td>
+<td><p>Allowed values</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p>--ftype</p></td>
+<td><p>basic/data/binary/assembler</p></td>
+<td><p>File type</p></td>
+</tr>
+<tr class="row-odd"><td><p>--ascii</p></td>
+<td><p>ascii/binary</p></td>
+<td><p>ASCII flag</p></td>
+</tr>
+</tbody>
+</table>
+<p>No image specific creation options</p>
+</section>
+<section id="teledisk-floppy-disk-image-fat-format-td0-fat">
+<h2>Teledisk floppy disk image (FAT format) -  (<em>td0_fat</em>)<a class="headerlink" href="#teledisk-floppy-disk-image-fat-format-td0-fat" title="Link to this heading">¶</a></h2>
+<p>Driver specific options for module 'td0_fat':</p>
+<p>No image specific file options</p>
+<p>No image specific creation options</p>
+</section>
+<section id="teledisk-floppy-disk-image-mac-hfs-floppy-td0-mac-hfs">
+<h2>Teledisk floppy disk image (Mac HFS Floppy) -  (<em>td0_mac_hfs</em>)<a class="headerlink" href="#teledisk-floppy-disk-image-mac-hfs-floppy-td0-mac-hfs" title="Link to this heading">¶</a></h2>
+<p>Driver specific options for module 'td0_mac_hfs':</p>
+<p>No image specific file options</p>
+<p>No image specific creation options</p>
+</section>
+<section id="teledisk-floppy-disk-image-mac-mfs-floppy-td0-mac-mfs">
+<h2>Teledisk floppy disk image (Mac MFS Floppy) -  (<em>td0_mac_mfs</em>)<a class="headerlink" href="#teledisk-floppy-disk-image-mac-mfs-floppy-td0-mac-mfs" title="Link to this heading">¶</a></h2>
+<p>Driver specific options for module 'td0_mac_mfs':</p>
+<p>No image specific file options</p>
+<p>No image specific creation options</p>
+</section>
+<section id="teledisk-floppy-disk-image-os-9-format-td0-os9">
+<h2>Teledisk floppy disk image (OS-9 format) -  (<em>td0_os9</em>)<a class="headerlink" href="#teledisk-floppy-disk-image-os-9-format-td0-os9" title="Link to this heading">¶</a></h2>
+<p>Driver specific options for module 'td0_os9':</p>
+<p>No image specific file options</p>
+<p>No image specific creation options</p>
+</section>
+<section id="teledisk-floppy-disk-image-prodos-format-td0-prodos-35">
+<h2>Teledisk floppy disk image (ProDOS format) -  (<em>td0_prodos_35</em>)<a class="headerlink" href="#teledisk-floppy-disk-image-prodos-format-td0-prodos-35" title="Link to this heading">¶</a></h2>
+<p>Driver specific options for module 'td0_prodos_35':</p>
+<p>No image specific file options</p>
+<p>No image specific creation options</p>
+</section>
+<section id="teledisk-floppy-disk-image-prodos-format-td0-prodos-525">
+<h2>Teledisk floppy disk image (ProDOS format) -  (<em>td0_prodos_525</em>)<a class="headerlink" href="#teledisk-floppy-disk-image-prodos-format-td0-prodos-525" title="Link to this heading">¶</a></h2>
+<p>Driver specific options for module 'td0_prodos_525':</p>
+<p>No image specific file options</p>
+<p>No image specific creation options</p>
+</section>
+<section id="teledisk-floppy-disk-image-rs-dos-format-td0-rsdos">
+<h2>Teledisk floppy disk image (RS-DOS format) -  (<em>td0_rsdos</em>)<a class="headerlink" href="#teledisk-floppy-disk-image-rs-dos-format-td0-rsdos" title="Link to this heading">¶</a></h2>
+<p>Driver specific options for module 'td0_rsdos':</p>
+<p>Image specific file options (usable on the 'put' command):</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Option</p></td>
+<td><p>Allowed values</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p>--ftype</p></td>
+<td><p>basic/data/binary/assembler</p></td>
+<td><p>File type</p></td>
+</tr>
+<tr class="row-odd"><td><p>--ascii</p></td>
+<td><p>ascii/binary</p></td>
+<td><p>ASCII flag</p></td>
+</tr>
+</tbody>
+</table>
+<p>No image specific creation options</p>
+</section>
+<section id="teledisk-floppy-disk-image-vz-dos-format-td0-vzdos">
+<h2>Teledisk floppy disk image (VZ-DOS format) -  (<em>td0_vzdos</em>)<a class="headerlink" href="#teledisk-floppy-disk-image-vz-dos-format-td0-vzdos" title="Link to this heading">¶</a></h2>
+<p>Driver specific options for module 'td0_vzdos':</p>
+<p>Image specific file options (usable on the 'put' command):</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Option</p></td>
+<td><p>Allowed values</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p>--ftype</p></td>
+<td><p>basic/binary/data</p></td>
+<td><p>File type</p></td>
+</tr>
+<tr class="row-odd"><td><p>--fname</p></td>
+<td><p>intern/extern</p></td>
+<td><p>Filename</p></td>
+</tr>
+</tbody>
+</table>
+<p>No image specific creation options</p>
+</section>
+<section id="thomson-fd-disk-image-basic-format-thom-fd">
+<h2>Thomson .fd disk image, BASIC format -  (<em>thom_fd</em>)<a class="headerlink" href="#thomson-fd-disk-image-basic-format-thom-fd" title="Link to this heading">¶</a></h2>
+<p>Driver specific options for module 'thom_fd':</p>
+<p>Image specific file options (usable on the 'put' command):</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Option</p></td>
+<td><p>Allowed values</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p>--ftype</p></td>
+<td><p>auto/B/D/M/A</p></td>
+<td><p>File type</p></td>
+</tr>
+<tr class="row-odd"><td><p>--format</p></td>
+<td><p>auto/B/A</p></td>
+<td><p>Format flag</p></td>
+</tr>
+<tr class="row-even"><td><p>--comment</p></td>
+<td><p>(string)</p></td>
+<td><p>Comment</p></td>
+</tr>
+</tbody>
+</table>
+<p>Image specific creation options (usable on the 'create' command):</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Option</p></td>
+<td><p>Allowed values</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p>--heads</p></td>
+<td><p>1-2</p></td>
+<td><p>Heads</p></td>
+</tr>
+<tr class="row-odd"><td><p>--tracks</p></td>
+<td><p>40/80</p></td>
+<td><p>Tracks</p></td>
+</tr>
+<tr class="row-even"><td><p>--density</p></td>
+<td><p>SD/DD</p></td>
+<td><p>Density</p></td>
+</tr>
+<tr class="row-odd"><td><p>--name</p></td>
+<td><p>(string)</p></td>
+<td><p>Floppy name</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="thomson-qd-disk-image-basic-format-thom-qd">
+<h2>Thomson .qd disk image, BASIC format -  (<em>thom_qd</em>)<a class="headerlink" href="#thomson-qd-disk-image-basic-format-thom-qd" title="Link to this heading">¶</a></h2>
+<p>Driver specific options for module 'thom_qd':</p>
+<p>Image specific file options (usable on the 'put' command):</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Option</p></td>
+<td><p>Allowed values</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p>--ftype</p></td>
+<td><p>auto/B/D/M/A</p></td>
+<td><p>File type</p></td>
+</tr>
+<tr class="row-odd"><td><p>--format</p></td>
+<td><p>auto/B/A</p></td>
+<td><p>Format flag</p></td>
+</tr>
+<tr class="row-even"><td><p>--comment</p></td>
+<td><p>(string)</p></td>
+<td><p>Comment</p></td>
+</tr>
+</tbody>
+</table>
+<p>Image specific creation options (usable on the 'create' command):</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Option</p></td>
+<td><p>Allowed values</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p>--heads</p></td>
+<td><p>1-2</p></td>
+<td><p>Heads</p></td>
+</tr>
+<tr class="row-odd"><td><p>--tracks</p></td>
+<td><p>25</p></td>
+<td><p>Tracks</p></td>
+</tr>
+<tr class="row-even"><td><p>--density</p></td>
+<td><p>SD/DD</p></td>
+<td><p>Density</p></td>
+</tr>
+<tr class="row-odd"><td><p>--name</p></td>
+<td><p>(string)</p></td>
+<td><p>Floppy name</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="thomson-sap-disk-image-basic-format-thom-sap">
+<h2>Thomson .sap disk image, BASIC format -  (<em>thom_sap</em>)<a class="headerlink" href="#thomson-sap-disk-image-basic-format-thom-sap" title="Link to this heading">¶</a></h2>
+<p>Driver specific options for module 'thom_sap':</p>
+<p>Image specific file options (usable on the 'put' command):</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Option</p></td>
+<td><p>Allowed values</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p>--ftype</p></td>
+<td><p>auto/B/D/M/A</p></td>
+<td><p>File type</p></td>
+</tr>
+<tr class="row-odd"><td><p>--format</p></td>
+<td><p>auto/B/A</p></td>
+<td><p>Format flag</p></td>
+</tr>
+<tr class="row-even"><td><p>--comment</p></td>
+<td><p>(string)</p></td>
+<td><p>Comment</p></td>
+</tr>
+</tbody>
+</table>
+<p>Image specific creation options (usable on the 'create' command):</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Option</p></td>
+<td><p>Allowed values</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p>--heads</p></td>
+<td><p>1</p></td>
+<td><p>Heads</p></td>
+</tr>
+<tr class="row-odd"><td><p>--tracks</p></td>
+<td><p>40/80</p></td>
+<td><p>Tracks</p></td>
+</tr>
+<tr class="row-even"><td><p>--density</p></td>
+<td><p>SD/DD</p></td>
+<td><p>Density</p></td>
+</tr>
+<tr class="row-odd"><td><p>--name</p></td>
+<td><p>(string)</p></td>
+<td><p>Floppy name</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="ti990-hard-disk-ti990hd">
+<h2>TI990 Hard Disk -  (<em>ti990hd</em>)<a class="headerlink" href="#ti990-hard-disk-ti990hd" title="Link to this heading">¶</a></h2>
+<p>Driver specific options for module 'ti990hd':</p>
+<p>No image specific file options</p>
+<p>Image specific creation options (usable on the 'create' command):</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Option</p></td>
+<td><p>Allowed values</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p>--cylinders</p></td>
+<td><p>1-2047</p></td>
+<td><p>Cylinders</p></td>
+</tr>
+<tr class="row-odd"><td><p>--heads</p></td>
+<td><p>1-31</p></td>
+<td><p>Heads</p></td>
+</tr>
+<tr class="row-even"><td><p>--sectors</p></td>
+<td><p>1-256</p></td>
+<td><p>Sectors</p></td>
+</tr>
+<tr class="row-odd"><td><p>--bytes per sector</p></td>
+<td><p>(typically 25256-512 256-512</p></td>
+<td><p>Bytes Per Sector [Todo: This section is glitched in imgtool]</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="ti99-diskette-old-mess-format-ti99-old">
+<h2>TI99 Diskette (old MESS format) -  (<em>ti99_old</em>)<a class="headerlink" href="#ti99-diskette-old-mess-format-ti99-old" title="Link to this heading">¶</a></h2>
+<p>Driver specific options for module 'ti99_old':</p>
+<p>No image specific file options</p>
+<p>Image specific creation options (usable on the 'create' command):</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Option</p></td>
+<td><p>Allowed values</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p>--sides</p></td>
+<td><p>1-2</p></td>
+<td><p>Sides</p></td>
+</tr>
+<tr class="row-odd"><td><p>--tracks</p></td>
+<td><p>1-80</p></td>
+<td><p>Tracks</p></td>
+</tr>
+<tr class="row-even"><td><p>--sectors</p></td>
+<td><p>1-36</p></td>
+<td><p>Sectors (1-&gt;9 for SD, 1-&gt;18 for DD, 1-&gt;36 for HD)</p></td>
+</tr>
+<tr class="row-odd"><td><p>--protection</p></td>
+<td><p>0-1</p></td>
+<td><p>Protection (0 for normal, 1 for protected)</p></td>
+</tr>
+<tr class="row-even"><td><p>--density</p></td>
+<td><p>Auto/SD/DD/HD</p></td>
+<td><p>Density</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="ti99-harddisk-ti99hd">
+<h2>TI99 Harddisk -  (<em>ti99hd</em>)<a class="headerlink" href="#ti99-harddisk-ti99hd" title="Link to this heading">¶</a></h2>
+<p>Driver specific options for module 'ti99hd':</p>
+<p>No image specific file options</p>
+<p>No image specific creation options</p>
+</section>
+<section id="ti99-diskette-v9t9-format-v9t9">
+<h2>TI99 Diskette (V9T9 format) -  (<em>v9t9</em>)<a class="headerlink" href="#ti99-diskette-v9t9-format-v9t9" title="Link to this heading">¶</a></h2>
+<p>Driver specific options for module 'v9t9':</p>
+<p>No image specific file options</p>
+<p>Image specific creation options (usable on the 'create' command):</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Option</p></td>
+<td><p>Allowed values</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p>--sides</p></td>
+<td><p>1-2</p></td>
+<td><p>Sides</p></td>
+</tr>
+<tr class="row-odd"><td><p>--tracks</p></td>
+<td><p>1-80</p></td>
+<td><p>Tracks</p></td>
+</tr>
+<tr class="row-even"><td><p>--sectors</p></td>
+<td><p>1-36</p></td>
+<td><p>Sectors (1-&gt;9 for SD, 1-&gt;18 for DD, 1-&gt;36 for HD)</p></td>
+</tr>
+<tr class="row-odd"><td><p>--protection</p></td>
+<td><p>0-1</p></td>
+<td><p>Protection (0 for normal, 1 for protected)</p></td>
+</tr>
+<tr class="row-even"><td><p>--density</p></td>
+<td><p>Auto/SD/DD/HD</p></td>
+<td><p>Density</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="laser-vz-disk-image-vz-dos-format-vtech1-vzdos">
+<h2>Laser/VZ disk image (VZ-DOS format) -  (<em>vtech1_vzdos</em>)<a class="headerlink" href="#laser-vz-disk-image-vz-dos-format-vtech1-vzdos" title="Link to this heading">¶</a></h2>
+<p>Driver specific options for module 'vtech1_vzdos':</p>
+<p>Image specific file options (usable on the 'put' command):</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Option</p></td>
+<td><p>Allowed values</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p>--ftype</p></td>
+<td><p>basic/binary/data</p></td>
+<td><p>File type</p></td>
+</tr>
+<tr class="row-odd"><td><p>--fname</p></td>
+<td><p>intern/extern</p></td>
+<td><p>Filename</p></td>
+</tr>
+</tbody>
+</table>
+<p>Image specific creation options (usable on the 'create' command):</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Option</p></td>
+<td><p>Allowed values</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p>--heads</p></td>
+<td><p>1</p></td>
+<td><p>Heads</p></td>
+</tr>
+<tr class="row-odd"><td><p>--tracks</p></td>
+<td><p>40</p></td>
+<td><p>Tracks</p></td>
+</tr>
+<tr class="row-even"><td><p>--sectors</p></td>
+<td><p>16</p></td>
+<td><p>Sectors</p></td>
+</tr>
+<tr class="row-odd"><td><p>--sectorlength</p></td>
+<td><p>154</p></td>
+<td><p>Sector Bytes</p></td>
+</tr>
+<tr class="row-even"><td><p>--firstsectorid</p></td>
+<td><p>0</p></td>
+<td><p>First Sector</p></td>
+</tr>
+</tbody>
+</table>
+<p>[todo: fill out the command structures, describe commands better. These descriptions came from the imgtool.txt file and are barebones]</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="chdman.html" class="btn btn-neutral float-left" title="chdman – CHD (Compressed Hunks of Data) File Manager" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="castool.html" class="btn btn-neutral float-right" title="Castool - A generic cassette image manipulation tool for MAME" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 1997-2025, MAMEdev and contributors.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

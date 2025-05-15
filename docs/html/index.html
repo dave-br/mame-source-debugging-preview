@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MAME Documentation &mdash; MAME Documentation 0.277 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/documentation_options.js?v=561e49e2"></script>
+        <script src="_static/doctools.js?v=9bcbadda"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="What is MAME" href="whatis.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="#" class="icon icon-home">
+            MAME Documentation
+          </a>
+              <div class="version">
+                0.277
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="whatis.html">What is MAME</a></li>
+<li class="toctree-l1"><a class="reference internal" href="healthwarning.html">Health Warnings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="initialsetup/index.html">Getting MAME prepared</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usingmame/index.html">Basic MAME Usage and Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="commandline/index.html">MAME Command-line Usage and OS-Specific Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plugins/index.html">Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced/index.html">Advanced configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="debugger/index.html">MAME Debugger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="luascript/index.html">Lua Scripting Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tools/index.html">MAME External Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing/index.html">Contributing to MAME</a></li>
+<li class="toctree-l1"><a class="reference internal" href="techspecs/index.html">Technical Specifications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="security.html">MAME and security concerns</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">The MAME License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">MAME Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">MAME Documentation</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <a class="reference internal image-reference" href="_images/MAMElogo.svg"><img alt="MAME" class="align-center" src="_images/MAMElogo.svg" style="width: 100%;" /></a>
+<section id="mame-documentation">
+<h1>MAME Documentation<a class="headerlink" href="#mame-documentation" title="Link to this heading">¶</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This documentation is a work in progress.  You can track the status of these topics through MAME's <a class="reference external" href="https://github.com/mamedev/mame/issues">issue tracker</a>. Learn how you can <a class="reference internal" href="contributing/index.html#contributing"><span class="std std-ref">contribute</span></a>.</p>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="whatis.html">What is MAME</a></li>
+<li class="toctree-l1"><a class="reference internal" href="healthwarning.html">Health Warnings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="initialsetup/index.html">Getting MAME prepared</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="initialsetup/mameintro.html">An Introduction to MAME</a></li>
+<li class="toctree-l2"><a class="reference internal" href="initialsetup/mameintro.html#purpose-of-mame">Purpose of MAME</a></li>
+<li class="toctree-l2"><a class="reference internal" href="initialsetup/mameintro.html#systems-emulated-by-mame">Systems Emulated by MAME</a></li>
+<li class="toctree-l2"><a class="reference internal" href="initialsetup/mameintro.html#supported-os">Supported OS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="initialsetup/mameintro.html#system-requirements">System Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="initialsetup/mameintro.html#bios-dumps-and-software">BIOS Dumps and Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="initialsetup/installingmame.html">Installing MAME</a></li>
+<li class="toctree-l2"><a class="reference internal" href="initialsetup/compilingmame.html">Compiling MAME</a></li>
+<li class="toctree-l2"><a class="reference internal" href="initialsetup/configuringmame.html">Configuring MAME</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="usingmame/index.html">Basic MAME Usage and Configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="usingmame/usingmame.html">Using MAME</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usingmame/ui.html">MAME’s User Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usingmame/defaultkeys.html">Default Keyboard Controls</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usingmame/mamemenus.html">MAME Menus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usingmame/assetsearch.html">How does MAME look for files?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usingmame/frontends.html">Front-ends</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usingmame/aboutromsets.html">About ROMs and Sets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usingmame/commonissues.html">Common Issues and Questions (FAQ)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="commandline/index.html">MAME Command-line Usage and OS-Specific Configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="commandline/commandline-all.html">Universal Command-line Options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commandline/windowsconfig.html">Windows-Specific Command-line Options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commandline/sdlconfig.html">SDL-Specific Command-line Options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commandline/commandline-index.html">Command-line Index</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="plugins/index.html">Plugins</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="plugins/autofire.html">Autofire Plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plugins/console.html">Console Plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plugins/data.html">Data Plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plugins/discord.html">Discord Presence Plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plugins/dummy.html">Dummy Test Plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plugins/gdbstub.html">GDB Stub Plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plugins/hiscore.html">Hiscore Support Plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plugins/inputmacro.html">Input Macro Plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plugins/layout.html">Layout Plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plugins/timecode.html">Timecode Recorder Plugin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plugins/timer.html">Game Play Timer Plugin</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="advanced/index.html">Advanced configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="advanced/multiconfig.html">Multiple Configuration Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="advanced/paths.html">MAME Path Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="advanced/shiftertoggle.html">Shifter Toggle Disable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="advanced/bgfx.html">BGFX Effects for (nearly) Everyone</a></li>
+<li class="toctree-l2"><a class="reference internal" href="advanced/hlsl.html">HLSL Effects for Windows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="advanced/glsl.html">GLSL Effects for *nix, OS X, and Windows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="advanced/ctrlr_config.html">Controller Configuration Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="advanced/devicemap.html">Stable Controller IDs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="advanced/linux-lightguns.html">Linux Lightguns</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="debugger/index.html">MAME Debugger</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="debugger/general.html">General Debugger Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="debugger/memory.html">Memory Debugger Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="debugger/execution.html">Execution Debugger Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="debugger/breakpoint.html">Breakpoint Debugger Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="debugger/watchpoint.html">Watchpoint Debugger Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="debugger/registerpoints.html">Registerpoint Debugger Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="debugger/exceptionpoint.html">Exceptionpoint Debugger Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="debugger/annotation.html">Code Annotation Debugger Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="debugger/cheats.html">Cheat Debugger Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="debugger/image.html">Media Image Debugger Commands</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="luascript/index.html">Lua Scripting Interface</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="luascript/ref-common.html">Lua Common Types and Globals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="luascript/ref-core.html">Lua Core Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="luascript/ref-devices.html">Lua Device Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="luascript/ref-mem.html">Lua Memory System Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="luascript/ref-input.html">Lua Input System Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="luascript/ref-render.html">Lua Render System Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="luascript/ref-debugger.html">Lua Debugger Classes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tools/index.html">MAME External Tools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tools/chdman.html">chdman – CHD (Compressed Hunks of Data) File Manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/imgtool.html">Imgtool - <em>A generic image manipulation tool for MAME</em></a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/imgtool.html#imgtool-format-info">Imgtool Format Info</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/castool.html">Castool - <em>A generic cassette image manipulation tool for MAME</em></a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/floptool.html">Floptool - <em>A generic floppy image manipulation tool for MAME</em></a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/othertools.html">Other tools included with MAME</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/othertools.html#developer-focused-tools-included-with-mame">Developer-focused tools included with MAME</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="contributing/index.html">Contributing to MAME</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="contributing/cxx.html">C++ Coding Guidelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing/softlist.html">Guidelines for Software Lists</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="techspecs/index.html">Technical Specifications</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="techspecs/naming.html">MAME Naming Conventions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="techspecs/layout_files.html">MAME Layout Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="techspecs/layout_script.html">MAME Layout Scripting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="techspecs/object_finders.html">Object Finders</a></li>
+<li class="toctree-l2"><a class="reference internal" href="techspecs/inputsystem.html">Input System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="techspecs/device_memory_interface.html">The device_memory_interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="techspecs/device_rom_interface.html">The device_rom_interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="techspecs/device_disasm_interface.html">The device_disasm_interface and the disassemblers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="techspecs/memory.html">Emulated system memory and address spaces management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="techspecs/cpu_device.html">CPU devices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="techspecs/floppy.html">The new floppy subsystem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="techspecs/nscsi.html">The new SCSI subsystem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="techspecs/m6502.html">The new 6502 family implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="techspecs/uml_instructions.html">UML Instruction Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="techspecs/poly_manager.html">Software 3D Rendering in MAME</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="security.html">MAME and security concerns</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">The MAME License</a></li>
+</ul>
+</div>
+<section id="contribute">
+<h2>Contribute<a class="headerlink" href="#contribute" title="Link to this heading">¶</a></h2>
+<p>The documentation on this site is the handiwork of our many contributors.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="whatis.html" class="btn btn-neutral float-right" title="What is MAME" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 1997-2025, MAMEdev and contributors.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
