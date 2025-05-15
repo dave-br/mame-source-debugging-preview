@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="html/">
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
@@ -7,7 +7,28 @@
   <title>UNOFFICIAL MAME SOURCE-LEVEL DEBUGGING PREVIEW</title>
       <link rel="stylesheet" type="text/css" href="html/_static/pygments.css?v=fa44fd50" />
       <link rel="stylesheet" type="text/css" href="html/_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script> 
+  <![endif]-->
+  
+  <script src="../_static/documentation_options.js?v=561e49e2"></script>
+  <script src="../_static/doctools.js?v=9bcbadda"></script>
+  <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+<script src="../_static/js/theme.js"></script>
+<link rel="index" title="Index" href="../genindex.html" />
+<link rel="search" title="Search" href="../search.html" />
+<link rel="next" title="General Debugger Commands" href="general.html" />
+<link rel="prev" title="Linux Lightguns" href="../advanced/linux-lightguns.html" /> 
 </head>
+<body>
+	<div class="wy-nav-content">
+        <div class="rst-content">
+	<div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+		<div itemprop="articleBody">
+
+<section id="specifying-devices-and-address-spaces">
 
 <h1>This is not an official distribution of MAME</h1>
 
@@ -22,14 +43,14 @@ source-level debugging feature, you've found it!
 <h2>What is this?</h2>
 
 <p>MAME includes a powerful debugger, which allows you to debug code
-running inside the emulated machine.  This debugger is disassembly-only,
+running inside the emulated machine.  This debugger is <strong>disassembly-only</strong>,
 which means it disassembles machine code for the CPU being emulated, and
 shows that disassembly as you step, set breakpoints, view registers, etc.
 </p>
 
 <p>If you are writing new software for an emulated machine, or happen
 to have the source code for existing software for an emulated machine,
-debugging with that source can be easier and more efficient than the
+<strong>debugging with that source</strong> can be easier and more efficient than the
 disassembly alone.  There is a pull request open against MAME that adds
 source-level debugging for the 6809 processor on the various CoCo and
 Dragon machines.  It is possible that the pull request may need to undergo
@@ -61,21 +82,21 @@ the preview to CMOC and ugBasic for the CoCo if there is sufficient demand.</p>
 
 <h2>How to install</h2>
 <h3>MAME</h3>
-<ul>
-	<li>Go to the <a href=https://github.com/dave-br/mame/releases>Releases</a> page, and
+<ul class="simple">
+	<li><p>Go to the <a href=https://github.com/dave-br/mame/releases>Releases</a> page, and
 		click on the latest release.  The description will tell you which official MAME
-		release that unofficial build is based on.</li>
-	<li>You will find unofficial builds there for Windows, Mac, and Linux.  Go to your
+		release that unofficial build is based on.</p></li>
+	<li><p>You will find unofficial builds there for Windows, Mac, and Linux.  Go to your
 		existing MAME installation and overwrite
 		your official MAME binary with the unofficial one.  (Rename the official
-		build first, so you can revert back to it if you need to!)  </li>
-</ol>
+		build first, so you can revert back to it if you need to!) </p> </li>
+</ul>
 <h3>lwtools</h3>
-Just as debuggers depend on compilers to generate special debugging information,
+<P>Just as debuggers depend on compilers to generate special debugging information,
 so too does this build of MAME require your build tool to generate special debugging
 information.  This preview currently includes an unofficial build of lwtools that
-generates this information.
-<ul>
+generates this information.</P>
+<ul class="simple">
 	<li>From the same releases page above, the description will tell you which
 		official lwtools build that unofficial build is based on.</li>
 	<li>You will find unofficial builds of
@@ -84,16 +105,17 @@ generates this information.
 		existing lwtools installation and overwrite
 		your official lwtools binaries with the unofficial ones.  (Rename the official
 		lwasm / lwlink first, so you can revert back to them if you need to!)</li>
-	<li>The Windows lwtools unofficial builds depend on mingw64, so ensure you have
-		mingw64 installed, and that your mingw64\bin directory is on your path</li>
 </ul>
 
 <h2>How to use</h2>
-
-<p>link to MAME doc w/ srcdbg additions: <a href="html/index.html">here</a></p>
-<p>link to srcdbg: <a href="html/debugger/index.html#source-level-debugging">here</a></p>
+<h3>lwtools</h3>
+<h3>MAME</h3>
+<p><a href="html/debugger/index.html#source-level-debugging">Full source-level debugging docs for MAME</a> </p>
 
 <h2>What if I have feedback?</h2>
+</section>
 
+</div></div></div></div>
 
+</body>
 </html>
