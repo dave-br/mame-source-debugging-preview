@@ -30,34 +30,39 @@
 
 <section id="specifying-devices-and-address-spaces">
 
-<h1>This is not an official distribution of MAME</h1>
+<h1>MAME source-debugging preview</h1>
+
+<p>MAME includes a powerful disassembly-only debugger</p>
+<p><image>TODO</image></p>
+	
+<p>This preview extends the debugger to add source-level debugging.
+	If you are writing new software for an emulated machine, or happen
+	to have the source code for existing software for an emulated machine,
+	<strong>debugging with that source</strong> can be easier and more efficient than the
+	disassembly alone.</p>
+	<p><image>TODO</image></p>
+		
+<h2>This is not an official distribution of MAME</h2>
 
 <p>If you are looking for the official MAME project, go to <a href=https://www.mamedev.org/>
-https://www.mamedev.org/</a>
+https://www.mamedev.org/</a>, and forget you were ever here.
 </p>
 
-<p>If you are looking for a build of MAME that includes a preview of the unreleased
-source-level debugging feature, you've found it!
-</p>
+<h2>This is a preview for 6809 CoCo / Dragon machines</h2>
 
-<h2>What is this?</h2>
-
-<p>MAME includes a powerful debugger, which allows you to debug code
-running inside the emulated machine.  This debugger is <strong>disassembly-only</strong>,
-which means it disassembles machine code for the CPU being emulated, and
-shows that disassembly as you step, set breakpoints, view registers, etc.
-</p>
-
-<p>If you are writing new software for an emulated machine, or happen
-to have the source code for existing software for an emulated machine,
-<strong>debugging with that source</strong> can be easier and more efficient than the
-disassembly alone.  There is a pull request open against MAME that adds
+There is a pull request open against MAME that adds
 source-level debugging for the 6809 processor on the various CoCo and
 Dragon machines.  It is possible that the pull request may need to undergo
 many time-consuming changes before it is merged (or could even be rejected
 outright).  This preview is a way to quickly get the feature into the hands of
 CoCo enthusiasts interested in using source-level debugging while the pull request
 is being evaluated.</p>
+
+<p>While this preview only works with CoCo-related machines, I hope this
+	feature will be merged so I can assist with expanding it to
+	other emulated machines.  The CoCo is just the first step!</p>
+
+<h2>Features</h2>
 
 <p>Set breakpoints in source by clicking and hitting F9
 </p>
@@ -74,45 +79,10 @@ is being evaluated.</p>
 <p>Video demos available here: TODO
 </p>
 
-<p>While this preview only works with CoCo-related machines, I hope this
-feature will be merged so I can assist with expanding it to
-other emulated machines.  The CoCo is just the first step!  This preview
-currently only works with a special build of lwtools, but I may expand
-the preview to CMOC and ugBasic for the CoCo if there is sufficient demand.</p>
-
 <h2>How to install</h2>
-<h3>MAME</h3>
-<ul class="simple">
-	<li><p>Go to the <a href=https://github.com/dave-br/mame/releases>Releases</a> page, and
-		click on the latest release.  The description will tell you which official MAME
-		release that unofficial build is based on.</p></li>
-	<li><p>You will find unofficial builds there for Windows, Mac, and Linux.  Go to your
-		existing MAME installation and overwrite
-		your official MAME binary with the unofficial one.  (Rename the official
-		build first, so you can revert back to it if you need to!) </p> </li>
-</ul>
-<h3>lwtools</h3>
-<P>Just as debuggers depend on compilers to generate special debugging information,
-so too does this build of MAME require your build tool to generate special debugging
-information.  This preview currently includes an unofficial build of lwtools that
-generates this information.</P>
-<ul class="simple">
-	<li>From the same releases page above, the description will tell you which
-		official lwtools build that unofficial build is based on.</li>
-	<li>You will find unofficial builds of
-		lwasm and lwlink for Windows and Linux.  (I can't do Mac builds, so if someone
-		would like to assist, see the feedback section below.)   Go to your
-		existing lwtools installation and overwrite
-		your official lwtools binaries with the unofficial ones.  (Rename the official
-		lwasm / lwlink first, so you can revert back to them if you need to!)</li>
-</ul>
 
-<h2>How to use</h2>
-<h3>lwtools</h3>
-<h3>MAME</h3>
-<p><a href="html/debugger/index.html#source-level-debugging">Full source-level debugging docs for MAME</a> </p>
+For installation and usage, see the <a href="quickstart.html">Quick Start Guide</a>
 
-<h2>What if I have feedback?</h2>
 </section>
 
 </div></div></div></div>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MAME SOURCE-LEVEL DEBUGGING PREVIEW QUICK-START GUIDE</title>
+      <link rel="stylesheet" type="text/css" href="html/_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="html/_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script> 
+  <![endif]-->
+  
+  <script src="../_static/documentation_options.js?v=561e49e2"></script>
+  <script src="../_static/doctools.js?v=9bcbadda"></script>
+  <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+<script src="../_static/js/theme.js"></script>
+<link rel="index" title="Index" href="../genindex.html" />
+<link rel="search" title="Search" href="../search.html" />
+<link rel="next" title="General Debugger Commands" href="general.html" />
+<link rel="prev" title="Linux Lightguns" href="../advanced/linux-lightguns.html" /> 
+</head>
+<body>
+	<div class="wy-nav-content">
+        <div class="rst-content">
+	<div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+		<div itemprop="articleBody">
+
+<section id="specifying-devices-and-address-spaces">
+
+<p><a href="index.html">Home</a></p>
+
+<h1>MAME source-debugging preview<br>Quick-Start Guide</h1>
+
+<h2>How to install</h2>
+
+<p>You will need a special build of MAME and a special build of an assembler or
+compiler that generates the debugging information MAME needs.  For the latter, this
+preview currently includes lwtools.</p>
+
+<p><i>This preview
+currently only works with the special build of lwtools, but I may expand
+the preview to CMOC and ugBasic for the CoCo if there is sufficient demand.</i></p>
+
+<p>If you prefer to build your own, see <a href="build.html">Build Instructions</a></p>
+
+<h3>MAME</h3>
+<ul class="simple">
+	<li><p>Go to the <a href=https://github.com/dave-br/mame-source-debugging-preview/releases>Releases</a> page, and
+		click on the latest release.</p></li>
+	<li><p>You will find unofficial builds there for Windows, Mac, and Linux.  Go to your
+		existing MAME installation and overwrite
+		your official MAME binary with the unofficial version.  (Rename the official
+		build first, so you can revert back to it if you need to!) </p> </li>
+</ul>
+
+<h3>lwtools</h3>
+<ul class="simple">
+	<li>From the same releases page above, you will find unofficial builds of
+		lwasm and lwlink for Windows and Linux. TODO: (I can't do Mac builds, so if someone
+		would like to assist, see the feedback section below.)   Go to your
+		existing lwtools installation and overwrite
+		your official lwtools binaries with the unofficial ones.  (Rename the official
+		lwasm / lwlink first, so you can revert back to them if you need to!)</li>
+</ul>
+
+<h2>Getting started</h2>
+<h3>lwtools</h3>
+<p>When it's time to assemble your code, add <code class="docutils literal notranslate"><span class="pre">-i</span></code>to the lwasm command-line.  Example</p>
+<p><code class="docutils literal notranslate"><span class="pre">lwasm -9bl -omy-code.bin my-code.asm -lmy-code.lst -i</span></code></p>
+<p>If you are assembling and linking use command-lines like these:</p>
+<p>
+<code class="docutils literal notranslate"><span class="pre">lwasm --obj -9 -l -omy-code1.obj my-code1.asm -lmy-code1.lst -i</span></code><br>
+<code class="docutils literal notranslate"><span class="pre">lwasm --obj -9 -l -omy-code2.obj my-code2.asm -lmy-code2.lst -i</span></code><br>
+<code class="docutils literal notranslate"><span class="pre">lwasm --obj -9 -l -omy-code3.obj my-code3.asm -lmy-code3.lst -i</span></code><br>
+<code class="docutils literal notranslate"><span class="pre">lwlink -b -omy-code.bin -imy-code.mdi --map=my-code.map my-code1.obj my-code2.obj my-code3.obj</span></code></p>
+
+<h3>MAME</h3>
+<p><a href="html/debugger/index.html#source-level-debugging">Full source-level debugging docs for MAME</a> </p>
+
+<h2>What if I have feedback?</h2>
+</section>
+
+</div></div></div></div>
+
+</body>
+</html>
