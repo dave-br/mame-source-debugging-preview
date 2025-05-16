@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MAME SOURCE-LEVEL DEBUGGING PREVIEW LIMITATIONS</title>
+      <link rel="stylesheet" type="text/css" href="html/_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="html/_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script> 
+  <![endif]-->
+  
+  <script src="../_static/documentation_options.js?v=561e49e2"></script>
+  <script src="../_static/doctools.js?v=9bcbadda"></script>
+  <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+<script src="../_static/js/theme.js"></script>
+<link rel="index" title="Index" href="../genindex.html" />
+<link rel="search" title="Search" href="../search.html" />
+<link rel="next" title="General Debugger Commands" href="general.html" />
+<link rel="prev" title="Linux Lightguns" href="../advanced/linux-lightguns.html" /> 
+</head>
+<body>
+	<div class="wy-nav-content">
+        <div class="rst-content">
+	<div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+		<div itemprop="articleBody">
+
+<section id="specifying-devices-and-address-spaces">
+
+<p><a href="index.html">Home</a></p>
+
+<h1>MAME source-debugging preview<br>Limitations</h1>
+
+<h2>MAME</h2>
+<ul class="simple">
+<li>MAME source-debugging functionality is intentionally limited at first to
+the 6809 and CoCo-type machines.  Gotta start somewhere, and hopefully this
+is just the first step.</li>
+<li>lwtools may generate symbols with special characters that trip up
+	MAME's expression evaluator (e.g., sizeof{Obstacle}).  In such cases, you can see the
+	symbol's value by running symlist 0, but cannot print it directly.
+	More work needs to be done to determine if MAME's expression evaluator
+	can support these without changing its rules that affect
+	non-source-debugging expressions.</li>
+</ul>
+<h3>lwtools</h3>
+While official lwtools is a mature product, the code I added to generate MAME
+debugging information is more of a prototype.  There are known limitations and
+probably lots of unknown ones.
+<ul class="simple">
+	<li>Symbols multiply defined with SET are not fully supported.
+		You will likely see the symbol when debugging, but only one of the values it was set to will be present.</li>
+	<li>Local symbols are not supported at all.  You will likely not even find them present in
+		the debugger's symbol table.
+	</li>
+</ul>
+</section>
+
+</div></div></div></div>
+
+</body>
+</html>
