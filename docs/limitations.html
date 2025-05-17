@@ -35,6 +35,7 @@
 <h1>MAME source-debugging preview<br>Limitations</h1>
 
 <h2>MAME</h2>
+<p>
 <ul class="simple">
 <li>MAME source-debugging functionality is intentionally limited at first to
 the 6809 and CoCo-type machines.  Gotta start somewhere, and hopefully this
@@ -46,17 +47,34 @@ is just the first step.</li>
 	can support these without changing its rules that affect
 	non-source-debugging expressions.</li>
 </ul>
+</p>
 <h3>lwtools</h3>
+<p>
 While official lwtools is a mature product, the code I added to generate MAME
 debugging information is more of a prototype.  There are known limitations and
-probably lots of unknown ones.
+probably lots of unknown ones.</p>
+<p>
 <ul class="simple">
 	<li>Symbols multiply defined with SET are not fully supported.
 		You will likely see the symbol when debugging, but only one of the values it was set to will be present.</li>
 	<li>Local symbols are not supported at all.  You will likely not even find them present in
-		the debugger's symbol table.
+		the debugger's symbol table.  (Note: MAME source-level debugging does support local symbols;
+		this is merely a limitation of my lwtools prototype.)
 	</li>
 </ul>
+</p>
+<h2>Other Pages</h2>
+<ul class="simple">
+<li><p><a href="index.html">Home</a></p></li>
+<li><p><a href="quickstart.html">Quick Start Guide</a> (installation and usage introduction)</p></li>
+<li><p>Limitations (you are here)</p></li>
+<li><p><a href="html/debugger/index.html#source-level-debugging">Full source-level debugging docs for MAME</a>
+	(Full MAME docs built with additional topics on source-level debugging)</p></li>
+<li><p><a href="build.html">Build Instructions</a> (optional, only if you want to build the preview yourself)</p></li>
+<li><p><a href="https://github.com/dave-br/mame-source-debugging-preview/discussions">Discussions</a> (Questions, bugs, etc.)</p></li>
+
+</ul>
+
 </section>
 
 </div></div></div></div>

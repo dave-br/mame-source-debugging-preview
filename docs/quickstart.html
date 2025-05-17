@@ -50,7 +50,7 @@ the preview to CMOC and ugBasic for the CoCo if there is sufficient interest.</i
 <ul class="simple">
 	<li><p>Go to the <a href=https://github.com/dave-br/mame-source-debugging-preview/releases>Releases</a> page, and
 		click on the latest release.</p></li>
-	<li><p>You will find unofficial builds there for Windows, Mac, and Linux.  Go to your
+	<li><p>You will find unofficial builds there for Windows, Mac (ARM64), and Linux.  Go to your
 		existing MAME installation and overwrite
 		your official MAME binary with the unofficial version.  (Rename the official
 		build first, so you can revert back to it if you need to!) </p> </li>
@@ -59,10 +59,16 @@ the preview to CMOC and ugBasic for the CoCo if there is sufficient interest.</i
 <h3>lwtools</h3>
 <ul class="simple">
 	<li>From the same <a href=https://github.com/dave-br/mame-source-debugging-preview/releases>releases</a> page above, you will find unofficial builds of
-		lwasm and lwlink for Windows and Linux. TODO: Mac.   Go to your
+		lwasm and lwlink for Windows, Mac (ARM64), and Linux.   Go to your
 		existing lwtools installation and overwrite
 		your official lwtools binaries with the unofficial ones.  (Rename the official
-		lwasm / lwlink first, so you can revert back to them if you need to!)</li>
+		lwasm / lwlink first, so you can revert back to them if you need to!)
+		<ul class="simple">
+		<li>Note: I cannot verify macos builds, but I am told this build does at least run and properly
+			print usage.  Hopefully the rest works, too.</li>
+		</ul>
+		</li>
+	</li>
 </ul>
 
 <h2>Getting started</h2>
@@ -107,6 +113,17 @@ the preview to CMOC and ugBasic for the CoCo if there is sufficient interest.</i
 	discussion section</a> on
 GitHub.  I will do my best to respond to all posts.
 </p>
+<h2>Other Pages</h2>
+<ul class="simple">
+<li><p><a href="index.html">Home</a></p></li>
+<li><p>Quick Start Guide (you are here)</p></li>
+<li><p><a href="limitations.html">Limitations</a> (baby steps)</p></li>
+<li><p><a href="html/debugger/index.html#source-level-debugging">Full source-level debugging docs for MAME</a>
+	(Full MAME docs built with additional topics on source-level debugging)</p></li>
+<li><p><a href="build.html">Build Instructions</a> (optional, only if you want to build the preview yourself)</p></li>
+<li><p><a href="https://github.com/dave-br/mame-source-debugging-preview/discussions">Discussions</a> (Questions, bugs, etc.)</p></li>
+
+</ul>
 </section>
 
 </div></div></div></div>
