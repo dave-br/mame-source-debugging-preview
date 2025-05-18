@@ -1,3 +1,6 @@
 [submodule "mame"]
 	path = mame-unofficial
 	url = https://github.com/dave-br/mame
+[submodule "lwtools-unofficial"]
+	path = lwtools-unofficial
+	url = https://github.com/dave-br/lwtools-unofficial
