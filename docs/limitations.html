@@ -61,6 +61,13 @@ probably lots of unknown ones.</p>
 		the debugger's symbol table.  (Note: MAME source-level debugging does support local symbols;
 		this is merely a limitation of my lwtools prototype.)
 	</li>
+	<li>If you have a section with only symbol definitions but no code (e.g., a constant section), no
+		MAME debugging information file will be generated for it. You will then get an error during
+		lwlink when the missing file is suddenly needed.  As a workaround, insert a dummy instruction
+		like CLRA in that section to force generation of a debugging information file.  This is actually
+		illegal to do, according to the lwtools documentation, but seems to work ok as a temporary
+		workaround.  I am looking into a fix for this.
+	</li>
 </ul>
 </p>
 <h2>Other Pages</h2>
