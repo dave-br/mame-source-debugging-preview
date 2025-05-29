@@ -108,11 +108,26 @@ the preview to CMOC and ugBasic for the CoCo if there is sufficient interest.</i
 <p>There is a lot more functionality not summarized here.  For full documentation, go to
 	<a href="html/debugger/index.html#source-level-debugging">Full source-level debugging docs for MAME</a> </p>
 
+<h2>NitrOS-9</h2>
+<p>There is some support for source-level debugging in an OS like NitrOS-9, which
+	loads code into addresses that are known only at run-time, and not during assembling or linking.</p>
+<p>You can use the <a href="html/debugger/general.html#debugger-command-sdoffset">sdoffset</a>
+command to tell the debugger where the module loaded, and the argument you pass will be
+applied as an offset to all addresses in the MAME debugging information file.</p>
+<p>Alternatively, you can automate the process of figuring out where the module gets
+	loaded and executing sdoffset by using a LUA script.  An example LUA script
+	can be found
+	<a href="https://github.com/dave-br/mame-source-debugging-preview/blob/main/extras/os9.lua">here</a>.
+	The comments at the top explain how to use it.</p>
+
+
+
 <h2>What if I have feedback?</h2>
 <p>Bugs?  Comments?  Ideas?  Questions?  Please use the <a href="https://github.com/dave-br/mame-source-debugging-preview/discussions">
 	discussion section</a> on
 GitHub.  I will do my best to respond to all posts.
 </p>
+
 <h2>Other Pages</h2>
 <ul class="simple">
 <li><p><a href="index.html">Home</a></p></li>
