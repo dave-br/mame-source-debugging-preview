@@ -1,0 +1,9 @@
+section mmu03 load FFA1
+section blocku load 2000
+section mmu02 load FFA1
+section blockx load 2000
+section mmu01 load FFA1
+section blockb load 2000
+section mmu00 load FFA1
+section blocka load 2000
+entry StartA
