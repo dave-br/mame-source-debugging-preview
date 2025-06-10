@@ -122,6 +122,117 @@ applied as an offset to all addresses in the MAME debugging information file.</p
 
 
 
+
+
+
+
+
+
+
+<h2>MMU-Aware Debugging -- This section still under construction</h2>
+
+<p>With modern machines, typically the logical address space is far larger than the actual
+	physical RAM installed on the machine. But with vintage machines, it can easily be the opposite.
+	With an 8/16-bit CPU that is capable of addressing only a 64K logical address space,
+	there may well be more than 64K of physical RAM installed on the machine.  The CoCo 3
+	is a good example of just such a machine. There are features first introduced in
+	mame-sd-0277-R2 and lwtools-sd-4.24-R2 which allow the user to help the debugger know when
+	code is being swapped in and out of a range of logical addresses.  You can even automate this
+	with a LUA script (see below).  The end result is an intelligent debugging experience where
+	the source and symbols automatically change as physical RAM gets swapped in and out of
+	the logical address space.	(Thanks to Glen	Hewlett for reporting this scenario!)</p>
+
+<h3>Background - Multiple MDIs</h3>
+
+<p>Typically you provide a single MAME debugging information file (MDI) on the MAME
+	command line as discussed above, and
+	you're good. Even in cases when you have multiple assembly files which you assemble
+	to obj files, and then link together, you would still use the single MDI file generated
+	by lwlink, and specify that on the MAME command line (see lwtools section above).</p>
+<p>However, there are scenarios where the same “logical” addresses (i.e., the addresses
+	used by the CPU to refer to an area of memory) might have different blocks of physical
+	RAM mapped to them at different times.  And sometimes that physical RAM contains executable code.
+	The MAME debugger needs to know which code is mapped in at a given time so it knows which
+	source to show.  The debugger does not do complex analysis of the code it's debugging,
+	and does not understand the different hardware nuances of the emulated machines, so it
+	needs your help to know which source level debugging information to consult at any given time.</p>
+<p>This is done through the use of multiple MDI files.  Rather than specifying a single MDI
+	file path on the MAME command line, specify a semicolon-separated list of all the MDI
+	files that comprise the program you are debugging.  So long as blocks of code that may
+	overlap in the logical address space appear in different MDI files, you can tell the
+	debugger which MDI files to enable or disable at any given time. And during the course
+	of program execution, you can update which set of MDI files are enabled.</p>
+
+<h3>How To</h3>
+
+<p>In addition to generating a single combined MDI file, lwlink now also generates individual
+	MDI files for each section getting linked, much as lwasm does. But lwlink knows which logical
+	addresses those sections get loaded to, so, unlike lwasm, lwlink can generate these files with
+	the proper addresses built in. These MDI files contain 'relocated' in their names.</p>
+<p>To take advantage
+	of this, ensure that any code blocks that might overlap in the logical address space at runtime
+	are separated into different sections (using the usual SECTION / ENDSECTION directives already
+	built into lwtools), and ensure your link script specifies these sections with the proper
+	logical load addresses.</p>
+<p>Run lwasm as usual, and you will still see a series of intermediate MDI files to be used
+	as inputs for lwlink</p>
+
+	TODO: PIC
+<p>Run lwlink as usual, and you will now see the 'relocated' MDI files generated during the link step.</p>
+<p>As mentioned above, it's fine to ignore the relocated MDI files and just specify the final
+	combined MDI file to MAME if you do not need MAME to adjust source as code gets
+	swapped in and out of logical address ranges.  However, if you do want to take advantange of
+	"MMU-aware" debugging, specify these relocated MDI files on the MAME command-line instead of
+	the single combined MDI file:</p>
+	TODO: PIC
+<p>From the debugger console window, use the sdlist, sdenable, sddisable commands, which work much
+	like the corresponding breakpoint commands.</p>
+<p>sdlist lists all of the MDI files specified on the command line, with their index, and a ‘D’ next
+	to each one that is currently disabled.</p>
+	TODO: PIC
+<p>While debugging, as your program writes to the MMU to
+	swap code in and out, use the sdenable and sddisable commands to individually enable and disable
+	an MDI file by its index, so the debugger knows which blocks of code are currently active.</p>
+	TODO: PIC
+<p>You
+	can automate this process using a LUA script. See the 
+	<a href="https://github.com/dave-br/mame-source-debugging-preview/tree/main/extras/MmuSample">sample</a>
+	for more information.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <h2>What if I have feedback?</h2>
 <p>Bugs?  Comments?  Ideas?  Questions?  Please use the <a href="https://github.com/dave-br/mame-source-debugging-preview/discussions">
 	discussion section</a> on
