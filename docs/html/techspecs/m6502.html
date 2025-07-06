@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The new 6502 family implementation &mdash; MAME Documentation 0.277 documentation</title>
+  <title>The new 6502 family implementation &mdash; MAME Documentation 0.278 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
 
@@ -13,7 +13,7 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/documentation_options.js?v=561e49e2"></script>
+        <script src="../_static/documentation_options.js?v=be04ea20"></script>
         <script src="../_static/doctools.js?v=9bcbadda"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
@@ -35,7 +35,7 @@
             MAME Documentation
           </a>
               <div class="version">
-                0.277
+                0.278
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -66,6 +66,7 @@
 <li class="toctree-l2"><a class="reference internal" href="device_memory_interface.html">The device_memory_interface</a></li>
 <li class="toctree-l2"><a class="reference internal" href="device_rom_interface.html">The device_rom_interface</a></li>
 <li class="toctree-l2"><a class="reference internal" href="device_disasm_interface.html">The device_disasm_interface and the disassemblers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="device_sound_interface.html">The device_sound_interface</a></li>
 <li class="toctree-l2"><a class="reference internal" href="memory.html">Emulated system memory and address spaces management</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cpu_device.html">CPU devices</a></li>
 <li class="toctree-l2"><a class="reference internal" href="floppy.html">The new floppy subsystem</a></li>
@@ -73,6 +74,8 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">The new 6502 family implementation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="uml_instructions.html">UML Instruction Reference</a></li>
 <li class="toctree-l2"><a class="reference internal" href="poly_manager.html">Software 3D Rendering in MAME</a></li>
+<li class="toctree-l2"><a class="reference internal" href="audio_effects.html">Audio effects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="osd_audio.html">OSD audio support</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../security.html">MAME and security concerns</a></li>
@@ -169,7 +172,7 @@
 <p>The last two are optional. They're used to generate a <strong>&lt;CPU&gt;.inc</strong> file in the object directory which is included by the .c file.</p>
 <p>At a minimum, the class must include a constructor and an enum picking up the correct input line ids. See m65sc02 for a minimalist example. The header can also include specific configuration macros (see m8502) and also the class can include specific memory accessors (more on these later, simple example in m6504).</p>
 <p>If the CPU has its own dispatch table, the class must also include the declaration (but not definition) of <strong>disasm_entries</strong>, <strong>do_exec_full</strong> and <strong>do_exec_partial</strong>, the declaration and definition of <strong>disasm_disassemble</strong> (identical for all classes but refers to the class-specific <strong>disasm_entries</strong> array) and include the .inc file (which provides the missing definitions). Support for the generation must also be added to CPU.mak.</p>
-<p>If the CPU has in addition its own opcodes, their declaration must be done through a macro, see f.i. m65c02. The .inc file will provide the definitions.</p>
+<p>If the CPU has in addition its own opcodes, their declaration must be done through a macro, see e.g. m65c02. The .inc file will provide the definitions.</p>
 </section>
 <section id="dispatch-tables">
 <h2>Dispatch tables<a class="headerlink" href="#dispatch-tables" title="Link to this heading">¶</a></h2>
@@ -510,7 +513,7 @@
 </section>
 <section id="multi-dispatch-variants">
 <h2>Multi-dispatch variants<a class="headerlink" href="#multi-dispatch-variants" title="Link to this heading">¶</a></h2>
-<p>Some variants currently in the process of being supported change instruction set depending on an internal flag, either switching to a 16-bits mode or changing some register accesses to memory accesses. This is handled by having multiple dispatch tables for the CPU, the d&lt;CPU&gt;.lst not being 257 entries anymore but 256*n+1. The variable <strong>inst_state_base</strong> must select which instruction table to use at a given time. It must be a multiple of 256, and is in fact simply OR-ed to the first instruction byte to get the dispatch table index (aka inst_state).</p>
+<p>Some variants currently in the process of being supported change instruction set depending on an internal flag, either switching to a 16-bit mode or changing some register accesses to memory accesses. This is handled by having multiple dispatch tables for the CPU, the d&lt;CPU&gt;.lst not being 257 entries anymore but 256*n+1. The variable <strong>inst_state_base</strong> must select which instruction table to use at a given time. It must be a multiple of 256, and is in fact simply OR-ed to the first instruction byte to get the dispatch table index (aka inst_state).</p>
 </section>
 <section id="current-to-do">
 <h2>Current TO-DO:<a class="headerlink" href="#current-to-do" title="Link to this heading">¶</a></h2>

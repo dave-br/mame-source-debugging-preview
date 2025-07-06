@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lua Device Classes &mdash; MAME Documentation 0.277 documentation</title>
+  <title>Lua Device Classes &mdash; MAME Documentation 0.278 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
 
@@ -13,7 +13,7 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/documentation_options.js?v=561e49e2"></script>
+        <script src="../_static/documentation_options.js?v=be04ea20"></script>
         <script src="../_static/doctools.js?v=9bcbadda"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
@@ -35,7 +35,7 @@
             MAME Documentation
           </a>
               <div class="version">
-                0.277
+                0.278
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -101,20 +101,21 @@
 can be looked up by tag or enumerated.</p>
 <nav class="contents local" id="contents">
 <ul class="simple">
-<li><p><a class="reference internal" href="#device-enumerators" id="id23">Device enumerators</a></p></li>
-<li><p><a class="reference internal" href="#device" id="id24">Device</a></p></li>
-<li><p><a class="reference internal" href="#palette-device" id="id25">Palette device</a></p></li>
-<li><p><a class="reference internal" href="#screen-device" id="id26">Screen device</a></p></li>
-<li><p><a class="reference internal" href="#cassette-image-device" id="id27">Cassette image device</a></p></li>
-<li><p><a class="reference internal" href="#image-device-interface" id="id28">Image device interface</a></p></li>
-<li><p><a class="reference internal" href="#slot-device-interface" id="id29">Slot device interface</a></p></li>
-<li><p><a class="reference internal" href="#device-state-entry" id="id30">Device state entry</a></p></li>
-<li><p><a class="reference internal" href="#media-image-format" id="id31">Media image format</a></p></li>
-<li><p><a class="reference internal" href="#slot-option" id="id32">Slot option</a></p></li>
+<li><p><a class="reference internal" href="#device-enumerators" id="id25">Device enumerators</a></p></li>
+<li><p><a class="reference internal" href="#device" id="id26">Device</a></p></li>
+<li><p><a class="reference internal" href="#palette-device" id="id27">Palette device</a></p></li>
+<li><p><a class="reference internal" href="#screen-device" id="id28">Screen device</a></p></li>
+<li><p><a class="reference internal" href="#cassette-image-device" id="id29">Cassette image device</a></p></li>
+<li><p><a class="reference internal" href="#image-device-interface" id="id30">Image device interface</a></p></li>
+<li><p><a class="reference internal" href="#sound-device-interface" id="id31">Sound device interface</a></p></li>
+<li><p><a class="reference internal" href="#slot-device-interface" id="id32">Slot device interface</a></p></li>
+<li><p><a class="reference internal" href="#device-state-entry" id="id33">Device state entry</a></p></li>
+<li><p><a class="reference internal" href="#media-image-format" id="id34">Media image format</a></p></li>
+<li><p><a class="reference internal" href="#slot-option" id="id35">Slot option</a></p></li>
 </ul>
 </nav>
 <section id="device-enumerators">
-<span id="luascript-ref-devenum"></span><h2><a class="toc-backref" href="#id23" role="doc-backlink">Device enumerators</a><a class="headerlink" href="#device-enumerators" title="Link to this heading">¶</a></h2>
+<span id="luascript-ref-devenum"></span><h2><a class="toc-backref" href="#id25" role="doc-backlink">Device enumerators</a><a class="headerlink" href="#device-enumerators" title="Link to this heading">¶</a></h2>
 <p>Device enumerators are special containers that allow iterating over devices and
 looking up devices by tag.  A device enumerator can be created to find any kind
 of device, to find devices of a particular type, or to find devices that
@@ -160,6 +161,9 @@ example this will test whether a device implements the media image interface:</p
 </dd>
 <dt>manager.machine.slots</dt><dd><p>Returns a device enumerator that will iterate over
 <a class="reference internal" href="#luascript-ref-dislot"><span class="std std-ref">slot devices</span></a> in the system.</p>
+</dd>
+<dt>manager.machine.sounds</dt><dd><p>Returns a device enumerator that will iterate over
+<a class="reference internal" href="#luascript-ref-disound"><span class="std std-ref">sound devices</span></a> in the system.</p>
 </dd>
 <dt>emu.device_enumerator(device, [depth])</dt><dd><p>Returns a device enumerator that will iterate over
 <a class="reference internal" href="#luascript-ref-device"><span class="std std-ref">devices</span></a> in the sub-tree starting at the
@@ -209,7 +213,7 @@ limit iteration to the device and its immediate children).</p>
 </section>
 </section>
 <section id="device">
-<span id="luascript-ref-device"></span><h2><a class="toc-backref" href="#id24" role="doc-backlink">Device</a><a class="headerlink" href="#device" title="Link to this heading">¶</a></h2>
+<span id="luascript-ref-device"></span><h2><a class="toc-backref" href="#id26" role="doc-backlink">Device</a><a class="headerlink" href="#device" title="Link to this heading">¶</a></h2>
 <p>Wraps MAME’s <code class="docutils literal notranslate"><span class="pre">device_t</span></code> class, which is a base of all device classes.</p>
 <section id="id1">
 <h3>Instantiation<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h3>
@@ -288,7 +292,7 @@ special significance.</p>
 </section>
 </section>
 <section id="palette-device">
-<span id="luascript-ref-dipalette"></span><h2><a class="toc-backref" href="#id25" role="doc-backlink">Palette device</a><a class="headerlink" href="#palette-device" title="Link to this heading">¶</a></h2>
+<span id="luascript-ref-dipalette"></span><h2><a class="toc-backref" href="#id27" role="doc-backlink">Palette device</a><a class="headerlink" href="#palette-device" title="Link to this heading">¶</a></h2>
 <p>Wraps MAME’s <code class="docutils literal notranslate"><span class="pre">device_palette_interface</span></code> class, which represents a device that
 translates pen values to colours.</p>
 <p>Colours are represented in alpha/red/green/blue (ARGB) format.  Channel values
@@ -374,7 +378,7 @@ device.</p>
 </section>
 </section>
 <section id="screen-device">
-<span id="luascript-ref-screendev"></span><h2><a class="toc-backref" href="#id26" role="doc-backlink">Screen device</a><a class="headerlink" href="#screen-device" title="Link to this heading">¶</a></h2>
+<span id="luascript-ref-screendev"></span><h2><a class="toc-backref" href="#id28" role="doc-backlink">Screen device</a><a class="headerlink" href="#screen-device" title="Link to this heading">¶</a></h2>
 <p>Wraps MAME’s <code class="docutils literal notranslate"><span class="pre">screen_device</span></code> class, which represents an emulated video output.</p>
 <section id="id5">
 <h3>Instantiation<a class="headerlink" href="#id5" title="Link to this heading">¶</a></h3>
@@ -540,7 +544,7 @@ format.</p>
 </section>
 </section>
 <section id="cassette-image-device">
-<span id="luascript-ref-cassdev"></span><h2><a class="toc-backref" href="#id27" role="doc-backlink">Cassette image device</a><a class="headerlink" href="#cassette-image-device" title="Link to this heading">¶</a></h2>
+<span id="luascript-ref-cassdev"></span><h2><a class="toc-backref" href="#id29" role="doc-backlink">Cassette image device</a><a class="headerlink" href="#cassette-image-device" title="Link to this heading">¶</a></h2>
 <p>Wraps MAME’s <code class="docutils literal notranslate"><span class="pre">cassette_image_device</span></code> class, representing a compact cassette
 mechanism typically used by a home computer for program storage.</p>
 <section id="id8">
@@ -603,7 +607,7 @@ zero (0) if no tape image is mounted.</p>
 </section>
 </section>
 <section id="image-device-interface">
-<span id="luascript-ref-diimage"></span><h2><a class="toc-backref" href="#id28" role="doc-backlink">Image device interface</a><a class="headerlink" href="#image-device-interface" title="Link to this heading">¶</a></h2>
+<span id="luascript-ref-diimage"></span><h2><a class="toc-backref" href="#id30" role="doc-backlink">Image device interface</a><a class="headerlink" href="#image-device-interface" title="Link to this heading">¶</a></h2>
 <p>Wraps MAME’s <code class="docutils literal notranslate"><span class="pre">device_image_interface</span></code> class which is a mix-in implemented by
 devices that can load media image files.</p>
 <section id="id12">
@@ -706,20 +710,57 @@ loaded from a software list, or <code class="docutils literal notranslate"><span
 </dl>
 </section>
 </section>
-<section id="slot-device-interface">
-<span id="luascript-ref-dislot"></span><h2><a class="toc-backref" href="#id29" role="doc-backlink">Slot device interface</a><a class="headerlink" href="#slot-device-interface" title="Link to this heading">¶</a></h2>
-<p>Wraps MAME’s <code class="docutils literal notranslate"><span class="pre">device_slot_interface</span></code> class which is a mix-in implemented by
-devices that instantiate a user-specified child device.</p>
+<section id="sound-device-interface">
+<span id="luascript-ref-disound"></span><h2><a class="toc-backref" href="#id31" role="doc-backlink">Sound device interface</a><a class="headerlink" href="#sound-device-interface" title="Link to this heading">¶</a></h2>
+<p>Wraps MAME’s <code class="docutils literal notranslate"><span class="pre">device_sound_interface</span></code> class which is a mix-in implemented by
+devices that input and/or output sound.</p>
 <section id="id15">
 <h3>Instantiation<a class="headerlink" href="#id15" title="Link to this heading">¶</a></h3>
 <dl class="simple">
-<dt>manager.machine.slots[tag]</dt><dd><p>Gets an slot device by tag relative to the root machine device, or <code class="docutils literal notranslate"><span class="pre">nil</span></code>
+<dt>manager.machine.sounds[tag]</dt><dd><p>Gets an sound device by tag relative to the root machine device, or <code class="docutils literal notranslate"><span class="pre">nil</span></code>
 if no such device exists or it is not a slot device.</p>
 </dd>
 </dl>
 </section>
 <section id="id16">
 <h3>Properties<a class="headerlink" href="#id16" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>sound.inputs (read-only)</dt><dd><p>Number of sound inputs of the device.</p>
+</dd>
+<dt>sound.outputs (read-only)</dt><dd><p>Number of sound outputs of the device.</p>
+</dd>
+<dt>sound.microphone (read-only)</dt><dd><p>True if the device is a microphone, false otherwise</p>
+</dd>
+<dt>sound.speaker (read-only)</dt><dd><p>True if the device is a speaker, false otherwise</p>
+</dd>
+<dt>sound.io_positions[] (read-only)</dt><dd><p>Non-empty only for microphones and speakers, indicates the positions of
+the inputs or outputs as (x, y, z) coordinates (e.g. [-0.2, 0.0, 1.0])</p>
+</dd>
+<dt>sound.io_names[] (read-only)</dt><dd><p>Non-empty only for microphones and speakers, indicates the positions of
+the inputs or outputs as strings (e.g. Front Left)</p>
+</dd>
+<dt>sound.hook</dt><dd><p>A boolean indicating whether to tap the output samples of this device in
+the global sound hook.</p>
+</dd>
+<dt>sound.device (read-only)</dt><dd><p>The underlying <a class="reference internal" href="#luascript-ref-device"><span class="std std-ref">device</span></a>.</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="slot-device-interface">
+<span id="luascript-ref-dislot"></span><h2><a class="toc-backref" href="#id32" role="doc-backlink">Slot device interface</a><a class="headerlink" href="#slot-device-interface" title="Link to this heading">¶</a></h2>
+<p>Wraps MAME’s <code class="docutils literal notranslate"><span class="pre">device_slot_interface</span></code> class which is a mix-in implemented by
+devices that instantiate a user-specified child device.</p>
+<section id="id17">
+<h3>Instantiation<a class="headerlink" href="#id17" title="Link to this heading">¶</a></h3>
+<dl class="simple">
+<dt>manager.machine.slots[tag]</dt><dd><p>Gets an slot device by tag relative to the root machine device, or <code class="docutils literal notranslate"><span class="pre">nil</span></code>
+if no such device exists or it is not a slot device.</p>
+</dd>
+</dl>
+</section>
+<section id="id18">
+<h3>Properties<a class="headerlink" href="#id18" title="Link to this heading">¶</a></h3>
 <dl class="simple">
 <dt>slot.fixed (read-only)</dt><dd><p>A Boolean indicating whether this is a slot with a card specified in machine
 configuration that cannot be changed by the user.</p>
@@ -739,19 +780,19 @@ operations have O(1) complexity.</p>
 </section>
 </section>
 <section id="device-state-entry">
-<span id="luascript-ref-distateentry"></span><h2><a class="toc-backref" href="#id30" role="doc-backlink">Device state entry</a><a class="headerlink" href="#device-state-entry" title="Link to this heading">¶</a></h2>
+<span id="luascript-ref-distateentry"></span><h2><a class="toc-backref" href="#id33" role="doc-backlink">Device state entry</a><a class="headerlink" href="#device-state-entry" title="Link to this heading">¶</a></h2>
 <p>Wraps MAME’s <code class="docutils literal notranslate"><span class="pre">device_state_entry</span></code> class, which allows access to named
 registers exposed by a <a class="reference internal" href="#luascript-ref-device"><span class="std std-ref">device</span></a>.  Supports
 conversion to string for display.</p>
-<section id="id17">
-<h3>Instantiation<a class="headerlink" href="#id17" title="Link to this heading">¶</a></h3>
+<section id="id19">
+<h3>Instantiation<a class="headerlink" href="#id19" title="Link to this heading">¶</a></h3>
 <dl class="simple">
 <dt>manager.machine.devices[tag].state[symbol]</dt><dd><p>Gets a state entry for a given device by symbol.</p>
 </dd>
 </dl>
 </section>
-<section id="id18">
-<h3>Properties<a class="headerlink" href="#id18" title="Link to this heading">¶</a></h3>
+<section id="id20">
+<h3>Properties<a class="headerlink" href="#id20" title="Link to this heading">¶</a></h3>
 <dl class="simple">
 <dt>entry.value (read/write)</dt><dd><p>The numeric value of the state entry, as either an integer or floating-point
 number.  Attempting to set the value of a read-only state entry raises an
@@ -778,18 +819,18 @@ number.</p>
 </section>
 </section>
 <section id="media-image-format">
-<span id="luascript-ref-imagefmt"></span><h2><a class="toc-backref" href="#id31" role="doc-backlink">Media image format</a><a class="headerlink" href="#media-image-format" title="Link to this heading">¶</a></h2>
+<span id="luascript-ref-imagefmt"></span><h2><a class="toc-backref" href="#id34" role="doc-backlink">Media image format</a><a class="headerlink" href="#media-image-format" title="Link to this heading">¶</a></h2>
 <p>Wraps MAME’s <code class="docutils literal notranslate"><span class="pre">image_device_format</span></code> class, which describes a media file format
 supported by a <a class="reference internal" href="#luascript-ref-diimage"><span class="std std-ref">media image device</span></a>.</p>
-<section id="id19">
-<h3>Instantiation<a class="headerlink" href="#id19" title="Link to this heading">¶</a></h3>
+<section id="id21">
+<h3>Instantiation<a class="headerlink" href="#id21" title="Link to this heading">¶</a></h3>
 <dl class="simple">
 <dt>manager.machine.images[tag].formatlist[name]</dt><dd><p>Gets a media image format supported by a given device by name.</p>
 </dd>
 </dl>
 </section>
-<section id="id20">
-<h3>Properties<a class="headerlink" href="#id20" title="Link to this heading">¶</a></h3>
+<section id="id22">
+<h3>Properties<a class="headerlink" href="#id22" title="Link to this heading">¶</a></h3>
 <dl class="simple">
 <dt>format.name (read-only)</dt><dd><p>An abbreviated name used to identify the format.  This often matches the
 primary filename extension used for the format.</p>
@@ -805,20 +846,20 @@ format.  The string is not intended to be human-readable.</p>
 </section>
 </section>
 <section id="slot-option">
-<span id="luascript-ref-slotopt"></span><h2><a class="toc-backref" href="#id32" role="doc-backlink">Slot option</a><a class="headerlink" href="#slot-option" title="Link to this heading">¶</a></h2>
+<span id="luascript-ref-slotopt"></span><h2><a class="toc-backref" href="#id35" role="doc-backlink">Slot option</a><a class="headerlink" href="#slot-option" title="Link to this heading">¶</a></h2>
 <p>Wraps MAME’s <code class="docutils literal notranslate"><span class="pre">device_slot_interface::slot_option</span></code> class, which represents a
 child device that a <a class="reference internal" href="#luascript-ref-dislot"><span class="std std-ref">slot device</span></a> can be
 configured to instantiate.</p>
-<section id="id21">
-<h3>Instantiation<a class="headerlink" href="#id21" title="Link to this heading">¶</a></h3>
+<section id="id23">
+<h3>Instantiation<a class="headerlink" href="#id23" title="Link to this heading">¶</a></h3>
 <dl class="simple">
 <dt>manager.machine.slots[tag].options[name]</dt><dd><p>Gets a slot option for a given <a class="reference internal" href="#luascript-ref-dislot"><span class="std std-ref">slot device</span></a> by
 name (i.e. the value used to select the option).</p>
 </dd>
 </dl>
 </section>
-<section id="id22">
-<h3>Properties<a class="headerlink" href="#id22" title="Link to this heading">¶</a></h3>
+<section id="id24">
+<h3>Properties<a class="headerlink" href="#id24" title="Link to this heading">¶</a></h3>
 <dl class="simple">
 <dt>option.name (read-only)</dt><dd><p>The name of the slot option.  This is the value used to select this option
 on the command line or in an INI file.</p>
