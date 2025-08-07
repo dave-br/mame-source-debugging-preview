@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MAME Menus &mdash; MAME Documentation 0.278 documentation</title>
+  <title>MAME Menus &mdash; MAME Documentation 0.279 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
 
@@ -13,7 +13,7 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/documentation_options.js?v=be04ea20"></script>
+        <script src="../_static/documentation_options.js?v=1a7c6e39"></script>
         <script src="../_static/doctools.js?v=9bcbadda"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
@@ -35,7 +35,7 @@
             MAME Documentation
           </a>
               <div class="version">
-                0.278
+                0.279
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -112,7 +112,7 @@
 <li><p><a class="reference internal" href="#filter-effect" id="id9">Filter effect</a></p></li>
 <li><p><a class="reference internal" href="#compressor-effect" id="id10">Compressor effect</a></p></li>
 <li><p><a class="reference internal" href="#reverb-effect" id="id11">Reverb effect</a></p></li>
-<li><p><a class="reference internal" href="#equaliser-effect" id="id12">Equaliser effect</a></p></li>
+<li><p><a class="reference internal" href="#equalizer-effect" id="id12">Equalizer effect</a></p></li>
 </ul>
 </li>
 </ul>
@@ -389,18 +389,15 @@ channel.</p>
 before channel routes.  For each route, you can select the system sound output
 or input and adjust the volume from -96 dB (quietest) to +12 dB (loudest).  For
 channel routes, you can also select the individual emulated channel and host
-channel.  Select <strong>Delete route</strong> to delete a route.</p>
-<p>To add a full route, highlight a menu item for the emulated device you want to
-add the route for and press the UI Audio add full mapping key (F on the keyboard
-by default).  If possible, a full route will be added and the menu highlight
-will move to the newly added route.  If routes between the highlighted device
-and every host output/input already exist, no route will be added.</p>
-<p>To add a channel route, highlight a menu item for the emulated device you want
-to add the route for and press the UI Audio add channel mapping key (C on the
-keyboard by default).  If possible, a channel route will be added and the menu
-highlight will move to the newly added route.  If routes between all channels
-for the highlighted device and every host output/input channel already exist, no
-route will be added.</p>
+channel.  Select <strong>Remove this route</strong> to remove a route.</p>
+<p>Select <strong>Add new full route</strong> to add a new full route to that group.  If
+possible, it will be added and the menu highlight will move to the newly added
+route.  If routes between the highlighted device and every host output/input
+already exist, no route will be added.</p>
+<p>Select <strong>Add new channel route</strong> to add a new channel route to that group.  If
+possible, it will be added and the menu highlight will move to the newly added
+route.  If routes between all channels for the highlighted device and every
+host output/input channel already exist, no route will be added.</p>
 <p>Some sound modules allow channel assignments and volumes to be controlled using
 an external mixer interface (for example the PipeWire module for Linux has this
 capability).  In these cases, MAME does its best to follow the changes you make
@@ -415,10 +412,10 @@ independent effect chain is applied for each emulated sound output device.</p>
 <p>The effect chain itself is not configurable.  It always consists of these four
 effects, in this order:</p>
 <ul class="simple">
-<li><p>Filter</p></li>
+<li><p>Filters</p></li>
 <li><p>Compressor</p></li>
 <li><p>Reverb</p></li>
-<li><p>Parametric equaliser</p></li>
+<li><p>Equalizer</p></li>
 </ul>
 <p>When editing parameters for an output device’s effect chain, inherited default
 parameter values are showing dimmed, while parameter values set for that chain
@@ -429,13 +426,22 @@ default value.</p>
 by output device chains.  When editing the <strong>Default</strong> chain, you can restore
 the built-in default value for a parameter by pressing the UI Clear key
 (Del/Delete/Forward Delete on the keyboard by default).</p>
-<p>The Audio Events menu also allows you to configure the algorithm used for audio
+<p>By default, the high-pass filter is enabled, with minimal cutoff frequency for
+DC offset removal.  All other effects are bypassed (technically, the equalizer
+effect is active too, but all bands are set to 0 dB so it's still turned off).</p>
+<p>The Audio Effects menu also allows you to configure the algorithm used for audio
 sample rate conversion.  The default <strong>LoFi</strong> algorithm has modest CPU
-requirements.  The <strong>HQ</strong> algorithm provides higher quality sample rate
-conversion at the expense of requiring substantially higher CPU performance.
-The <strong>HQ</strong> algorithm has additional parameters.  Increasing the latency can
-improve quality.  Increasing the filter length or phases can improve quality at
-the expense of higher CPU performance requirements.</p>
+requirements.  The recommended <strong>HQ</strong> algorithm provides higher quality sample
+rate conversion at the expense of requiring substantially higher CPU
+performance.</p>
+<p>The <strong>HQ</strong> algorithm has additional parameters.  Increasing the <strong>HQ latency</strong>
+can improve quality.  If it's increased too much and multiple sound chips are
+used, the latencies will stack up and you will end up with too much lag at the
+end.  When decreasing the latency below 1 ms, the resampler will lose its
+potential (in fact, it will sound similar to MAME's lower quality resampler from
+before version 0.278).  Increasing the <strong>HQ filter max size</strong> or <strong>HQ filter max
+phases</strong> can improve quality at the expense of higher CPU performance
+requirements.</p>
 <section id="filter-effect">
 <h3><a class="toc-backref" href="#id9" role="doc-backlink">Filter effect</a><a class="headerlink" href="#filter-effect" title="Link to this heading">¶</a></h3>
 <p>This effect implements a second-order high-pass filter and a second-order
@@ -443,7 +449,7 @@ low-pass filter.  The high-pass filter allows DC offsets to be removed.  The
 low-pass filter can simulate the poor high-frequency response typical of many
 arcade cabinets and television sets.</p>
 <p>The Q factor controls how sharp the transition from the stop band to the
-passband is.  Higher factors provide a sharper transition.  Values over 0.7
+passband is.  Higher factors provide a sharper transition.  Values over 0.71
 cause the filter to amplify frequencies close to the cutoff frequency, which
 may be surprising or undesirable.</p>
 </section>
@@ -456,11 +462,13 @@ sounds.  It’s useful in a variety of situations, for example it can help make
 quiet sounds more audible over background noise.</p>
 <p>The parameters are:</p>
 <dl class="simple">
+<dt>Threshold</dt><dd><p>The level at which the amplification fully stops.</p>
+</dd>
+<dt>Ratio</dt><dd><p>The maximum amplification.</p>
+</dd>
 <dt>Attack</dt><dd><p>The reaction time to loud sounds to reduce the amplification.</p>
 </dd>
 <dt>Release</dt><dd><p>The reaction time to allow the amplification to go back up.</p>
-</dd>
-<dt>Ratio</dt><dd><p>The maximum amplification.</p>
 </dd>
 <dt>Input gain</dt><dd><p>The amplification level at the input.</p>
 </dd>
@@ -468,8 +476,6 @@ quiet sounds more audible over background noise.</p>
 </dd>
 <dt>Convexity</dt><dd><p>The shape of the relationship between distance to the threshold and ratio
 value.  Higher values give a steeper shape.</p>
-</dd>
-<dt>Threshold</dt><dd><p>The level at which the amplification fully stops.</p>
 </dd>
 <dt>Channel link</dt><dd><p>At 100%, all channels of an output device are amplified identically, while
 at 0% they are fully independent.  Intermediate values give intermediate
@@ -485,13 +491,17 @@ behaviour.</p>
 soft clipping at that level.</p>
 </dd>
 </dl>
+<p>By setting <strong>Attack</strong> to 0 ms, <strong>Release</strong> to Infinite, and <strong>Ratio</strong> to
+Infinity:1, the compressor will turn into a brickwall limiter (leave the
+advanced settings to default).  If you increase <strong>Input gain</strong> on top of that,
+with a <strong>Threshold</strong> of eg. -3 dB, it will act like a dynamic normalizer.</p>
 </section>
 <section id="reverb-effect">
 <h3><a class="toc-backref" href="#id11" role="doc-backlink">Reverb effect</a><a class="headerlink" href="#reverb-effect" title="Link to this heading">¶</a></h3>
-<p>Not implemented yet.</p>
+<p>Not documented yet.</p>
 </section>
-<section id="equaliser-effect">
-<h3><a class="toc-backref" href="#id12" role="doc-backlink">Equaliser effect</a><a class="headerlink" href="#equaliser-effect" title="Link to this heading">¶</a></h3>
+<section id="equalizer-effect">
+<h3><a class="toc-backref" href="#id12" role="doc-backlink">Equalizer effect</a><a class="headerlink" href="#equalizer-effect" title="Link to this heading">¶</a></h3>
 <p>A five-band parametric equalizer, allowing to amplify or attenuate specific
 frequency bands.</p>
 <p>The three middle filters are bandpass/bandreject filters, meaning they amplify
