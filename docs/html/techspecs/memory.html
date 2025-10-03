@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Emulated system memory and address spaces management &mdash; MAME Documentation 0.280 documentation</title>
+  <title>Emulated system memory and address spaces management &mdash; MAME Documentation 0.281 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
 
@@ -13,7 +13,7 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/documentation_options.js?v=e8156010"></script>
+        <script src="../_static/documentation_options.js?v=4c6de409"></script>
         <script src="../_static/doctools.js?v=9bcbadda"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
@@ -35,7 +35,7 @@
             MAME Documentation
           </a>
               <div class="version">
-                0.280
+                0.281
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -411,7 +411,7 @@ view can be re-enabled at any time.</p>
 <section id="bus-contention-handling">
 <span id="id1"></span><h3><a class="toc-backref" href="#id15" role="doc-backlink">3.5 Bus contention handling</a><a class="headerlink" href="#bus-contention-handling" title="Link to this heading">¶</a></h3>
 <p>Some specific CPUs have been upgraded to be interruptible which allows
-to add bus contention and wait states capabitilites.  Being
+to add bus contention and wait states capabilities.  Being
 interruptible means, in practice, that an instruction can be
 interrupted at any time and the execute_run method of the core exited.
 Other devices can then run, then eventually controls returns to the
@@ -970,7 +970,7 @@ is accessed without overriding the actual access.  Taps can change the
 data passed around.  A write tap happens before the access, and can
 change the value to be written.  A read tap happens after the access,
 and can change the value returned.</p>
-<p>Taps must be of the same width and alignement than the bus.  Multiple
+<p>Taps must be of the same width and alignment as the bus.  Multiple
 taps can act over the same addresses.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">memory_passthrough_handler</span></code> object collates a number of taps
 and allow to remove them all in one call.  The <code class="docutils literal notranslate"><span class="pre">mph</span></code> parameter is

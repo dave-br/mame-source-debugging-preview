@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Software 3D Rendering in MAME &mdash; MAME Documentation 0.280 documentation</title>
+  <title>Software 3D Rendering in MAME &mdash; MAME Documentation 0.281 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
 
@@ -13,7 +13,7 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/documentation_options.js?v=e8156010"></script>
+        <script src="../_static/documentation_options.js?v=4c6de409"></script>
         <script src="../_static/doctools.js?v=9bcbadda"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
@@ -35,7 +35,7 @@
             MAME Documentation
           </a>
               <div class="version">
-                0.280
+                0.281
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -640,7 +640,7 @@ typically have many more object-wide parameters defined here:</p>
     <span class="n">bitmap_rgb32</span> <span class="o">*</span><span class="n">dest</span><span class="p">;</span>    <span class="o">//</span> <span class="n">pointer</span> <span class="n">to</span> <span class="n">the</span> <span class="n">rendering</span> <span class="n">bitmap</span>
     <span class="n">bitmap_ind16</span> <span class="o">*</span><span class="n">depth</span><span class="p">;</span>   <span class="o">//</span> <span class="n">pointer</span> <span class="n">to</span> <span class="n">the</span> <span class="n">depth</span> <span class="n">bitmap</span>
     <span class="n">rgb_t</span> <span class="n">color</span><span class="p">;</span>           <span class="o">//</span> <span class="n">overall</span> <span class="n">color</span> <span class="p">(</span><span class="k">for</span> <span class="n">clearing</span> <span class="ow">and</span> <span class="n">flat</span> <span class="n">shaded</span> <span class="n">case</span><span class="p">)</span>
-    <span class="n">uint16_t</span> <span class="n">depthval</span><span class="p">;</span>     <span class="o">//</span> <span class="n">fixed</span> <span class="n">depth</span> <span class="n">v</span> <span class="n">alue</span> <span class="p">(</span><span class="k">for</span> <span class="n">clearing</span><span class="p">)</span>
+    <span class="n">uint16_t</span> <span class="n">depthval</span><span class="p">;</span>     <span class="o">//</span> <span class="n">fixed</span> <span class="n">depth</span> <span class="n">value</span> <span class="p">(</span><span class="k">for</span> <span class="n">clearing</span><span class="p">)</span>
 <span class="p">};</span>
 </pre></div>
 </div>
@@ -1065,7 +1065,7 @@ returned in <strong>chunk</strong>:</p>
 <li><p><strong>count</strong> is the number of items you wish to access contiguously.</p></li>
 <li><p><strong>chunk</strong> is a reference to a variable that will be set to the actual number of
 contiguous items available starting at <strong>index</strong>. If <strong>chunk</strong> is less than <strong>count</strong>,
-then the caller should process the <strong>chunk</strong> items returned, then call <code class="docutils literal notranslate"><span class="pre">countiguous()</span></code>
+then the caller should process the <strong>chunk</strong> items returned, then call <code class="docutils literal notranslate"><span class="pre">contiguous()</span></code>
 again at (<strong>index</strong> + <strong>chunk</strong>) to access the rest.</p></li>
 </ul>
 <p><strong>Return value:</strong> a pointer to the first item in the contiguous chunk. No range checking

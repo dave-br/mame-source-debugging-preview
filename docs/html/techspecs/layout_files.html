@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MAME Layout Files &mdash; MAME Documentation 0.280 documentation</title>
+  <title>MAME Layout Files &mdash; MAME Documentation 0.281 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
 
@@ -13,7 +13,7 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/documentation_options.js?v=e8156010"></script>
+        <script src="../_static/documentation_options.js?v=4c6de409"></script>
         <script src="../_static/doctools.js?v=9bcbadda"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
@@ -35,7 +35,7 @@
             MAME Documentation
           </a>
               <div class="version">
-                0.280
+                0.281
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -438,10 +438,8 @@ This is an example opening tag for a top-level <code class="docutils literal not
 </pre></div>
 </div>
 <p>In general, children of the top-level <code class="docutils literal notranslate"><span class="pre">mamelayout</span></code> element are processed in
-reading order from top to bottom.  The exception is that, for historical
-reasons, views are processed last.  This means views see the final values of all
-parameters at the end of the <code class="docutils literal notranslate"><span class="pre">mamelayout</span></code> element, and may refer to elements
-and groups that appear after them.</p>
+reading order from top to bottom.  Elements and groups must be defined before
+they can be used.</p>
 <p>The following elements are allowed inside the top-level <code class="docutils literal notranslate"><span class="pre">mamelayout</span></code> element:</p>
 <dl class="simple">
 <dt>param</dt><dd><p>Defines or reassigns a value parameter.  See <a class="reference internal" href="#layfile-concepts-params"><span class="std std-ref">Parameters</span></a>
@@ -726,11 +724,7 @@ This is an example of a valid opening tag for a <code class="docutils literal no
 </pre></div>
 </div>
 <p>A view creates a nested parameter scope inside the parameter scope of the
-top-level <code class="docutils literal notranslate"><span class="pre">mamelayout</span></code> element.  For historical reasons, <code class="docutils literal notranslate"><span class="pre">view</span></code> elements are
-processed <em>after</em> all other child elements of the top-level <code class="docutils literal notranslate"><span class="pre">mamelayout</span></code>
-element.  This means a view can reference elements and groups that appear after
-it in the file, and parameters from the enclosing scope will have their final
-values from the end of the <code class="docutils literal notranslate"><span class="pre">mamelayout</span></code> element.</p>
+top-level <code class="docutils literal notranslate"><span class="pre">mamelayout</span></code> element.</p>
 <p>A <code class="docutils literal notranslate"><span class="pre">view</span></code> element may have a <code class="docutils literal notranslate"><span class="pre">showpointers</span></code> attribute to set whether mouse
 and pen pointers should be shown for the view.  If present, the value must be
 either <code class="docutils literal notranslate"><span class="pre">yes</span></code> or <code class="docutils literal notranslate"><span class="pre">no</span></code>.  If the <code class="docutils literal notranslate"><span class="pre">showpointers</span></code> attribute is not present, pen
@@ -1185,7 +1179,7 @@ device that caused the layout file to be loaded.  The <code class="docutils lite
 must be an integer specifying the bits of the I/O port field that the item
 should activate.  This sample shows instantiation of clickable buttons:</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">clickthrough</span></code> attribute controls whether clicks can pass through the view
-item to other view items drawn above it.  The <code class="docutils literal notranslate"><span class="pre">clickthrough</span></code> attribute must be
+item to other view items drawn below it.  The <code class="docutils literal notranslate"><span class="pre">clickthrough</span></code> attribute must be
 <code class="docutils literal notranslate"><span class="pre">yes</span></code> or <code class="docutils literal notranslate"><span class="pre">no</span></code> if present.  The default is <code class="docutils literal notranslate"><span class="pre">no</span></code> (clicks do not pass
 through) for view items with <code class="docutils literal notranslate"><span class="pre">inputtag</span></code> and <code class="docutils literal notranslate"><span class="pre">inputmask</span></code> attributes, and
 <code class="docutils literal notranslate"><span class="pre">yes</span></code> (clicks pass through) for other view items.</p>
@@ -1445,7 +1439,7 @@ build up complex graphics.</p>
 <dt><a class="reference external" href="https://git.redump.net/mame/tree/src/mame/layout/md6802.lay?h=mame0261">md6802.lay</a></dt><dd><p>Effectively using groups as a procedural programming language to build up an
 image of a trainer board.</p>
 </dd>
-<dt><a class="reference external" href="https://git.redump.net/mame/tree/src/mame/layout/beena.lay?h=mame0261">beena.lay</a></dt><dd><p>Using event-based scripting to dynamically position elements and draw elemnt
+<dt><a class="reference external" href="https://git.redump.net/mame/tree/src/mame/layout/beena.lay?h=mame0261">beena.lay</a></dt><dd><p>Using event-based scripting to dynamically position elements and draw element
 content programmatically.</p>
 </dd>
 </dl>
