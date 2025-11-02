@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lua Input System Classes &mdash; MAME Documentation 0.281 documentation</title>
+  <title>Lua Input System Classes &mdash; MAME Documentation 0.282 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
 
@@ -13,7 +13,7 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/documentation_options.js?v=4c6de409"></script>
+        <script src="../_static/documentation_options.js?v=7b956e63"></script>
         <script src="../_static/doctools.js?v=9bcbadda"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
@@ -35,7 +35,7 @@
             MAME Documentation
           </a>
               <div class="version">
-                0.281
+                0.282
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -364,6 +364,20 @@ analog fields, the value must be right-aligned and in the correct range.</p>
 <dt>field:clear_value()</dt><dd><p>Clear programmatically overridden value and restore the field’s regular
 behaviour.</p>
 </dd>
+<dt>field:set_sensitivity(sensitivity)</dt><dd><p>Set the sensitivity or gain for analog fields.  Raises an error for digital
+fields.</p>
+</dd>
+<dt>field:set_keydelta(sensitivity)</dt><dd><p>Set the sensitivity to corresponding digital increment/decrement inputs for
+analog fields.  Raises an error for digital fields.</p>
+</dd>
+<dt>field:set_centerdelta(sensitivity)</dt><dd><p>Set the speed at which non-wrapping analog fields return to their default
+values after associated digital increment/decrement inputs are released.
+Raises an error for digital fields and wrapping analog fields.</p>
+</dd>
+<dt>field:set_analog_reverse(reverse)</dt><dd><p>Set whether an analog field’s value increases in the opposite direction to
+the convention (e.g. larger values when a pedal is released or a joystick is
+moved to the left).  Raises an error for digital fields.</p>
+</dd>
 <dt>field:set_input_seq(seqtype, seq)</dt><dd><p>Set the <a class="reference internal" href="#luascript-ref-inputseq"><span class="std std-ref">input sequence</span></a> for the specified
 sequence type.  This is used to configure per-machine input settings.  The
 sequence type must be <code class="docutils literal notranslate"><span class="pre">&quot;standard&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;increment&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;decrement&quot;</span></code>.</p>
@@ -415,6 +429,32 @@ overridden by scripts or plugins).</p>
 </dd>
 <dt>field.sensitivity (read-only)</dt><dd><p>The sensitivity or gain for analog fields, or <code class="docutils literal notranslate"><span class="pre">nil</span></code> for digital fields.</p>
 </dd>
+<dt>field.default_sensitivity (read-only)</dt><dd><p>The default sensitivity or gain for analog fields, or <code class="docutils literal notranslate"><span class="pre">nil</span></code> for digital
+fields.</p>
+</dd>
+<dt>field.keydelta (read-only)</dt><dd><p>The sensitivity to corresponding digital increment/decrement inputs for
+analog fields, or <code class="docutils literal notranslate"><span class="pre">nil</span></code> for digital fields.</p>
+</dd>
+<dt>field.default_keydelta (read-only)</dt><dd><p>The default sensitivity to corresponding digital increment/decrement inputs
+for analog fields, or <code class="docutils literal notranslate"><span class="pre">nil</span></code> for digital fields.</p>
+</dd>
+<dt>field.centerdelta (read-only)</dt><dd><p>The speed at which non-wrapping analog fields return to their default values
+after associated digital increment/decrement inputs are released, or <code class="docutils literal notranslate"><span class="pre">nil</span></code>
+for digital fields and wrapping analog fields.</p>
+</dd>
+<dt>field.default_centerdelta (read-only)</dt><dd><p>The default speed at which non-wrapping analog fields return to their
+default values after associated digital increment/decrement inputs are
+released, or <code class="docutils literal notranslate"><span class="pre">nil</span></code> for digital fields and wrapping analog fields.</p>
+</dd>
+<dt>field.analog_reverse (read-only)</dt><dd><p>A Boolean indicating whether the value increases in the opposite direction
+to the convention for analog fields (e.g. larger values when a pedal is
+released or a joystick is moved to the left), or <code class="docutils literal notranslate"><span class="pre">nil</span></code> for digital fields.</p>
+</dd>
+<dt>field.default_analog_reverse (read-only)</dt><dd><p>A Boolean indicating whether the value increases in the opposite direction
+to the convention by default for analog fields (e.g. larger values when a
+pedal is released or a joystick is moved to the left), or <code class="docutils literal notranslate"><span class="pre">nil</span></code> for
+digital fields.</p>
+</dd>
 <dt>field.way (read-only)</dt><dd><p>The number of directions allowed by the restrictor plate/gate for a digital
 joystick, or zero (0) for other inputs.</p>
 </dd>
@@ -429,21 +469,11 @@ switch.</p>
 </dd>
 <dt>field.enabled (read-only)</dt><dd><p>A Boolean indicating whether the field is enabled.</p>
 </dd>
-<dt>field.optional (read-only)</dt><dd><p>A Boolean indicating whether the field is optional and not required to use
-the emulated system.</p>
-</dd>
 <dt>field.cocktail (read-only)</dt><dd><p>A Boolean indicating whether the field is only used when the system is
 configured for a cocktail table cabinet.</p>
 </dd>
 <dt>field.toggle (read-only)</dt><dd><p>A Boolean indicating whether the field corresponds to a hardware toggle
 switch or push-on, push-off button.</p>
-</dd>
-<dt>field.rotated (read-only)</dt><dd><p>A Boolean indicating whether the field corresponds to a control that is
-rotated relative its standard orientation.</p>
-</dd>
-<dt>field.analog_reverse (read-only)</dt><dd><p>A Boolean indicating whether the field corresponds to an analog control that
-increases in the opposite direction to the convention (e.g. larger values
-when a pedal is released or a joystick is moved to the left).</p>
 </dd>
 <dt>field.analog_reset (read-only)</dt><dd><p>A Boolean indicating whether the field corresponds to an incremental
 position input (e.g. a dial or trackball axis) that should be reset to zero
