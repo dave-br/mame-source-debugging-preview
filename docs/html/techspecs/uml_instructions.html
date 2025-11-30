@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>UML Instruction Reference &mdash; MAME Documentation 0.282 documentation</title>
+  <title>UML Instruction Reference &mdash; MAME Documentation 0.283 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
 
@@ -13,7 +13,7 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/documentation_options.js?v=7b956e63"></script>
+        <script src="../_static/documentation_options.js?v=dfedea7a"></script>
         <script src="../_static/doctools.js?v=9bcbadda"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
@@ -35,7 +35,7 @@
             MAME Documentation
           </a>
               <div class="version">
-                0.282
+                0.283
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -110,133 +110,134 @@
 <span id="umlinst"></span><h1>UML Instruction Reference<a class="headerlink" href="#uml-instruction-reference" title="Link to this heading">¶</a></h1>
 <nav class="contents local" id="contents">
 <ul class="simple">
-<li><p><a class="reference internal" href="#introduction" id="id210">Introduction</a></p></li>
-<li><p><a class="reference internal" href="#special-value-types" id="id211">Special value types</a></p>
+<li><p><a class="reference internal" href="#introduction" id="id213">Introduction</a></p></li>
+<li><p><a class="reference internal" href="#special-value-types" id="id214">Special value types</a></p>
 <ul>
-<li><p><a class="reference internal" href="#conditions" id="id212">Conditions</a></p></li>
-<li><p><a class="reference internal" href="#flag-masks" id="id213">Flag masks</a></p></li>
-<li><p><a class="reference internal" href="#floating-point-rounding-modes" id="id214">Floating point rounding modes</a></p></li>
+<li><p><a class="reference internal" href="#conditions" id="id215">Conditions</a></p></li>
+<li><p><a class="reference internal" href="#flag-masks" id="id216">Flag masks</a></p></li>
+<li><p><a class="reference internal" href="#floating-point-rounding-modes" id="id217">Floating point rounding modes</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#flow-control" id="id215">Flow control</a></p>
+<li><p><a class="reference internal" href="#flow-control" id="id218">Flow control</a></p>
 <ul>
-<li><p><a class="reference internal" href="#comment" id="id216">COMMENT</a></p></li>
-<li><p><a class="reference internal" href="#nop" id="id217">NOP</a></p></li>
-<li><p><a class="reference internal" href="#label" id="id218">LABEL</a></p></li>
-<li><p><a class="reference internal" href="#handle" id="id219">HANDLE</a></p></li>
-<li><p><a class="reference internal" href="#hash" id="id220">HASH</a></p></li>
-<li><p><a class="reference internal" href="#jmp" id="id221">JMP</a></p></li>
-<li><p><a class="reference internal" href="#callh" id="id222">CALLH</a></p></li>
-<li><p><a class="reference internal" href="#exh" id="id223">EXH</a></p></li>
-<li><p><a class="reference internal" href="#ret" id="id224">RET</a></p></li>
-<li><p><a class="reference internal" href="#hashjmp" id="id225">HASHJMP</a></p></li>
-<li><p><a class="reference internal" href="#exit" id="id226">EXIT</a></p></li>
-<li><p><a class="reference internal" href="#callc" id="id227">CALLC</a></p></li>
-<li><p><a class="reference internal" href="#debug" id="id228">DEBUG</a></p></li>
-<li><p><a class="reference internal" href="#break" id="id229">BREAK</a></p></li>
+<li><p><a class="reference internal" href="#comment" id="id219">COMMENT</a></p></li>
+<li><p><a class="reference internal" href="#nop" id="id220">NOP</a></p></li>
+<li><p><a class="reference internal" href="#label" id="id221">LABEL</a></p></li>
+<li><p><a class="reference internal" href="#handle" id="id222">HANDLE</a></p></li>
+<li><p><a class="reference internal" href="#hash" id="id223">HASH</a></p></li>
+<li><p><a class="reference internal" href="#jmp" id="id224">JMP</a></p></li>
+<li><p><a class="reference internal" href="#callh" id="id225">CALLH</a></p></li>
+<li><p><a class="reference internal" href="#exh" id="id226">EXH</a></p></li>
+<li><p><a class="reference internal" href="#ret" id="id227">RET</a></p></li>
+<li><p><a class="reference internal" href="#hashjmp" id="id228">HASHJMP</a></p></li>
+<li><p><a class="reference internal" href="#exit" id="id229">EXIT</a></p></li>
+<li><p><a class="reference internal" href="#callc" id="id230">CALLC</a></p></li>
+<li><p><a class="reference internal" href="#debug" id="id231">DEBUG</a></p></li>
+<li><p><a class="reference internal" href="#break" id="id232">BREAK</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#status-and-control" id="id230">Status and control</a></p>
+<li><p><a class="reference internal" href="#status-and-control" id="id233">Status and control</a></p>
 <ul>
-<li><p><a class="reference internal" href="#set" id="id231">SET</a></p></li>
-<li><p><a class="reference internal" href="#carry" id="id232">CARRY</a></p></li>
-<li><p><a class="reference internal" href="#setflgs" id="id233">SETFLGS</a></p></li>
-<li><p><a class="reference internal" href="#getflgs" id="id234">GETFLGS</a></p></li>
-<li><p><a class="reference internal" href="#setfmod" id="id235">SETFMOD</a></p></li>
-<li><p><a class="reference internal" href="#getfmod" id="id236">GETFMOD</a></p></li>
-<li><p><a class="reference internal" href="#restore" id="id237">RESTORE</a></p></li>
-<li><p><a class="reference internal" href="#save" id="id238">SAVE</a></p></li>
+<li><p><a class="reference internal" href="#set" id="id234">SET</a></p></li>
+<li><p><a class="reference internal" href="#carry" id="id235">CARRY</a></p></li>
+<li><p><a class="reference internal" href="#setflgs" id="id236">SETFLGS</a></p></li>
+<li><p><a class="reference internal" href="#getflgs" id="id237">GETFLGS</a></p></li>
+<li><p><a class="reference internal" href="#setfmod" id="id238">SETFMOD</a></p></li>
+<li><p><a class="reference internal" href="#getfmod" id="id239">GETFMOD</a></p></li>
+<li><p><a class="reference internal" href="#restore" id="id240">RESTORE</a></p></li>
+<li><p><a class="reference internal" href="#save" id="id241">SAVE</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#data-movement" id="id239">Data movement</a></p>
+<li><p><a class="reference internal" href="#data-movement" id="id242">Data movement</a></p>
 <ul>
-<li><p><a class="reference internal" href="#mov" id="id240">MOV</a></p></li>
-<li><p><a class="reference internal" href="#fmov" id="id241">FMOV</a></p></li>
-<li><p><a class="reference internal" href="#fcopyi" id="id242">FCOPYI</a></p></li>
-<li><p><a class="reference internal" href="#icopyf" id="id243">ICOPYF</a></p></li>
-<li><p><a class="reference internal" href="#load" id="id244">LOAD</a></p></li>
-<li><p><a class="reference internal" href="#loads" id="id245">LOADS</a></p></li>
-<li><p><a class="reference internal" href="#store" id="id246">STORE</a></p></li>
-<li><p><a class="reference internal" href="#fload" id="id247">FLOAD</a></p></li>
-<li><p><a class="reference internal" href="#fstore" id="id248">FSTORE</a></p></li>
-<li><p><a class="reference internal" href="#getexp" id="id249">GETEXP</a></p></li>
-<li><p><a class="reference internal" href="#mapvar" id="id250">MAPVAR</a></p></li>
-<li><p><a class="reference internal" href="#recover" id="id251">RECOVER</a></p></li>
+<li><p><a class="reference internal" href="#mov" id="id243">MOV</a></p></li>
+<li><p><a class="reference internal" href="#fmov" id="id244">FMOV</a></p></li>
+<li><p><a class="reference internal" href="#fcopyi" id="id245">FCOPYI</a></p></li>
+<li><p><a class="reference internal" href="#icopyf" id="id246">ICOPYF</a></p></li>
+<li><p><a class="reference internal" href="#load" id="id247">LOAD</a></p></li>
+<li><p><a class="reference internal" href="#loads" id="id248">LOADS</a></p></li>
+<li><p><a class="reference internal" href="#store" id="id249">STORE</a></p></li>
+<li><p><a class="reference internal" href="#fload" id="id250">FLOAD</a></p></li>
+<li><p><a class="reference internal" href="#fstore" id="id251">FSTORE</a></p></li>
+<li><p><a class="reference internal" href="#getexp" id="id252">GETEXP</a></p></li>
+<li><p><a class="reference internal" href="#mapvar" id="id253">MAPVAR</a></p></li>
+<li><p><a class="reference internal" href="#recover" id="id254">RECOVER</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#emulated-memory-access" id="id252">Emulated memory access</a></p>
+<li><p><a class="reference internal" href="#emulated-memory-access" id="id255">Emulated memory access</a></p>
 <ul>
-<li><p><a class="reference internal" href="#read" id="id253">READ</a></p></li>
-<li><p><a class="reference internal" href="#readm" id="id254">READM</a></p></li>
-<li><p><a class="reference internal" href="#write" id="id255">WRITE</a></p></li>
-<li><p><a class="reference internal" href="#writem" id="id256">WRITEM</a></p></li>
-<li><p><a class="reference internal" href="#fread" id="id257">FREAD</a></p></li>
-<li><p><a class="reference internal" href="#fwrite" id="id258">FWRITE</a></p></li>
+<li><p><a class="reference internal" href="#read" id="id256">READ</a></p></li>
+<li><p><a class="reference internal" href="#readm" id="id257">READM</a></p></li>
+<li><p><a class="reference internal" href="#write" id="id258">WRITE</a></p></li>
+<li><p><a class="reference internal" href="#writem" id="id259">WRITEM</a></p></li>
+<li><p><a class="reference internal" href="#fread" id="id260">FREAD</a></p></li>
+<li><p><a class="reference internal" href="#fwrite" id="id261">FWRITE</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#integer-arithmetic-and-logic" id="id259">Integer arithmetic and logic</a></p>
+<li><p><a class="reference internal" href="#integer-arithmetic-and-logic" id="id262">Integer arithmetic and logic</a></p>
 <ul>
-<li><p><a class="reference internal" href="#add" id="id260">ADD</a></p></li>
-<li><p><a class="reference internal" href="#addc" id="id261">ADDC</a></p></li>
-<li><p><a class="reference internal" href="#sub" id="id262">SUB</a></p></li>
-<li><p><a class="reference internal" href="#subb" id="id263">SUBB</a></p></li>
-<li><p><a class="reference internal" href="#cmp" id="id264">CMP</a></p></li>
-<li><p><a class="reference internal" href="#and" id="id265">AND</a></p></li>
-<li><p><a class="reference internal" href="#test" id="id266">TEST</a></p></li>
-<li><p><a class="reference internal" href="#or" id="id267">OR</a></p></li>
-<li><p><a class="reference internal" href="#xor" id="id268">XOR</a></p></li>
-<li><p><a class="reference internal" href="#sext" id="id269">SEXT</a></p></li>
-<li><p><a class="reference internal" href="#lzcnt" id="id270">LZCNT</a></p></li>
-<li><p><a class="reference internal" href="#tzcnt" id="id271">TZCNT</a></p></li>
+<li><p><a class="reference internal" href="#add" id="id263">ADD</a></p></li>
+<li><p><a class="reference internal" href="#addc" id="id264">ADDC</a></p></li>
+<li><p><a class="reference internal" href="#sub" id="id265">SUB</a></p></li>
+<li><p><a class="reference internal" href="#subb" id="id266">SUBB</a></p></li>
+<li><p><a class="reference internal" href="#cmp" id="id267">CMP</a></p></li>
+<li><p><a class="reference internal" href="#and" id="id268">AND</a></p></li>
+<li><p><a class="reference internal" href="#test" id="id269">TEST</a></p></li>
+<li><p><a class="reference internal" href="#or" id="id270">OR</a></p></li>
+<li><p><a class="reference internal" href="#xor" id="id271">XOR</a></p></li>
+<li><p><a class="reference internal" href="#sext" id="id272">SEXT</a></p></li>
+<li><p><a class="reference internal" href="#lzcnt" id="id273">LZCNT</a></p></li>
+<li><p><a class="reference internal" href="#tzcnt" id="id274">TZCNT</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#integer-multiply-and-divide" id="id272">Integer multiply and divide</a></p>
+<li><p><a class="reference internal" href="#integer-multiply-and-divide" id="id275">Integer multiply and divide</a></p>
 <ul>
-<li><p><a class="reference internal" href="#mullw" id="id273">MULLW</a></p></li>
-<li><p><a class="reference internal" href="#mul" id="id274">MUL</a></p></li>
-<li><p><a class="reference internal" href="#div" id="id275">DIV</a></p></li>
+<li><p><a class="reference internal" href="#mullw" id="id276">MULLW</a></p></li>
+<li><p><a class="reference internal" href="#mul" id="id277">MUL</a></p></li>
+<li><p><a class="reference internal" href="#div" id="id278">DIV</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#integer-shift-and-rotate" id="id276">Integer shift and rotate</a></p>
+<li><p><a class="reference internal" href="#integer-shift-and-rotate" id="id279">Integer shift and rotate</a></p>
 <ul>
-<li><p><a class="reference internal" href="#shl" id="id277">SHL</a></p></li>
-<li><p><a class="reference internal" href="#shr" id="id278">SHR</a></p></li>
-<li><p><a class="reference internal" href="#sar" id="id279">SAR</a></p></li>
-<li><p><a class="reference internal" href="#rol" id="id280">ROL</a></p></li>
-<li><p><a class="reference internal" href="#ror" id="id281">ROR</a></p></li>
-<li><p><a class="reference internal" href="#rolc" id="id282">ROLC</a></p></li>
-<li><p><a class="reference internal" href="#rorc" id="id283">RORC</a></p></li>
-<li><p><a class="reference internal" href="#roland" id="id284">ROLAND</a></p></li>
-<li><p><a class="reference internal" href="#rolins" id="id285">ROLINS</a></p></li>
-<li><p><a class="reference internal" href="#bswap" id="id286">BSWAP</a></p></li>
+<li><p><a class="reference internal" href="#shl" id="id280">SHL</a></p></li>
+<li><p><a class="reference internal" href="#shr" id="id281">SHR</a></p></li>
+<li><p><a class="reference internal" href="#sar" id="id282">SAR</a></p></li>
+<li><p><a class="reference internal" href="#rol" id="id283">ROL</a></p></li>
+<li><p><a class="reference internal" href="#ror" id="id284">ROR</a></p></li>
+<li><p><a class="reference internal" href="#rolc" id="id285">ROLC</a></p></li>
+<li><p><a class="reference internal" href="#rorc" id="id286">RORC</a></p></li>
+<li><p><a class="reference internal" href="#bfx" id="id287">BFX</a></p></li>
+<li><p><a class="reference internal" href="#roland" id="id288">ROLAND</a></p></li>
+<li><p><a class="reference internal" href="#rolins" id="id289">ROLINS</a></p></li>
+<li><p><a class="reference internal" href="#bswap" id="id290">BSWAP</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#floating-point-arithmetic" id="id287">Floating point arithmetic</a></p>
+<li><p><a class="reference internal" href="#floating-point-arithmetic" id="id291">Floating point arithmetic</a></p>
 <ul>
-<li><p><a class="reference internal" href="#fadd" id="id288">FADD</a></p></li>
-<li><p><a class="reference internal" href="#fsub" id="id289">FSUB</a></p></li>
-<li><p><a class="reference internal" href="#fcmp" id="id290">FCMP</a></p></li>
-<li><p><a class="reference internal" href="#fmul" id="id291">FMUL</a></p></li>
-<li><p><a class="reference internal" href="#fdiv" id="id292">FDIV</a></p></li>
-<li><p><a class="reference internal" href="#fneg" id="id293">FNEG</a></p></li>
-<li><p><a class="reference internal" href="#fabs" id="id294">FABS</a></p></li>
-<li><p><a class="reference internal" href="#fsqrt" id="id295">FSQRT</a></p></li>
-<li><p><a class="reference internal" href="#frecip" id="id296">FRECIP</a></p></li>
-<li><p><a class="reference internal" href="#frsqrt" id="id297">FRSQRT</a></p></li>
-<li><p><a class="reference internal" href="#frnds" id="id298">FRNDS</a></p></li>
+<li><p><a class="reference internal" href="#fadd" id="id292">FADD</a></p></li>
+<li><p><a class="reference internal" href="#fsub" id="id293">FSUB</a></p></li>
+<li><p><a class="reference internal" href="#fcmp" id="id294">FCMP</a></p></li>
+<li><p><a class="reference internal" href="#fmul" id="id295">FMUL</a></p></li>
+<li><p><a class="reference internal" href="#fdiv" id="id296">FDIV</a></p></li>
+<li><p><a class="reference internal" href="#fneg" id="id297">FNEG</a></p></li>
+<li><p><a class="reference internal" href="#fabs" id="id298">FABS</a></p></li>
+<li><p><a class="reference internal" href="#fsqrt" id="id299">FSQRT</a></p></li>
+<li><p><a class="reference internal" href="#frecip" id="id300">FRECIP</a></p></li>
+<li><p><a class="reference internal" href="#frsqrt" id="id301">FRSQRT</a></p></li>
+<li><p><a class="reference internal" href="#frnds" id="id302">FRNDS</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#floating-point-conversion" id="id299">Floating point conversion</a></p>
+<li><p><a class="reference internal" href="#floating-point-conversion" id="id303">Floating point conversion</a></p>
 <ul>
-<li><p><a class="reference internal" href="#ftoint" id="id300">FTOINT</a></p></li>
-<li><p><a class="reference internal" href="#ffrint" id="id301">FFRINT</a></p></li>
-<li><p><a class="reference internal" href="#ffrflt" id="id302">FFRFLT</a></p></li>
+<li><p><a class="reference internal" href="#ftoint" id="id304">FTOINT</a></p></li>
+<li><p><a class="reference internal" href="#ffrint" id="id305">FFRINT</a></p></li>
+<li><p><a class="reference internal" href="#ffrflt" id="id306">FFRFLT</a></p></li>
 </ul>
 </li>
 </ul>
 </nav>
 <section id="introduction">
-<span id="umlinst-intro"></span><h2><a class="toc-backref" href="#id210" role="doc-backlink">Introduction</a><a class="headerlink" href="#introduction" title="Link to this heading">¶</a></h2>
+<span id="umlinst-intro"></span><h2><a class="toc-backref" href="#id213" role="doc-backlink">Introduction</a><a class="headerlink" href="#introduction" title="Link to this heading">¶</a></h2>
 <p>UML is the instruction set used by MAME’s recompiler framework.
 Code running on emulated guest CPUs is translated to UML instructions,
 and back-ends convert the UML instructions to a form that can be
@@ -249,9 +250,9 @@ IEEE 754 32-bit format (single precision) or or the prefix/suffix <code class="
 or <code class="docutils literal notranslate"><span class="pre">fd</span></code> for IEEE 754 64-bit format (double precision).</p>
 </section>
 <section id="special-value-types">
-<span id="umlinst-special"></span><h2><a class="toc-backref" href="#id211" role="doc-backlink">Special value types</a><a class="headerlink" href="#special-value-types" title="Link to this heading">¶</a></h2>
+<span id="umlinst-special"></span><h2><a class="toc-backref" href="#id214" role="doc-backlink">Special value types</a><a class="headerlink" href="#special-value-types" title="Link to this heading">¶</a></h2>
 <section id="conditions">
-<span id="umlinst-conditions"></span><h3><a class="toc-backref" href="#id212" role="doc-backlink">Conditions</a><a class="headerlink" href="#conditions" title="Link to this heading">¶</a></h3>
+<span id="umlinst-conditions"></span><h3><a class="toc-backref" href="#id215" role="doc-backlink">Conditions</a><a class="headerlink" href="#conditions" title="Link to this heading">¶</a></h3>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Disassembly</p></th>
@@ -357,7 +358,7 @@ or <code class="docutils literal notranslate"><span class="pre">fd</span></code>
 </table>
 </section>
 <section id="flag-masks">
-<span id="umlinst-flagmask"></span><h3><a class="toc-backref" href="#id213" role="doc-backlink">Flag masks</a><a class="headerlink" href="#flag-masks" title="Link to this heading">¶</a></h3>
+<span id="umlinst-flagmask"></span><h3><a class="toc-backref" href="#id216" role="doc-backlink">Flag masks</a><a class="headerlink" href="#flag-masks" title="Link to this heading">¶</a></h3>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Value</p></th>
@@ -406,7 +407,7 @@ or <code class="docutils literal notranslate"><span class="pre">fd</span></code>
 </table>
 </section>
 <section id="floating-point-rounding-modes">
-<span id="umlinst-roundmode"></span><h3><a class="toc-backref" href="#id214" role="doc-backlink">Floating point rounding modes</a><a class="headerlink" href="#floating-point-rounding-modes" title="Link to this heading">¶</a></h3>
+<span id="umlinst-roundmode"></span><h3><a class="toc-backref" href="#id217" role="doc-backlink">Floating point rounding modes</a><a class="headerlink" href="#floating-point-rounding-modes" title="Link to this heading">¶</a></h3>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Value</p></th>
@@ -452,9 +453,9 @@ or <code class="docutils literal notranslate"><span class="pre">fd</span></code>
 </section>
 </section>
 <section id="flow-control">
-<span id="umlinst-flow"></span><h2><a class="toc-backref" href="#id215" role="doc-backlink">Flow control</a><a class="headerlink" href="#flow-control" title="Link to this heading">¶</a></h2>
+<span id="umlinst-flow"></span><h2><a class="toc-backref" href="#id218" role="doc-backlink">Flow control</a><a class="headerlink" href="#flow-control" title="Link to this heading">¶</a></h2>
 <section id="comment">
-<span id="umlinst-comment"></span><h3><a class="toc-backref" href="#id216" role="doc-backlink">COMMENT</a><a class="headerlink" href="#comment" title="Link to this heading">¶</a></h3>
+<span id="umlinst-comment"></span><h3><a class="toc-backref" href="#id219" role="doc-backlink">COMMENT</a><a class="headerlink" href="#comment" title="Link to this heading">¶</a></h3>
 <p>Insert a comment into logged UML code.</p>
 <table class="docutils align-default">
 <thead>
@@ -499,7 +500,7 @@ remain valid until code is generated for the block.</p>
 </section>
 </section>
 <section id="nop">
-<span id="umlinst-nop"></span><h3><a class="toc-backref" href="#id217" role="doc-backlink">NOP</a><a class="headerlink" href="#nop" title="Link to this heading">¶</a></h3>
+<span id="umlinst-nop"></span><h3><a class="toc-backref" href="#id220" role="doc-backlink">NOP</a><a class="headerlink" href="#nop" title="Link to this heading">¶</a></h3>
 <p>No operation.</p>
 <table class="docutils align-default">
 <thead>
@@ -536,7 +537,7 @@ remain valid until code is generated for the block.</p>
 </section>
 </section>
 <section id="label">
-<span id="umlinst-label"></span><h3><a class="toc-backref" href="#id218" role="doc-backlink">LABEL</a><a class="headerlink" href="#label" title="Link to this heading">¶</a></h3>
+<span id="umlinst-label"></span><h3><a class="toc-backref" href="#id221" role="doc-backlink">LABEL</a><a class="headerlink" href="#label" title="Link to this heading">¶</a></h3>
 <p>Associate a location with a label number local to the current generated
 code block.  Label numbers must not be reused within a generated code
 block.  The <a class="reference internal" href="#umlinst-jmp"><span class="std std-ref">JMP</span></a> instruction may be used to transfer
@@ -585,7 +586,7 @@ block.</p>
 </section>
 </section>
 <section id="handle">
-<span id="umlinst-handle"></span><h3><a class="toc-backref" href="#id219" role="doc-backlink">HANDLE</a><a class="headerlink" href="#handle" title="Link to this heading">¶</a></h3>
+<span id="umlinst-handle"></span><h3><a class="toc-backref" href="#id222" role="doc-backlink">HANDLE</a><a class="headerlink" href="#handle" title="Link to this heading">¶</a></h3>
 <p>Mark a location as an entry point of a subroutine.  Subroutines may be
 called using the <a class="reference internal" href="#umlinst-callh"><span class="std std-ref">CALLH</span></a> and <a class="reference internal" href="#umlinst-exh"><span class="std std-ref">EXH</span></a> instructions, and also by the <cite>HASHJMP &lt;umlinst-hashjmp&gt;</cite>
 if no location is associated with the specified mode and emulated
@@ -635,7 +636,7 @@ resetting the generated code cache).</p>
 </section>
 </section>
 <section id="hash">
-<span id="umlinst-hash"></span><h3><a class="toc-backref" href="#id220" role="doc-backlink">HASH</a><a class="headerlink" href="#hash" title="Link to this heading">¶</a></h3>
+<span id="umlinst-hash"></span><h3><a class="toc-backref" href="#id223" role="doc-backlink">HASH</a><a class="headerlink" href="#hash" title="Link to this heading">¶</a></h3>
 <p>Associate a location with the specified mode and emulated program
 counter values.  The <a class="reference internal" href="#umlinst-hashjmp"><span class="std std-ref">HASHJMP</span></a> instruction may be
 used to transfer control to the location associated with a mode and
@@ -689,7 +690,7 @@ location in the generated code.</p>
 </section>
 </section>
 <section id="jmp">
-<span id="umlinst-jmp"></span><h3><a class="toc-backref" href="#id221" role="doc-backlink">JMP</a><a class="headerlink" href="#jmp" title="Link to this heading">¶</a></h3>
+<span id="umlinst-jmp"></span><h3><a class="toc-backref" href="#id224" role="doc-backlink">JMP</a><a class="headerlink" href="#jmp" title="Link to this heading">¶</a></h3>
 <p>Jump to the location associated with a label number within the current
 block.</p>
 <table class="docutils align-default">
@@ -743,7 +744,7 @@ the following instruction.</p>
 </section>
 </section>
 <section id="callh">
-<span id="umlinst-callh"></span><h3><a class="toc-backref" href="#id222" role="doc-backlink">CALLH</a><a class="headerlink" href="#callh" title="Link to this heading">¶</a></h3>
+<span id="umlinst-callh"></span><h3><a class="toc-backref" href="#id225" role="doc-backlink">CALLH</a><a class="headerlink" href="#callh" title="Link to this heading">¶</a></h3>
 <p>Call the subroutine beginning at the specified code handle.</p>
 <table class="docutils align-default">
 <thead>
@@ -797,7 +798,7 @@ called.</p>
 </section>
 </section>
 <section id="exh">
-<span id="umlinst-exh"></span><h3><a class="toc-backref" href="#id223" role="doc-backlink">EXH</a><a class="headerlink" href="#exh" title="Link to this heading">¶</a></h3>
+<span id="umlinst-exh"></span><h3><a class="toc-backref" href="#id226" role="doc-backlink">EXH</a><a class="headerlink" href="#exh" title="Link to this heading">¶</a></h3>
 <p>Set the <code class="docutils literal notranslate"><span class="pre">EXP</span></code> register and call the subroutine beginning at the
 specified code handle.  The <code class="docutils literal notranslate"><span class="pre">EXP</span></code> register is a 32-bit special
 function register that may be retrieved with the <a class="reference internal" href="#umlinst-getexp"><span class="std std-ref">GETEXP</span></a> instruction.</p>
@@ -861,7 +862,7 @@ called and the <code class="docutils literal notranslate"><span class="pre">EXP<
 </section>
 </section>
 <section id="ret">
-<span id="umlinst-ret"></span><h3><a class="toc-backref" href="#id224" role="doc-backlink">RET</a><a class="headerlink" href="#ret" title="Link to this heading">¶</a></h3>
+<span id="umlinst-ret"></span><h3><a class="toc-backref" href="#id227" role="doc-backlink">RET</a><a class="headerlink" href="#ret" title="Link to this heading">¶</a></h3>
 <p>Return from a subroutine, transferring control to the instruction
 following the <a class="reference internal" href="#umlinst-callh"><span class="std std-ref">CALLH</span></a> or <a class="reference internal" href="#umlinst-exh"><span class="std std-ref">EXH</span></a>
 instruction used to call the subroutine.  This instruction must only be
@@ -913,7 +914,7 @@ with the following instruction.</p>
 </section>
 </section>
 <section id="hashjmp">
-<span id="umlinst-hashjmp"></span><h3><a class="toc-backref" href="#id225" role="doc-backlink">HASHJMP</a><a class="headerlink" href="#hashjmp" title="Link to this heading">¶</a></h3>
+<span id="umlinst-hashjmp"></span><h3><a class="toc-backref" href="#id228" role="doc-backlink">HASHJMP</a><a class="headerlink" href="#hashjmp" title="Link to this heading">¶</a></h3>
 <p>Unwind all nested generated code subroutine frames and transfer control
 to the location associated with the specified mode and emulated program
 counter values.  If no location is associated with the specified mode
@@ -979,7 +980,7 @@ already bound.</p>
 </section>
 </section>
 <section id="exit">
-<span id="umlinst-exit"></span><h3><a class="toc-backref" href="#id226" role="doc-backlink">EXIT</a><a class="headerlink" href="#exit" title="Link to this heading">¶</a></h3>
+<span id="umlinst-exit"></span><h3><a class="toc-backref" href="#id229" role="doc-backlink">EXIT</a><a class="headerlink" href="#exit" title="Link to this heading">¶</a></h3>
 <p>Exit from the generated code, returning control to the caller.  May be
 used from within any level of nested subroutine calls in the generated
 code.</p>
@@ -1037,7 +1038,7 @@ following instruction.</p>
 </section>
 </section>
 <section id="callc">
-<span id="umlinst-callc"></span><h3><a class="toc-backref" href="#id227" role="doc-backlink">CALLC</a><a class="headerlink" href="#callc" title="Link to this heading">¶</a></h3>
+<span id="umlinst-callc"></span><h3><a class="toc-backref" href="#id230" role="doc-backlink">CALLC</a><a class="headerlink" href="#callc" title="Link to this heading">¶</a></h3>
 <p>Call a C function with the signature <code class="docutils literal notranslate"><span class="pre">void</span> <span class="pre">(*)(void</span> <span class="pre">*)</span></code>.</p>
 <table class="docutils align-default">
 <thead>
@@ -1089,7 +1090,7 @@ called.</p>
 </section>
 </section>
 <section id="debug">
-<span id="umlinst-debug"></span><h3><a class="toc-backref" href="#id228" role="doc-backlink">DEBUG</a><a class="headerlink" href="#debug" title="Link to this heading">¶</a></h3>
+<span id="umlinst-debug"></span><h3><a class="toc-backref" href="#id231" role="doc-backlink">DEBUG</a><a class="headerlink" href="#debug" title="Link to this heading">¶</a></h3>
 <p>Call the debugger instruction hook function if appropriate.</p>
 <p>If the debugger is active, this should be executed before each emulated
 instruction.  Any emulated CPU state kept in UML registers should be
@@ -1145,7 +1146,7 @@ instruction hook function.</p>
 </section>
 </section>
 <section id="break">
-<span id="umlinst-break"></span><h3><a class="toc-backref" href="#id229" role="doc-backlink">BREAK</a><a class="headerlink" href="#break" title="Link to this heading">¶</a></h3>
+<span id="umlinst-break"></span><h3><a class="toc-backref" href="#id232" role="doc-backlink">BREAK</a><a class="headerlink" href="#break" title="Link to this heading">¶</a></h3>
 <p>Break into the host debugger if attached.  Has no effect or crashes if
 no host debugger is attached depending on the host system and
 configuration.  This is intended as a developer aid and should not be
@@ -1190,9 +1191,9 @@ left in final code.</p>
 </section>
 </section>
 <section id="status-and-control">
-<span id="umlinst-control"></span><h2><a class="toc-backref" href="#id230" role="doc-backlink">Status and control</a><a class="headerlink" href="#status-and-control" title="Link to this heading">¶</a></h2>
+<span id="umlinst-control"></span><h2><a class="toc-backref" href="#id233" role="doc-backlink">Status and control</a><a class="headerlink" href="#status-and-control" title="Link to this heading">¶</a></h2>
 <section id="set">
-<span id="umlinst-set"></span><h3><a class="toc-backref" href="#id231" role="doc-backlink">SET</a><a class="headerlink" href="#set" title="Link to this heading">¶</a></h3>
+<span id="umlinst-set"></span><h3><a class="toc-backref" href="#id234" role="doc-backlink">SET</a><a class="headerlink" href="#set" title="Link to this heading">¶</a></h3>
 <p>Conditionally set integer to zero or one depending on flags.</p>
 <table class="docutils align-default">
 <thead>
@@ -1246,7 +1247,7 @@ condition is not met or one (1) if the condition is met.</p>
 </section>
 </section>
 <section id="carry">
-<span id="umlinst-carry"></span><h3><a class="toc-backref" href="#id232" role="doc-backlink">CARRY</a><a class="headerlink" href="#carry" title="Link to this heading">¶</a></h3>
+<span id="umlinst-carry"></span><h3><a class="toc-backref" href="#id235" role="doc-backlink">CARRY</a><a class="headerlink" href="#carry" title="Link to this heading">¶</a></h3>
 <p>Set the carry flag.</p>
 <table class="docutils align-default">
 <thead>
@@ -1304,7 +1305,7 @@ bits for 32-bit or 64-bit operands, respectively.</p></li>
 </section>
 </section>
 <section id="setflgs">
-<span id="umlinst-setflgs"></span><h3><a class="toc-backref" href="#id233" role="doc-backlink">SETFLGS</a><a class="headerlink" href="#setflgs" title="Link to this heading">¶</a></h3>
+<span id="umlinst-setflgs"></span><h3><a class="toc-backref" href="#id236" role="doc-backlink">SETFLGS</a><a class="headerlink" href="#setflgs" title="Link to this heading">¶</a></h3>
 <p>Set the flags arbitrarily.</p>
 <table class="docutils align-default">
 <thead>
@@ -1362,7 +1363,7 @@ least significant bit starting from zero.</p>
 </section>
 </section>
 <section id="getflgs">
-<span id="umlinst-getflgs"></span><h3><a class="toc-backref" href="#id234" role="doc-backlink">GETFLGS</a><a class="headerlink" href="#getflgs" title="Link to this heading">¶</a></h3>
+<span id="umlinst-getflgs"></span><h3><a class="toc-backref" href="#id237" role="doc-backlink">GETFLGS</a><a class="headerlink" href="#getflgs" title="Link to this heading">¶</a></h3>
 <p>Copy flags.</p>
 <table class="docutils align-default">
 <thead>
@@ -1420,7 +1421,7 @@ five bits of this operand are used.</p>
 </section>
 </section>
 <section id="setfmod">
-<span id="umlinst-setfmod"></span><h3><a class="toc-backref" href="#id235" role="doc-backlink">SETFMOD</a><a class="headerlink" href="#setfmod" title="Link to this heading">¶</a></h3>
+<span id="umlinst-setfmod"></span><h3><a class="toc-backref" href="#id238" role="doc-backlink">SETFMOD</a><a class="headerlink" href="#setfmod" title="Link to this heading">¶</a></h3>
 <p>Set the default floating point rounding mode.  The default rounding mode
 is used for floating point arithmetic and for floating point to integer
 conversion when <code class="docutils literal notranslate"><span class="pre">ROUND_DEFAULT</span></code> is specified.</p>
@@ -1474,7 +1475,7 @@ to round toward zero, 1 (<code class="docutils literal notranslate"><span class=
 </section>
 </section>
 <section id="getfmod">
-<span id="umlinst-getfmod"></span><h3><a class="toc-backref" href="#id236" role="doc-backlink">GETFMOD</a><a class="headerlink" href="#getfmod" title="Link to this heading">¶</a></h3>
+<span id="umlinst-getfmod"></span><h3><a class="toc-backref" href="#id239" role="doc-backlink">GETFMOD</a><a class="headerlink" href="#getfmod" title="Link to this heading">¶</a></h3>
 <p>Get the current default floating point rounding mode set by the most
 recent <a class="reference internal" href="#umlinst-setfmod"><span class="std std-ref">SETFMOD</span></a> or <a class="reference internal" href="#umlinst-restore"><span class="std std-ref">RESTORE</span></a> instruction.</p>
 <table class="docutils align-default">
@@ -1531,7 +1532,7 @@ negative infinity.</p>
 </section>
 </section>
 <section id="restore">
-<span id="umlinst-restore"></span><h3><a class="toc-backref" href="#id237" role="doc-backlink">RESTORE</a><a class="headerlink" href="#restore" title="Link to this heading">¶</a></h3>
+<span id="umlinst-restore"></span><h3><a class="toc-backref" href="#id240" role="doc-backlink">RESTORE</a><a class="headerlink" href="#restore" title="Link to this heading">¶</a></h3>
 <p>Set the contents of the UML integer and floating point registers, the
 contents of the <code class="docutils literal notranslate"><span class="pre">EXP</span></code> register, the flags and the default floating
 point rounding mode from a <code class="docutils literal notranslate"><span class="pre">drcuml_machine_state</span></code> structure.</p>
@@ -1583,7 +1584,7 @@ application.  It is not restricted to the recompiler cache.</p>
 </section>
 </section>
 <section id="save">
-<span id="umlinst-save"></span><h3><a class="toc-backref" href="#id238" role="doc-backlink">SAVE</a><a class="headerlink" href="#save" title="Link to this heading">¶</a></h3>
+<span id="umlinst-save"></span><h3><a class="toc-backref" href="#id241" role="doc-backlink">SAVE</a><a class="headerlink" href="#save" title="Link to this heading">¶</a></h3>
 <p>Copy the contents of the UML integer and floating point registers, the
 contents of the <code class="docutils literal notranslate"><span class="pre">EXP</span></code> register, the flags and the default floating
 point rounding mode to a <code class="docutils literal notranslate"><span class="pre">drcuml_machine_state</span></code> structure.</p>
@@ -1644,9 +1645,9 @@ application.  It is not restricted to the recompiler cache.</p>
 </section>
 </section>
 <section id="data-movement">
-<span id="umlinst-datamove"></span><h2><a class="toc-backref" href="#id239" role="doc-backlink">Data movement</a><a class="headerlink" href="#data-movement" title="Link to this heading">¶</a></h2>
+<span id="umlinst-datamove"></span><h2><a class="toc-backref" href="#id242" role="doc-backlink">Data movement</a><a class="headerlink" href="#data-movement" title="Link to this heading">¶</a></h2>
 <section id="mov">
-<span id="umlinst-mov"></span><h3><a class="toc-backref" href="#id240" role="doc-backlink">MOV</a><a class="headerlink" href="#mov" title="Link to this heading">¶</a></h3>
+<span id="umlinst-mov"></span><h3><a class="toc-backref" href="#id243" role="doc-backlink">MOV</a><a class="headerlink" href="#mov" title="Link to this heading">¶</a></h3>
 <p>Copy an integer value.</p>
 <table class="docutils align-default">
 <thead>
@@ -1711,7 +1712,7 @@ instruction size is no larger than the destination size.</p></li>
 </section>
 </section>
 <section id="fmov">
-<span id="umlinst-fmov"></span><h3><a class="toc-backref" href="#id241" role="doc-backlink">FMOV</a><a class="headerlink" href="#fmov" title="Link to this heading">¶</a></h3>
+<span id="umlinst-fmov"></span><h3><a class="toc-backref" href="#id244" role="doc-backlink">FMOV</a><a class="headerlink" href="#fmov" title="Link to this heading">¶</a></h3>
 <p>Copy a floating point value.  The binary value will be preserved even if
 it is not a valid representation of a floating point number.</p>
 <table class="docutils align-default">
@@ -1774,7 +1775,7 @@ operands refer to the same memory location or register.</p></li>
 </section>
 </section>
 <section id="fcopyi">
-<span id="umlinst-fcopyi"></span><h3><a class="toc-backref" href="#id242" role="doc-backlink">FCOPYI</a><a class="headerlink" href="#fcopyi" title="Link to this heading">¶</a></h3>
+<span id="umlinst-fcopyi"></span><h3><a class="toc-backref" href="#id245" role="doc-backlink">FCOPYI</a><a class="headerlink" href="#fcopyi" title="Link to this heading">¶</a></h3>
 <p>Reinterpret an integer value as a floating point value.  The binary
 value will be preserved even if it is not a valid representation of a
 floating point number.</p>
@@ -1824,7 +1825,7 @@ floating point number.</p>
 </section>
 </section>
 <section id="icopyf">
-<span id="umlinst-icopyf"></span><h3><a class="toc-backref" href="#id243" role="doc-backlink">ICOPYF</a><a class="headerlink" href="#icopyf" title="Link to this heading">¶</a></h3>
+<span id="umlinst-icopyf"></span><h3><a class="toc-backref" href="#id246" role="doc-backlink">ICOPYF</a><a class="headerlink" href="#icopyf" title="Link to this heading">¶</a></h3>
 <p>Reinterpret a floating point value as an integer value.  The binary
 value will be preserved even if it is not a valid representation of a
 floating point number.</p>
@@ -1874,7 +1875,7 @@ floating point number.</p>
 </section>
 </section>
 <section id="load">
-<span id="umlinst-load"></span><h3><a class="toc-backref" href="#id244" role="doc-backlink">LOAD</a><a class="headerlink" href="#load" title="Link to this heading">¶</a></h3>
+<span id="umlinst-load"></span><h3><a class="toc-backref" href="#id247" role="doc-backlink">LOAD</a><a class="headerlink" href="#load" title="Link to this heading">¶</a></h3>
 <p>Load an unsigned integer value from a memory location with variable
 displacement.  The value is zero-extended to the size of the
 destination.  Host system rules for integer alignment must be followed.</p>
@@ -1943,7 +1944,7 @@ by 1, 2, 4 or 8, respectively (shift left by 0, 1, 2 or 3 bits).</p>
 </section>
 </section>
 <section id="loads">
-<span id="umlinst-loads"></span><h3><a class="toc-backref" href="#id245" role="doc-backlink">LOADS</a><a class="headerlink" href="#loads" title="Link to this heading">¶</a></h3>
+<span id="umlinst-loads"></span><h3><a class="toc-backref" href="#id248" role="doc-backlink">LOADS</a><a class="headerlink" href="#loads" title="Link to this heading">¶</a></h3>
 <p>Load a signed integer value from a memory location with variable
 displacement.  The value is sign-extended to the size of the
 destination.  Host system rules for integer alignment must be followed.</p>
@@ -2012,7 +2013,7 @@ by 1, 2, 4 or 8, respectively (shift left by 0, 1, 2 or 3 bits).</p>
 </section>
 </section>
 <section id="store">
-<span id="umlinst-store"></span><h3><a class="toc-backref" href="#id246" role="doc-backlink">STORE</a><a class="headerlink" href="#store" title="Link to this heading">¶</a></h3>
+<span id="umlinst-store"></span><h3><a class="toc-backref" href="#id249" role="doc-backlink">STORE</a><a class="headerlink" href="#store" title="Link to this heading">¶</a></h3>
 <p>Store an integer value to a location in memory with variable
 displacement.  Host system rules for integer alignment must be followed.</p>
 <table class="docutils align-default">
@@ -2080,7 +2081,7 @@ by 1, 2, 4 or 8, respectively (shift left by 0, 1, 2 or 3 bits).</p>
 </section>
 </section>
 <section id="fload">
-<span id="umlinst-fload"></span><h3><a class="toc-backref" href="#id247" role="doc-backlink">FLOAD</a><a class="headerlink" href="#fload" title="Link to this heading">¶</a></h3>
+<span id="umlinst-fload"></span><h3><a class="toc-backref" href="#id250" role="doc-backlink">FLOAD</a><a class="headerlink" href="#fload" title="Link to this heading">¶</a></h3>
 <p>Load a floating point value from a memory location with variable
 displacement.  The binary value will be preserved even if it is not a
 valid representation of a floating point number.  Host system rules for
@@ -2137,7 +2138,7 @@ instruction size.</p>
 </section>
 </section>
 <section id="fstore">
-<span id="umlinst-fstore"></span><h3><a class="toc-backref" href="#id248" role="doc-backlink">FSTORE</a><a class="headerlink" href="#fstore" title="Link to this heading">¶</a></h3>
+<span id="umlinst-fstore"></span><h3><a class="toc-backref" href="#id251" role="doc-backlink">FSTORE</a><a class="headerlink" href="#fstore" title="Link to this heading">¶</a></h3>
 <p>Store a floating point value to a memory location with variable
 displacement.  The binary value will be preserved even if it is not a
 valid representation of a floating point number.  Host system rules for
@@ -2194,7 +2195,7 @@ instruction size.</p>
 </section>
 </section>
 <section id="getexp">
-<span id="umlinst-getexp"></span><h3><a class="toc-backref" href="#id249" role="doc-backlink">GETEXP</a><a class="headerlink" href="#getexp" title="Link to this heading">¶</a></h3>
+<span id="umlinst-getexp"></span><h3><a class="toc-backref" href="#id252" role="doc-backlink">GETEXP</a><a class="headerlink" href="#getexp" title="Link to this heading">¶</a></h3>
 <p>Copy the value of the <code class="docutils literal notranslate"><span class="pre">EXP</span></code> register.  The <code class="docutils literal notranslate"><span class="pre">EXP</span></code> register can be set
 using the <a class="reference internal" href="#umlinst-exh"><span class="std std-ref">EXH</span></a> instruction.</p>
 <table class="docutils align-default">
@@ -2240,7 +2241,7 @@ that the <code class="docutils literal notranslate"><span class="pre">EXP</span>
 </section>
 </section>
 <section id="mapvar">
-<span id="umlinst-mapvar"></span><h3><a class="toc-backref" href="#id250" role="doc-backlink">MAPVAR</a><a class="headerlink" href="#mapvar" title="Link to this heading">¶</a></h3>
+<span id="umlinst-mapvar"></span><h3><a class="toc-backref" href="#id253" role="doc-backlink">MAPVAR</a><a class="headerlink" href="#mapvar" title="Link to this heading">¶</a></h3>
 <p>Set the value of a map variable starting at the current location in the
 current generated code block.</p>
 <table class="docutils align-default">
@@ -2288,7 +2289,7 @@ only hold 32-bit values.</p>
 </section>
 </section>
 <section id="recover">
-<span id="umlinst-recover"></span><h3><a class="toc-backref" href="#id251" role="doc-backlink">RECOVER</a><a class="headerlink" href="#recover" title="Link to this heading">¶</a></h3>
+<span id="umlinst-recover"></span><h3><a class="toc-backref" href="#id254" role="doc-backlink">RECOVER</a><a class="headerlink" href="#recover" title="Link to this heading">¶</a></h3>
 <p>Retrieve the value of a map variable at the location of the call
 instruction in the outermost generated code frame.  This instruction
 should only be used from within a generated code subroutine.  Results
@@ -2341,9 +2342,9 @@ generated code frame.</p>
 </section>
 </section>
 <section id="emulated-memory-access">
-<span id="umlinst-memaccess"></span><h2><a class="toc-backref" href="#id252" role="doc-backlink">Emulated memory access</a><a class="headerlink" href="#emulated-memory-access" title="Link to this heading">¶</a></h2>
+<span id="umlinst-memaccess"></span><h2><a class="toc-backref" href="#id255" role="doc-backlink">Emulated memory access</a><a class="headerlink" href="#emulated-memory-access" title="Link to this heading">¶</a></h2>
 <section id="read">
-<span id="umlinst-read"></span><h3><a class="toc-backref" href="#id253" role="doc-backlink">READ</a><a class="headerlink" href="#read" title="Link to this heading">¶</a></h3>
+<span id="umlinst-read"></span><h3><a class="toc-backref" href="#id256" role="doc-backlink">READ</a><a class="headerlink" href="#read" title="Link to this heading">¶</a></h3>
 <p>Read from an emulated address space.  The access mask is implied to have
 all bits set.</p>
 <table class="docutils align-default">
@@ -2412,7 +2413,7 @@ cast to <code class="docutils literal notranslate"><span class="pre">memory_spac
 </section>
 </section>
 <section id="readm">
-<span id="umlinst-readm"></span><h3><a class="toc-backref" href="#id254" role="doc-backlink">READM</a><a class="headerlink" href="#readm" title="Link to this heading">¶</a></h3>
+<span id="umlinst-readm"></span><h3><a class="toc-backref" href="#id257" role="doc-backlink">READM</a><a class="headerlink" href="#readm" title="Link to this heading">¶</a></h3>
 <p>Read from an emulated address space with access mask specified.</p>
 <table class="docutils align-default">
 <thead>
@@ -2486,7 +2487,7 @@ immediate value with all bits set.</p></li>
 </section>
 </section>
 <section id="write">
-<span id="umlinst-write"></span><h3><a class="toc-backref" href="#id255" role="doc-backlink">WRITE</a><a class="headerlink" href="#write" title="Link to this heading">¶</a></h3>
+<span id="umlinst-write"></span><h3><a class="toc-backref" href="#id258" role="doc-backlink">WRITE</a><a class="headerlink" href="#write" title="Link to this heading">¶</a></h3>
 <p>Write to an emulated address space.  The access mask is implied to have
 all bits set.</p>
 <table class="docutils align-default">
@@ -2556,7 +2557,7 @@ size.</p></li>
 </section>
 </section>
 <section id="writem">
-<span id="umlinst-writem"></span><h3><a class="toc-backref" href="#id256" role="doc-backlink">WRITEM</a><a class="headerlink" href="#writem" title="Link to this heading">¶</a></h3>
+<span id="umlinst-writem"></span><h3><a class="toc-backref" href="#id259" role="doc-backlink">WRITEM</a><a class="headerlink" href="#writem" title="Link to this heading">¶</a></h3>
 <p>Write to an emulated address space with access mask specified.</p>
 <table class="docutils align-default">
 <thead>
@@ -2629,7 +2630,7 @@ immediate value with all bits set.</p></li>
 </section>
 </section>
 <section id="fread">
-<span id="umlinst-fread"></span><h3><a class="toc-backref" href="#id257" role="doc-backlink">FREAD</a><a class="headerlink" href="#fread" title="Link to this heading">¶</a></h3>
+<span id="umlinst-fread"></span><h3><a class="toc-backref" href="#id260" role="doc-backlink">FREAD</a><a class="headerlink" href="#fread" title="Link to this heading">¶</a></h3>
 <p>Read a floating point value from an emulated address space.  The binary
 value will be preserved even if it is not a valid representation of a
 floating point number.  The access mask is implied to have all bits set.</p>
@@ -2693,7 +2694,7 @@ cast to <code class="docutils literal notranslate"><span class="pre">memory_spac
 </section>
 </section>
 <section id="fwrite">
-<span id="umlinst-fwrite"></span><h3><a class="toc-backref" href="#id258" role="doc-backlink">FWRITE</a><a class="headerlink" href="#fwrite" title="Link to this heading">¶</a></h3>
+<span id="umlinst-fwrite"></span><h3><a class="toc-backref" href="#id261" role="doc-backlink">FWRITE</a><a class="headerlink" href="#fwrite" title="Link to this heading">¶</a></h3>
 <p>Write a floating point value to an emulated address space.  The binary
 value will be preserved even if it is not a valid representation of a
 floating point number.  The access mask is implied to have all bits set.</p>
@@ -2758,9 +2759,9 @@ cast to <code class="docutils literal notranslate"><span class="pre">memory_spac
 </section>
 </section>
 <section id="integer-arithmetic-and-logic">
-<span id="umlinst-intarith"></span><h2><a class="toc-backref" href="#id259" role="doc-backlink">Integer arithmetic and logic</a><a class="headerlink" href="#integer-arithmetic-and-logic" title="Link to this heading">¶</a></h2>
+<span id="umlinst-intarith"></span><h2><a class="toc-backref" href="#id262" role="doc-backlink">Integer arithmetic and logic</a><a class="headerlink" href="#integer-arithmetic-and-logic" title="Link to this heading">¶</a></h2>
 <section id="add">
-<span id="umlinst-add"></span><h3><a class="toc-backref" href="#id260" role="doc-backlink">ADD</a><a class="headerlink" href="#add" title="Link to this heading">¶</a></h3>
+<span id="umlinst-add"></span><h3><a class="toc-backref" href="#id263" role="doc-backlink">ADD</a><a class="headerlink" href="#add" title="Link to this heading">¶</a></h3>
 <p>Add two integers.</p>
 <table class="docutils align-default">
 <thead>
@@ -2833,7 +2834,7 @@ exchanged.</p></li>
 </section>
 </section>
 <section id="addc">
-<span id="umlinst-addc"></span><h3><a class="toc-backref" href="#id261" role="doc-backlink">ADDC</a><a class="headerlink" href="#addc" title="Link to this heading">¶</a></h3>
+<span id="umlinst-addc"></span><h3><a class="toc-backref" href="#id264" role="doc-backlink">ADDC</a><a class="headerlink" href="#addc" title="Link to this heading">¶</a></h3>
 <p>Add two integers and the carry flag.</p>
 <table class="docutils align-default">
 <thead>
@@ -2900,7 +2901,7 @@ exchanged.</p></li>
 </section>
 </section>
 <section id="sub">
-<span id="umlinst-sub"></span><h3><a class="toc-backref" href="#id262" role="doc-backlink">SUB</a><a class="headerlink" href="#sub" title="Link to this heading">¶</a></h3>
+<span id="umlinst-sub"></span><h3><a class="toc-backref" href="#id265" role="doc-backlink">SUB</a><a class="headerlink" href="#sub" title="Link to this heading">¶</a></h3>
 <p>Subtract an integer from another integer.</p>
 <table class="docutils align-default">
 <thead>
@@ -2969,7 +2970,7 @@ to the instruction size.</p></li>
 </section>
 </section>
 <section id="subb">
-<span id="umlinst-subb"></span><h3><a class="toc-backref" href="#id263" role="doc-backlink">SUBB</a><a class="headerlink" href="#subb" title="Link to this heading">¶</a></h3>
+<span id="umlinst-subb"></span><h3><a class="toc-backref" href="#id266" role="doc-backlink">SUBB</a><a class="headerlink" href="#subb" title="Link to this heading">¶</a></h3>
 <p>Subtract an integer and the carry flag from another integer.</p>
 <table class="docutils align-default">
 <thead>
@@ -3034,7 +3035,7 @@ to the instruction size.</p></li>
 </section>
 </section>
 <section id="cmp">
-<span id="umlinst-cmp"></span><h3><a class="toc-backref" href="#id264" role="doc-backlink">CMP</a><a class="headerlink" href="#cmp" title="Link to this heading">¶</a></h3>
+<span id="umlinst-cmp"></span><h3><a class="toc-backref" href="#id267" role="doc-backlink">CMP</a><a class="headerlink" href="#cmp" title="Link to this heading">¶</a></h3>
 <p>Compare two integers and set the flags as though they were subtracted.</p>
 <table class="docutils align-default">
 <thead>
@@ -3101,7 +3102,7 @@ to the instruction size.</p></li>
 </section>
 </section>
 <section id="and">
-<span id="umlinst-and"></span><h3><a class="toc-backref" href="#id265" role="doc-backlink">AND</a><a class="headerlink" href="#and" title="Link to this heading">¶</a></h3>
+<span id="umlinst-and"></span><h3><a class="toc-backref" href="#id268" role="doc-backlink">AND</a><a class="headerlink" href="#and" title="Link to this heading">¶</a></h3>
 <p>Calculate the bitwise logical conjunction of two integers (result bits
 will be set if the corresponding bits are set in both inputs).</p>
 <table class="docutils align-default">
@@ -3190,7 +3191,7 @@ exchanged.</p></li>
 </section>
 </section>
 <section id="test">
-<span id="umlinst-test"></span><h3><a class="toc-backref" href="#id266" role="doc-backlink">TEST</a><a class="headerlink" href="#test" title="Link to this heading">¶</a></h3>
+<span id="umlinst-test"></span><h3><a class="toc-backref" href="#id269" role="doc-backlink">TEST</a><a class="headerlink" href="#test" title="Link to this heading">¶</a></h3>
 <p>Set the flags based on the bitwise logical conjunction of two integers.</p>
 <table class="docutils align-default">
 <thead>
@@ -3263,7 +3264,7 @@ exchanged.</p></li>
 </section>
 </section>
 <section id="or">
-<span id="umlinst-or"></span><h3><a class="toc-backref" href="#id267" role="doc-backlink">OR</a><a class="headerlink" href="#or" title="Link to this heading">¶</a></h3>
+<span id="umlinst-or"></span><h3><a class="toc-backref" href="#id270" role="doc-backlink">OR</a><a class="headerlink" href="#or" title="Link to this heading">¶</a></h3>
 <p>Calculate the bitwise logical inclusive disjunction of two integers (result bits
 will be set if the corresponding bits are set in either input).</p>
 <table class="docutils align-default">
@@ -3347,7 +3348,7 @@ exchanged.</p></li>
 </section>
 </section>
 <section id="xor">
-<span id="umlinst-xor"></span><h3><a class="toc-backref" href="#id268" role="doc-backlink">XOR</a><a class="headerlink" href="#xor" title="Link to this heading">¶</a></h3>
+<span id="umlinst-xor"></span><h3><a class="toc-backref" href="#id271" role="doc-backlink">XOR</a><a class="headerlink" href="#xor" title="Link to this heading">¶</a></h3>
 <p>Calculate the bitwise logical exclusive disjunction of two integers
 (result bits will be set if the corresponding bit is set in one input
 and unset in the other input).</p>
@@ -3414,7 +3415,7 @@ register.</p></li>
 </section>
 </section>
 <section id="sext">
-<span id="umlinst-sext"></span><h3><a class="toc-backref" href="#id269" role="doc-backlink">SEXT</a><a class="headerlink" href="#sext" title="Link to this heading">¶</a></h3>
+<span id="umlinst-sext"></span><h3><a class="toc-backref" href="#id272" role="doc-backlink">SEXT</a><a class="headerlink" href="#sext" title="Link to this heading">¶</a></h3>
 <p>Sign extend an integer value.</p>
 <table class="docutils align-default">
 <thead>
@@ -3478,7 +3479,7 @@ instruction size.</p></li>
 </section>
 </section>
 <section id="lzcnt">
-<span id="umlinst-lzcnt"></span><h3><a class="toc-backref" href="#id270" role="doc-backlink">LZCNT</a><a class="headerlink" href="#lzcnt" title="Link to this heading">¶</a></h3>
+<span id="umlinst-lzcnt"></span><h3><a class="toc-backref" href="#id273" role="doc-backlink">LZCNT</a><a class="headerlink" href="#lzcnt" title="Link to this heading">¶</a></h3>
 <p>Count the number of contiguous left-aligned zero bits in an integer
 (count leading zeroes).</p>
 <table class="docutils align-default">
@@ -3535,7 +3536,7 @@ the <code class="docutils literal notranslate"><span class="pre">src</span></cod
 </section>
 </section>
 <section id="tzcnt">
-<span id="umlinst-tzcnt"></span><h3><a class="toc-backref" href="#id271" role="doc-backlink">TZCNT</a><a class="headerlink" href="#tzcnt" title="Link to this heading">¶</a></h3>
+<span id="umlinst-tzcnt"></span><h3><a class="toc-backref" href="#id274" role="doc-backlink">TZCNT</a><a class="headerlink" href="#tzcnt" title="Link to this heading">¶</a></h3>
 <p>Count the number of contiguous right-aligned zero bits in an integer
 (count trailing zeroes).</p>
 <table class="docutils align-default">
@@ -3593,9 +3594,9 @@ the <code class="docutils literal notranslate"><span class="pre">src</span></cod
 </section>
 </section>
 <section id="integer-multiply-and-divide">
-<span id="umlinst-intmuldiv"></span><h2><a class="toc-backref" href="#id272" role="doc-backlink">Integer multiply and divide</a><a class="headerlink" href="#integer-multiply-and-divide" title="Link to this heading">¶</a></h2>
+<span id="umlinst-intmuldiv"></span><h2><a class="toc-backref" href="#id275" role="doc-backlink">Integer multiply and divide</a><a class="headerlink" href="#integer-multiply-and-divide" title="Link to this heading">¶</a></h2>
 <section id="mullw">
-<span id="umlinst-mullw"></span><h3><a class="toc-backref" href="#id273" role="doc-backlink">MULLW</a><a class="headerlink" href="#mullw" title="Link to this heading">¶</a></h3>
+<span id="umlinst-mullw"></span><h3><a class="toc-backref" href="#id276" role="doc-backlink">MULLW</a><a class="headerlink" href="#mullw" title="Link to this heading">¶</a></h3>
 <p>Multiply two integer values.</p>
 <table class="docutils align-default">
 <thead>
@@ -3678,7 +3679,7 @@ exchanged.</p></li>
 </section>
 </section>
 <section id="mul">
-<span id="umlinst-mul"></span><h3><a class="toc-backref" href="#id274" role="doc-backlink">MUL</a><a class="headerlink" href="#mul" title="Link to this heading">¶</a></h3>
+<span id="umlinst-mul"></span><h3><a class="toc-backref" href="#id277" role="doc-backlink">MUL</a><a class="headerlink" href="#mul" title="Link to this heading">¶</a></h3>
 <p>Multiply two integer values, possibly producing an extended result.</p>
 <table class="docutils align-default">
 <thead>
@@ -3783,7 +3784,7 @@ exchanged.</p></li>
 </section>
 </section>
 <section id="div">
-<span id="umlinst-div"></span><h3><a class="toc-backref" href="#id275" role="doc-backlink">DIV</a><a class="headerlink" href="#div" title="Link to this heading">¶</a></h3>
+<span id="umlinst-div"></span><h3><a class="toc-backref" href="#id278" role="doc-backlink">DIV</a><a class="headerlink" href="#div" title="Link to this heading">¶</a></h3>
 <p>Divide an integer value by another integer value.</p>
 <table class="docutils align-default">
 <thead>
@@ -3872,9 +3873,9 @@ to the instruction size.</p></li>
 </section>
 </section>
 <section id="integer-shift-and-rotate">
-<span id="umlinst-intshift"></span><h2><a class="toc-backref" href="#id276" role="doc-backlink">Integer shift and rotate</a><a class="headerlink" href="#integer-shift-and-rotate" title="Link to this heading">¶</a></h2>
+<span id="umlinst-intshift"></span><h2><a class="toc-backref" href="#id279" role="doc-backlink">Integer shift and rotate</a><a class="headerlink" href="#integer-shift-and-rotate" title="Link to this heading">¶</a></h2>
 <section id="shl">
-<span id="umlinst-shl"></span><h3><a class="toc-backref" href="#id277" role="doc-backlink">SHL</a><a class="headerlink" href="#shl" title="Link to this heading">¶</a></h3>
+<span id="umlinst-shl"></span><h3><a class="toc-backref" href="#id280" role="doc-backlink">SHL</a><a class="headerlink" href="#shl" title="Link to this heading">¶</a></h3>
 <p>Shift an integer value to the left (toward the most significant bit
 position), shifting zeroes into the least significant bit.</p>
 <table class="docutils align-default">
@@ -3948,7 +3949,7 @@ six bits for 32-bit or 64-bit operands, respectively.</p></li>
 </section>
 </section>
 <section id="shr">
-<span id="umlinst-shr"></span><h3><a class="toc-backref" href="#id278" role="doc-backlink">SHR</a><a class="headerlink" href="#shr" title="Link to this heading">¶</a></h3>
+<span id="umlinst-shr"></span><h3><a class="toc-backref" href="#id281" role="doc-backlink">SHR</a><a class="headerlink" href="#shr" title="Link to this heading">¶</a></h3>
 <p>Shift an integer value to the right (toward the least significant bit
 position), shifting zeroes into the most significant bit.</p>
 <table class="docutils align-default">
@@ -4022,7 +4023,7 @@ six bits for 32-bit or 64-bit operands, respectively.</p></li>
 </section>
 </section>
 <section id="sar">
-<span id="umlinst-sar"></span><h3><a class="toc-backref" href="#id279" role="doc-backlink">SAR</a><a class="headerlink" href="#sar" title="Link to this heading">¶</a></h3>
+<span id="umlinst-sar"></span><h3><a class="toc-backref" href="#id282" role="doc-backlink">SAR</a><a class="headerlink" href="#sar" title="Link to this heading">¶</a></h3>
 <p>Shift an integer value to the right (toward the least significant bit
 position), preserving the value of the most significant bit.</p>
 <table class="docutils align-default">
@@ -4096,7 +4097,7 @@ six bits for 32-bit or 64-bit operands, respectively.</p></li>
 </section>
 </section>
 <section id="rol">
-<span id="umlinst-rol"></span><h3><a class="toc-backref" href="#id280" role="doc-backlink">ROL</a><a class="headerlink" href="#rol" title="Link to this heading">¶</a></h3>
+<span id="umlinst-rol"></span><h3><a class="toc-backref" href="#id283" role="doc-backlink">ROL</a><a class="headerlink" href="#rol" title="Link to this heading">¶</a></h3>
 <p>Rotate an integer value to the left (toward the most significant bit
 position).  Bits shifted out of the most significant bit position are
 shifted into the least significant bit position.</p>
@@ -4170,7 +4171,7 @@ six bits for 32-bit or 64-bit operands, respectively.</p></li>
 </section>
 </section>
 <section id="ror">
-<span id="umlinst-ror"></span><h3><a class="toc-backref" href="#id281" role="doc-backlink">ROR</a><a class="headerlink" href="#ror" title="Link to this heading">¶</a></h3>
+<span id="umlinst-ror"></span><h3><a class="toc-backref" href="#id284" role="doc-backlink">ROR</a><a class="headerlink" href="#ror" title="Link to this heading">¶</a></h3>
 <p>Rotate an integer value to the right (toward the least significant bit
 position).  Bits shifted out of the least significant bit position are
 shifted into the most significant bit position.</p>
@@ -4245,7 +4246,7 @@ six bits for 32-bit or 64-bit operands, respectively.</p></li>
 </section>
 </section>
 <section id="rolc">
-<span id="umlinst-rolc"></span><h3><a class="toc-backref" href="#id282" role="doc-backlink">ROLC</a><a class="headerlink" href="#rolc" title="Link to this heading">¶</a></h3>
+<span id="umlinst-rolc"></span><h3><a class="toc-backref" href="#id285" role="doc-backlink">ROLC</a><a class="headerlink" href="#rolc" title="Link to this heading">¶</a></h3>
 <p>Rotate an integer value concatenated with the carry flag to the left
 (toward the most significant bit position).  For each step, the carry
 flag is shifted into the least significant bit position, and the carry
@@ -4325,7 +4326,7 @@ six bits for 32-bit or 64-bit operands, respectively.</p></li>
 </section>
 </section>
 <section id="rorc">
-<span id="umlinst-rorc"></span><h3><a class="toc-backref" href="#id283" role="doc-backlink">RORC</a><a class="headerlink" href="#rorc" title="Link to this heading">¶</a></h3>
+<span id="umlinst-rorc"></span><h3><a class="toc-backref" href="#id286" role="doc-backlink">RORC</a><a class="headerlink" href="#rorc" title="Link to this heading">¶</a></h3>
 <p>Rotate an integer value concatenated with the carry flag to the right
 (toward the least significant bit position).  For each step, the carry
 flag is shifted into the most significant bit position, and the carry
@@ -4406,8 +4407,107 @@ six bits for 32-bit or 64-bit operands, respectively.</p></li>
 </ul>
 </section>
 </section>
+<section id="bfx">
+<span id="umlinst-bfx"></span><h3><a class="toc-backref" href="#id287" role="doc-backlink">BFX</a><a class="headerlink" href="#bfx" title="Link to this heading">¶</a></h3>
+<p>Extract a contiguous bit field from an integer value.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Disassembly</p></th>
+<th class="head"><p>Usage</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">bfxu</span>    <span class="n">dst</span><span class="p">,</span><span class="n">src</span><span class="p">,</span><span class="n">shift</span><span class="p">,</span><span class="n">width</span>
+<span class="n">bfxs</span>    <span class="n">dst</span><span class="p">,</span><span class="n">src</span><span class="p">,</span><span class="n">shift</span><span class="p">,</span><span class="n">width</span>
+<span class="n">dbfxu</span>   <span class="n">dst</span><span class="p">,</span><span class="n">src</span><span class="p">,</span><span class="n">shift</span><span class="p">,</span><span class="n">width</span>
+<span class="n">dbfxs</span>   <span class="n">dst</span><span class="p">,</span><span class="n">src</span><span class="p">,</span><span class="n">shift</span><span class="p">,</span><span class="n">width</span>
+</pre></div>
+</div>
+</td>
+<td><div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="n">UML_BFXU</span><span class="p">(</span><span class="n">block</span><span class="p">,</span><span class="w"> </span><span class="n">dst</span><span class="p">,</span><span class="w"> </span><span class="n">src</span><span class="p">,</span><span class="w"> </span><span class="n">shift</span><span class="p">,</span><span class="w"> </span><span class="n">width</span><span class="p">);</span>
+<span class="n">UML_BFXS</span><span class="p">(</span><span class="n">block</span><span class="p">,</span><span class="w"> </span><span class="n">dst</span><span class="p">,</span><span class="w"> </span><span class="n">src</span><span class="p">,</span><span class="w"> </span><span class="n">shift</span><span class="p">,</span><span class="w"> </span><span class="n">width</span><span class="p">);</span>
+<span class="n">UML_DBFXU</span><span class="p">(</span><span class="n">block</span><span class="p">,</span><span class="w"> </span><span class="n">dst</span><span class="p">,</span><span class="w"> </span><span class="n">src</span><span class="p">,</span><span class="w"> </span><span class="n">shift</span><span class="p">,</span><span class="w"> </span><span class="n">width</span><span class="p">);</span>
+<span class="n">UML_DBFXS</span><span class="p">(</span><span class="n">block</span><span class="p">,</span><span class="w"> </span><span class="n">dst</span><span class="p">,</span><span class="w"> </span><span class="n">src</span><span class="p">,</span><span class="w"> </span><span class="n">shift</span><span class="p">,</span><span class="w"> </span><span class="n">width</span><span class="p">);</span>
+</pre></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Extracts and right-aligns a contiguous bit field from the value of
+<code class="docutils literal notranslate"><span class="pre">src</span></code>, specified by its least significant bit position and width in
+bits.  The field must be narrower than the <code class="docutils literal notranslate"><span class="pre">src</span></code> operand, but it may
+wrap around from the most significant bit position to the least
+significant bit position.  BFXU and DBFXU zero-extend an unsigned field,
+while BFXS and DBFXS sign-extend a signed field.</p>
+<p>Back-ends may be able to optimise some forms of this instruction for
+example when the <code class="docutils literal notranslate"><span class="pre">shift</span></code> and <code class="docutils literal notranslate"><span class="pre">width</span></code> operands are both immediate
+values.</p>
+<section id="id160">
+<h4>Operands<a class="headerlink" href="#id160" title="Link to this heading">¶</a></h4>
+<dl class="simple">
+<dt>dst (32-bit or 64-bit – memory, integer register)</dt><dd><p>The destination where the extracted field will be stored.</p>
+</dd>
+<dt>src (32-bit or 64-bit – memory, integer register, immediate, map variable)</dt><dd><p>The value to extract a contiguous bit field from.</p>
+</dd>
+<dt>shift (32-bit or 64-bit – memory, integer register, immediate, map variable)</dt><dd><p>The position of the least significant bit of the field to extract,
+where zero is the least significant bit position, and bit numbers
+increase toward the most significant bit position.  Only the least
+significant five bits or six bits of this operand are used,
+depending on the instruction size.</p>
+</dd>
+<dt>width (32-bit or 64-bit – memory, integer register, immediate, map variable)</dt><dd><p>The width of the field to extract in bits.  Only the least
+significant five bits or six bits of this operand are used,
+depending on the instruction size.  The result is undefined if the
+width modulo the instruction size in bits is zero.</p>
+</dd>
+</dl>
+</section>
+<section id="id161">
+<h4>Flags<a class="headerlink" href="#id161" title="Link to this heading">¶</a></h4>
+<dl class="simple">
+<dt>carry (C)</dt><dd><p>Undefined.</p>
+</dd>
+<dt>overflow (V)</dt><dd><p>Undefined.</p>
+</dd>
+<dt>zero (Z)</dt><dd><p>Set if the result is zero, or cleared otherwise.</p>
+</dd>
+<dt>sign (S)</dt><dd><p>Set to the value of the most significant bit of the result (set if
+the result is a negative signed integer value, or cleared
+otherwise).</p>
+</dd>
+<dt>unordered (U)</dt><dd><p>Undefined.</p>
+</dd>
+</dl>
+</section>
+<section id="id162">
+<h4>Simplification rules<a class="headerlink" href="#id162" title="Link to this heading">¶</a></h4>
+<ul class="simple">
+<li><p>Converted to <a class="reference internal" href="#umlinst-mov"><span class="std std-ref">MOV</span></a>, <a class="reference internal" href="#umlinst-and"><span class="std std-ref">AND</span></a> or
+<a class="reference internal" href="#umlinst-or"><span class="std std-ref">OR</span></a> if the <code class="docutils literal notranslate"><span class="pre">src</span></code>, <code class="docutils literal notranslate"><span class="pre">shift</span></code> and <code class="docutils literal notranslate"><span class="pre">width</span></code>
+operands are all immediate values, or if the <code class="docutils literal notranslate"><span class="pre">width</span></code> operand is the
+immediate value zero.</p></li>
+<li><p>Converted to <a class="reference internal" href="#umlinst-shr"><span class="std std-ref">SHR</span></a> or <a class="reference internal" href="#umlinst-sar"><span class="std std-ref">SAR</span></a> if
+the <code class="docutils literal notranslate"><span class="pre">src</span></code> operand is not an immediate value, the <code class="docutils literal notranslate"><span class="pre">shift</span></code> and
+<code class="docutils literal notranslate"><span class="pre">width</span></code> operands are both immediate values, and the sum of the value
+of the <code class="docutils literal notranslate"><span class="pre">shift</span></code> operand and the value of the <code class="docutils literal notranslate"><span class="pre">width</span></code> operand is
+equal to the instruction size in bits.</p></li>
+<li><p>BFXU and DBFXU are converted to <a class="reference internal" href="#umlinst-and"><span class="std std-ref">AND</span></a> if the
+<code class="docutils literal notranslate"><span class="pre">shift</span></code> operand is the immediate value zero and <code class="docutils literal notranslate"><span class="pre">width</span></code> operand is
+an immediate value.</p></li>
+<li><p>BFXS and DBFXS are converted to <a class="reference internal" href="#umlinst-sext"><span class="std std-ref">SEXT</span></a> if the
+<code class="docutils literal notranslate"><span class="pre">shift</span></code> operand is the immediate value zero and <code class="docutils literal notranslate"><span class="pre">width</span></code> operand is
+the immediate value 8, 16 or 32.</p></li>
+<li><p>Immediate values for the <code class="docutils literal notranslate"><span class="pre">src</span></code> operand are truncated to the
+instruction size.</p></li>
+<li><p>Immediate values for the <code class="docutils literal notranslate"><span class="pre">shift</span></code> and <code class="docutils literal notranslate"><span class="pre">width</span></code> operands are
+truncated to five or six bits for 32-bit or 64-bit operands,
+respectively.</p></li>
+</ul>
+</section>
+</section>
 <section id="roland">
-<span id="umlinst-roland"></span><h3><a class="toc-backref" href="#id284" role="doc-backlink">ROLAND</a><a class="headerlink" href="#roland" title="Link to this heading">¶</a></h3>
+<span id="umlinst-roland"></span><h3><a class="toc-backref" href="#id288" role="doc-backlink">ROLAND</a><a class="headerlink" href="#roland" title="Link to this heading">¶</a></h3>
 <p>Rotate and mask an integer value.  The value is rotated to the left
 (toward the most significant bit position).  Bits shifted out of the
 most significant bit position are shifted into the least significant bit
@@ -4438,8 +4538,8 @@ left by <code class="docutils literal notranslate"><span class="pre">count</span
 <p>Back-ends may be able to optimise some forms of this instruction, for
 example when the <code class="docutils literal notranslate"><span class="pre">count</span></code> and <code class="docutils literal notranslate"><span class="pre">mask</span></code> operands are both immediate
 values.</p>
-<section id="id160">
-<h4>Operands<a class="headerlink" href="#id160" title="Link to this heading">¶</a></h4>
+<section id="id163">
+<h4>Operands<a class="headerlink" href="#id163" title="Link to this heading">¶</a></h4>
 <dl class="simple">
 <dt>dst (32-bit or 64-bit – memory, integer register)</dt><dd><p>The destination where the rotated and masked value will be stored.</p>
 </dd>
@@ -4453,8 +4553,8 @@ depending on the instruction size.</p>
 </dd>
 </dl>
 </section>
-<section id="id161">
-<h4>Flags<a class="headerlink" href="#id161" title="Link to this heading">¶</a></h4>
+<section id="id164">
+<h4>Flags<a class="headerlink" href="#id164" title="Link to this heading">¶</a></h4>
 <dl class="simple">
 <dt>carry (C)</dt><dd><p>Undefined.</p>
 </dd>
@@ -4470,8 +4570,8 @@ otherwise).</p>
 </dd>
 </dl>
 </section>
-<section id="id162">
-<h4>Simplification rules<a class="headerlink" href="#id162" title="Link to this heading">¶</a></h4>
+<section id="id165">
+<h4>Simplification rules<a class="headerlink" href="#id165" title="Link to this heading">¶</a></h4>
 <ul class="simple">
 <li><p>Converted to <a class="reference internal" href="#umlinst-mov"><span class="std std-ref">MOV</span></a>, <a class="reference internal" href="#umlinst-and"><span class="std std-ref">AND</span></a> or
 <a class="reference internal" href="#umlinst-or"><span class="std std-ref">OR</span></a> if the <code class="docutils literal notranslate"><span class="pre">src</span></code> and <code class="docutils literal notranslate"><span class="pre">count</span></code> operands are both
@@ -4483,10 +4583,10 @@ immediate value with all bits set.</p></li>
 immediate value and the <code class="docutils literal notranslate"><span class="pre">mask</span></code> operand is an immediate value
 containing a single contiguous left-aligned sequence of set bits of
 the appropriate length for the value of the <code class="docutils literal notranslate"><span class="pre">count</span></code> operand.</p></li>
-<li><p>Converted to <a class="reference internal" href="#umlinst-shr"><span class="std std-ref">SHR</span></a> if the <code class="docutils literal notranslate"><span class="pre">count</span></code> operand is an
-immediate value and the <code class="docutils literal notranslate"><span class="pre">mask</span></code> operand is an immediate value
-containing a single contiguous right-aligned sequence of set bits of
-the appropriate length for the value of the <code class="docutils literal notranslate"><span class="pre">count</span></code> operand.</p></li>
+<li><p>Converted to <a class="reference internal" href="#umlinst-shr"><span class="std std-ref">SHR</span></a> or <a class="reference internal" href="#umlinst-bfx"><span class="std std-ref">BFX</span></a> if
+the <code class="docutils literal notranslate"><span class="pre">count</span></code> operand is an immediate value and the <code class="docutils literal notranslate"><span class="pre">mask</span></code> operand
+is an immediate value containing a single contiguous right-aligned
+sequence of set bits.</p></li>
 <li><p>Immediate values for the <code class="docutils literal notranslate"><span class="pre">src</span></code> and <code class="docutils literal notranslate"><span class="pre">mask</span></code> operands are truncated
 to the instruction size.</p></li>
 <li><p>Immediate values for the <code class="docutils literal notranslate"><span class="pre">count</span></code> operand are truncated to five or
@@ -4495,7 +4595,7 @@ six bits for 32-bit or 64-bit operands, respectively.</p></li>
 </section>
 </section>
 <section id="rolins">
-<span id="umlinst-rolins"></span><h3><a class="toc-backref" href="#id285" role="doc-backlink">ROLINS</a><a class="headerlink" href="#rolins" title="Link to this heading">¶</a></h3>
+<span id="umlinst-rolins"></span><h3><a class="toc-backref" href="#id289" role="doc-backlink">ROLINS</a><a class="headerlink" href="#rolins" title="Link to this heading">¶</a></h3>
 <p>Rotate an integer value and combine with the destination value using a
 mask.  The value is rotated to the left (toward the most significant bit
 position).  Bits shifted out of the most significant bit position are
@@ -4531,8 +4631,8 @@ set in <code class="docutils literal notranslate"><span class="pre">mask</span><
 <p>Back-ends may be able to optimise some forms of this instruction, for
 example when the <code class="docutils literal notranslate"><span class="pre">count</span></code> and <code class="docutils literal notranslate"><span class="pre">mask</span></code> operands are both immediate
 values.</p>
-<section id="id163">
-<h4>Operands<a class="headerlink" href="#id163" title="Link to this heading">¶</a></h4>
+<section id="id166">
+<h4>Operands<a class="headerlink" href="#id166" title="Link to this heading">¶</a></h4>
 <dl class="simple">
 <dt>dst (32-bit or 64-bit – memory, integer register)</dt><dd><p>The destination that will be combined with the rotated value.</p>
 </dd>
@@ -4544,71 +4644,6 @@ depending on the instruction size.</p>
 </dd>
 <dt>mask (32-bit or 64-bit – memory, integer register, immediate, map variable)</dt><dd><p>The mask to control which bit positions are copied from the rotated
 value and which bit positions are preserved in the destination.</p>
-</dd>
-</dl>
-</section>
-<section id="id164">
-<h4>Flags<a class="headerlink" href="#id164" title="Link to this heading">¶</a></h4>
-<dl class="simple">
-<dt>carry (C)</dt><dd><p>Undefined.</p>
-</dd>
-<dt>overflow (V)</dt><dd><p>Undefined.</p>
-</dd>
-<dt>zero (Z)</dt><dd><p>Set if the result is zero, or cleared otherwise.</p>
-</dd>
-<dt>sign (S)</dt><dd><p>Set to the value of the most significant bit of the result (set if
-the result is a negative signed integer value, or cleared
-otherwise).</p>
-</dd>
-<dt>unordered (U)</dt><dd><p>Undefined.</p>
-</dd>
-</dl>
-</section>
-<section id="id165">
-<h4>Simplification rules<a class="headerlink" href="#id165" title="Link to this heading">¶</a></h4>
-<ul class="simple">
-<li><p>Converted to <a class="reference internal" href="#umlinst-rol"><span class="std std-ref">ROL</span></a>, <a class="reference internal" href="#umlinst-and"><span class="std std-ref">AND</span></a>,
-<a class="reference internal" href="#umlinst-or"><span class="std std-ref">OR</span></a> or <a class="reference internal" href="#umlinst-mov"><span class="std std-ref">MOV</span></a> if the <code class="docutils literal notranslate"><span class="pre">mask</span></code>
-operand is an immediate value with all bits set or the immediate value
-zero.</p></li>
-<li><p>Immediate values for the <code class="docutils literal notranslate"><span class="pre">src</span></code> and <code class="docutils literal notranslate"><span class="pre">mask</span></code> operands are truncated
-to the instruction size.</p></li>
-<li><p>Immediate values for the <code class="docutils literal notranslate"><span class="pre">count</span></code> operand are truncated to five or
-six bits for 32-bit or 64-bit operands, respectively.</p></li>
-</ul>
-</section>
-</section>
-<section id="bswap">
-<span id="umlinst-bswap"></span><h3><a class="toc-backref" href="#id286" role="doc-backlink">BSWAP</a><a class="headerlink" href="#bswap" title="Link to this heading">¶</a></h3>
-<p>Reverse the order of bytes within an integer value.</p>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head"><p>Disassembly</p></th>
-<th class="head"><p>Usage</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">bswap</span>   <span class="n">dst</span><span class="p">,</span><span class="n">src</span>
-<span class="n">dbswap</span>  <span class="n">dst</span><span class="p">,</span><span class="n">src</span>
-</pre></div>
-</div>
-</td>
-<td><div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="n">UML_BSWAP</span><span class="p">(</span><span class="n">block</span><span class="p">,</span><span class="w"> </span><span class="n">dst</span><span class="p">,</span><span class="w"> </span><span class="n">src</span><span class="p">);</span>
-<span class="n">UML_DBSWAP</span><span class="p">(</span><span class="n">block</span><span class="p">,</span><span class="w"> </span><span class="n">dst</span><span class="p">,</span><span class="w"> </span><span class="n">src</span><span class="p">);</span>
-</pre></div>
-</div>
-</td>
-</tr>
-</tbody>
-</table>
-<p>This instruction can be used to convert between big Endian and little
-Endian byte order.</p>
-<section id="id166">
-<h4>Operands<a class="headerlink" href="#id166" title="Link to this heading">¶</a></h4>
-<dl class="simple">
-<dt>dst (32-bit or 64-bit – memory, integer register)</dt><dd><p>The destination where the result will be stored.</p>
-</dd>
-<dt>src (32-bit or 64-bit – memory, integer register, immediate, map variable)</dt><dd><p>The value to have its byte order reversed.</p>
 </dd>
 </dl>
 </section>
@@ -4632,6 +4667,71 @@ otherwise).</p>
 <section id="id168">
 <h4>Simplification rules<a class="headerlink" href="#id168" title="Link to this heading">¶</a></h4>
 <ul class="simple">
+<li><p>Converted to <a class="reference internal" href="#umlinst-rol"><span class="std std-ref">ROL</span></a>, <a class="reference internal" href="#umlinst-and"><span class="std std-ref">AND</span></a>,
+<a class="reference internal" href="#umlinst-or"><span class="std std-ref">OR</span></a> or <a class="reference internal" href="#umlinst-mov"><span class="std std-ref">MOV</span></a> if the <code class="docutils literal notranslate"><span class="pre">mask</span></code>
+operand is an immediate value with all bits set or the immediate value
+zero.</p></li>
+<li><p>Immediate values for the <code class="docutils literal notranslate"><span class="pre">src</span></code> and <code class="docutils literal notranslate"><span class="pre">mask</span></code> operands are truncated
+to the instruction size.</p></li>
+<li><p>Immediate values for the <code class="docutils literal notranslate"><span class="pre">count</span></code> operand are truncated to five or
+six bits for 32-bit or 64-bit operands, respectively.</p></li>
+</ul>
+</section>
+</section>
+<section id="bswap">
+<span id="umlinst-bswap"></span><h3><a class="toc-backref" href="#id290" role="doc-backlink">BSWAP</a><a class="headerlink" href="#bswap" title="Link to this heading">¶</a></h3>
+<p>Reverse the order of bytes within an integer value.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Disassembly</p></th>
+<th class="head"><p>Usage</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">bswap</span>   <span class="n">dst</span><span class="p">,</span><span class="n">src</span>
+<span class="n">dbswap</span>  <span class="n">dst</span><span class="p">,</span><span class="n">src</span>
+</pre></div>
+</div>
+</td>
+<td><div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="n">UML_BSWAP</span><span class="p">(</span><span class="n">block</span><span class="p">,</span><span class="w"> </span><span class="n">dst</span><span class="p">,</span><span class="w"> </span><span class="n">src</span><span class="p">);</span>
+<span class="n">UML_DBSWAP</span><span class="p">(</span><span class="n">block</span><span class="p">,</span><span class="w"> </span><span class="n">dst</span><span class="p">,</span><span class="w"> </span><span class="n">src</span><span class="p">);</span>
+</pre></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>This instruction can be used to convert between big Endian and little
+Endian byte order.</p>
+<section id="id169">
+<h4>Operands<a class="headerlink" href="#id169" title="Link to this heading">¶</a></h4>
+<dl class="simple">
+<dt>dst (32-bit or 64-bit – memory, integer register)</dt><dd><p>The destination where the result will be stored.</p>
+</dd>
+<dt>src (32-bit or 64-bit – memory, integer register, immediate, map variable)</dt><dd><p>The value to have its byte order reversed.</p>
+</dd>
+</dl>
+</section>
+<section id="id170">
+<h4>Flags<a class="headerlink" href="#id170" title="Link to this heading">¶</a></h4>
+<dl class="simple">
+<dt>carry (C)</dt><dd><p>Undefined.</p>
+</dd>
+<dt>overflow (V)</dt><dd><p>Undefined.</p>
+</dd>
+<dt>zero (Z)</dt><dd><p>Set if the result is zero, or cleared otherwise.</p>
+</dd>
+<dt>sign (S)</dt><dd><p>Set to the value of the most significant bit of the result (set if
+the result is a negative signed integer value, or cleared
+otherwise).</p>
+</dd>
+<dt>unordered (U)</dt><dd><p>Undefined.</p>
+</dd>
+</dl>
+</section>
+<section id="id171">
+<h4>Simplification rules<a class="headerlink" href="#id171" title="Link to this heading">¶</a></h4>
+<ul class="simple">
 <li><p>Converted to <a class="reference internal" href="#umlinst-mov"><span class="std std-ref">MOV</span></a>, <a class="reference internal" href="#umlinst-and"><span class="std std-ref">AND</span></a> or
 <a class="reference internal" href="#umlinst-or"><span class="std std-ref">OR</span></a> if the <code class="docutils literal notranslate"><span class="pre">src</span></code> operand is an immediate value.</p></li>
 </ul>
@@ -4639,9 +4739,9 @@ otherwise).</p>
 </section>
 </section>
 <section id="floating-point-arithmetic">
-<span id="umlinst-fparith"></span><h2><a class="toc-backref" href="#id287" role="doc-backlink">Floating point arithmetic</a><a class="headerlink" href="#floating-point-arithmetic" title="Link to this heading">¶</a></h2>
+<span id="umlinst-fparith"></span><h2><a class="toc-backref" href="#id291" role="doc-backlink">Floating point arithmetic</a><a class="headerlink" href="#floating-point-arithmetic" title="Link to this heading">¶</a></h2>
 <section id="fadd">
-<span id="umlinst-fadd"></span><h3><a class="toc-backref" href="#id288" role="doc-backlink">FADD</a><a class="headerlink" href="#fadd" title="Link to this heading">¶</a></h3>
+<span id="umlinst-fadd"></span><h3><a class="toc-backref" href="#id292" role="doc-backlink">FADD</a><a class="headerlink" href="#fadd" title="Link to this heading">¶</a></h3>
 <p>Add two floating point numbers.</p>
 <table class="docutils align-default">
 <thead>
@@ -4664,8 +4764,8 @@ otherwise).</p>
 </tbody>
 </table>
 <p>Calculates <code class="docutils literal notranslate"><span class="pre">dst</span> <span class="pre">=</span> <span class="pre">src1</span> <span class="pre">+</span> <span class="pre">src2</span></code>.</p>
-<section id="id169">
-<h4>Operands<a class="headerlink" href="#id169" title="Link to this heading">¶</a></h4>
+<section id="id172">
+<h4>Operands<a class="headerlink" href="#id172" title="Link to this heading">¶</a></h4>
 <dl class="simple">
 <dt>dst (32-bit or 64-bit – memory, floating point register)</dt><dd><p>The destination where the sum will be stored.</p>
 </dd>
@@ -4675,13 +4775,13 @@ otherwise).</p>
 </dd>
 </dl>
 </section>
-<section id="id170">
-<h4>Simplification rules<a class="headerlink" href="#id170" title="Link to this heading">¶</a></h4>
+<section id="id173">
+<h4>Simplification rules<a class="headerlink" href="#id173" title="Link to this heading">¶</a></h4>
 <p>No simplifications are applied to this instruction.</p>
 </section>
 </section>
 <section id="fsub">
-<span id="umlinst-fsub"></span><h3><a class="toc-backref" href="#id289" role="doc-backlink">FSUB</a><a class="headerlink" href="#fsub" title="Link to this heading">¶</a></h3>
+<span id="umlinst-fsub"></span><h3><a class="toc-backref" href="#id293" role="doc-backlink">FSUB</a><a class="headerlink" href="#fsub" title="Link to this heading">¶</a></h3>
 <p>Subtract a floating point number from another floating point number.</p>
 <table class="docutils align-default">
 <thead>
@@ -4704,8 +4804,8 @@ otherwise).</p>
 </tbody>
 </table>
 <p>Calculates <code class="docutils literal notranslate"><span class="pre">dst</span> <span class="pre">=</span> <span class="pre">src1</span> <span class="pre">-</span> <span class="pre">src2</span></code>.</p>
-<section id="id171">
-<h4>Operands<a class="headerlink" href="#id171" title="Link to this heading">¶</a></h4>
+<section id="id174">
+<h4>Operands<a class="headerlink" href="#id174" title="Link to this heading">¶</a></h4>
 <dl class="simple">
 <dt>dst (32-bit or 64-bit – memory, floating point register)</dt><dd><p>The destination where the difference will be stored.</p>
 </dd>
@@ -4715,8 +4815,8 @@ otherwise).</p>
 </dd>
 </dl>
 </section>
-<section id="id172">
-<h4>Flags<a class="headerlink" href="#id172" title="Link to this heading">¶</a></h4>
+<section id="id175">
+<h4>Flags<a class="headerlink" href="#id175" title="Link to this heading">¶</a></h4>
 <dl class="simple">
 <dt>carry (C)</dt><dd><p>Undefined.</p>
 </dd>
@@ -4730,13 +4830,13 @@ otherwise).</p>
 </dd>
 </dl>
 </section>
-<section id="id173">
-<h4>Simplification rules<a class="headerlink" href="#id173" title="Link to this heading">¶</a></h4>
+<section id="id176">
+<h4>Simplification rules<a class="headerlink" href="#id176" title="Link to this heading">¶</a></h4>
 <p>No simplifications are applied to this instruction.</p>
 </section>
 </section>
 <section id="fcmp">
-<span id="umlinst-fcmp"></span><h3><a class="toc-backref" href="#id290" role="doc-backlink">FCMP</a><a class="headerlink" href="#fcmp" title="Link to this heading">¶</a></h3>
+<span id="umlinst-fcmp"></span><h3><a class="toc-backref" href="#id294" role="doc-backlink">FCMP</a><a class="headerlink" href="#fcmp" title="Link to this heading">¶</a></h3>
 <p>Compare two floating-point numbers and set the carry, zero and unordered
 flags.</p>
 <table class="docutils align-default">
@@ -4759,8 +4859,8 @@ flags.</p>
 </tr>
 </tbody>
 </table>
-<section id="id174">
-<h4>Operands<a class="headerlink" href="#id174" title="Link to this heading">¶</a></h4>
+<section id="id177">
+<h4>Operands<a class="headerlink" href="#id177" title="Link to this heading">¶</a></h4>
 <dl class="simple">
 <dt>src1 (32-bit or 64-bit – memory, floating point register)</dt><dd><p>The left-hand side value to compare.</p>
 </dd>
@@ -4768,8 +4868,8 @@ flags.</p>
 </dd>
 </dl>
 </section>
-<section id="id175">
-<h4>Flags<a class="headerlink" href="#id175" title="Link to this heading">¶</a></h4>
+<section id="id178">
+<h4>Flags<a class="headerlink" href="#id178" title="Link to this heading">¶</a></h4>
 <dl class="simple">
 <dt>carry (C)</dt><dd><p>Set if the value of <code class="docutils literal notranslate"><span class="pre">src1</span></code> is less than the value of <code class="docutils literal notranslate"><span class="pre">src2</span></code>, or
 cleared otherwise.</p>
@@ -4786,13 +4886,13 @@ otherwise.</p>
 </dd>
 </dl>
 </section>
-<section id="id176">
-<h4>Simplification rules<a class="headerlink" href="#id176" title="Link to this heading">¶</a></h4>
+<section id="id179">
+<h4>Simplification rules<a class="headerlink" href="#id179" title="Link to this heading">¶</a></h4>
 <p>No simplifications are applied to this instruction.</p>
 </section>
 </section>
 <section id="fmul">
-<span id="umlinst-fmul"></span><h3><a class="toc-backref" href="#id291" role="doc-backlink">FMUL</a><a class="headerlink" href="#fmul" title="Link to this heading">¶</a></h3>
+<span id="umlinst-fmul"></span><h3><a class="toc-backref" href="#id295" role="doc-backlink">FMUL</a><a class="headerlink" href="#fmul" title="Link to this heading">¶</a></h3>
 <p>Multiply two floating point numbers.</p>
 <table class="docutils align-default">
 <thead>
@@ -4815,69 +4915,14 @@ otherwise.</p>
 </tbody>
 </table>
 <p>Calculates <code class="docutils literal notranslate"><span class="pre">dst</span> <span class="pre">=</span> <span class="pre">src1</span> <span class="pre">*</span> <span class="pre">src2</span></code>.</p>
-<section id="id177">
-<h4>Operands<a class="headerlink" href="#id177" title="Link to this heading">¶</a></h4>
+<section id="id180">
+<h4>Operands<a class="headerlink" href="#id180" title="Link to this heading">¶</a></h4>
 <dl class="simple">
 <dt>dst (32-bit or 64-bit – memory, floating point register)</dt><dd><p>The destination where the product will be stored.</p>
 </dd>
 <dt>src1 (32-bit or 64-bit – memory, floating point register)</dt><dd><p>The multiplicand (the value to multiply).</p>
 </dd>
 <dt>src2 (32-bit or 64-bit – memory, floating point register)</dt><dd><p>The multiplier (the value to multiply by).</p>
-</dd>
-</dl>
-</section>
-<section id="id178">
-<h4>Flags<a class="headerlink" href="#id178" title="Link to this heading">¶</a></h4>
-<dl class="simple">
-<dt>carry (C)</dt><dd><p>Undefined.</p>
-</dd>
-<dt>overflow (V)</dt><dd><p>Undefined.</p>
-</dd>
-<dt>zero (Z)</dt><dd><p>Undefined.</p>
-</dd>
-<dt>sign (S)</dt><dd><p>Undefined.</p>
-</dd>
-<dt>unordered (U)</dt><dd><p>Undefined.</p>
-</dd>
-</dl>
-</section>
-<section id="id179">
-<h4>Simplification rules<a class="headerlink" href="#id179" title="Link to this heading">¶</a></h4>
-<p>No simplifications are applied to this instruction.</p>
-</section>
-</section>
-<section id="fdiv">
-<span id="umlinst-fdiv"></span><h3><a class="toc-backref" href="#id292" role="doc-backlink">FDIV</a><a class="headerlink" href="#fdiv" title="Link to this heading">¶</a></h3>
-<p>Divide a floating point number by another floating point number.</p>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head"><p>Disassembly</p></th>
-<th class="head"><p>Usage</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fsdiv</span>   <span class="n">dst</span><span class="p">,</span><span class="n">src1</span><span class="p">,</span><span class="n">src2</span>
-<span class="n">fddiv</span>   <span class="n">dst</span><span class="p">,</span><span class="n">src1</span><span class="p">,</span><span class="n">src2</span>
-</pre></div>
-</div>
-</td>
-<td><div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="n">UML_FSDIV</span><span class="p">(</span><span class="n">block</span><span class="p">,</span><span class="w"> </span><span class="n">dst</span><span class="p">,</span><span class="w"> </span><span class="n">src1</span><span class="p">,</span><span class="w"> </span><span class="n">src2</span><span class="p">);</span>
-<span class="n">UML_FDDIV</span><span class="p">(</span><span class="n">block</span><span class="p">,</span><span class="w"> </span><span class="n">dst</span><span class="p">,</span><span class="w"> </span><span class="n">src1</span><span class="p">,</span><span class="w"> </span><span class="n">src2</span><span class="p">);</span>
-</pre></div>
-</div>
-</td>
-</tr>
-</tbody>
-</table>
-<p>Calculates <code class="docutils literal notranslate"><span class="pre">dst</span> <span class="pre">=</span> <span class="pre">src1</span> <span class="pre">/</span> <span class="pre">src2</span></code>.</p>
-<section id="id180">
-<h4>Operands<a class="headerlink" href="#id180" title="Link to this heading">¶</a></h4>
-<dl class="simple">
-<dt>dst (32-bit or 64-bit – memory, floating point register)</dt><dd><p>The destination where the quotient will be stored.</p>
-</dd>
-<dt>src1 (32-bit or 64-bit – memory, floating point register)</dt><dd><p>The dividend (the value to divide).</p>
-</dd>
-<dt>src2 (32-bit or 64-bit – memory, floating point register)</dt><dd><p>The divisor (the value to divide by).</p>
 </dd>
 </dl>
 </section>
@@ -4901,9 +4946,9 @@ otherwise.</p>
 <p>No simplifications are applied to this instruction.</p>
 </section>
 </section>
-<section id="fneg">
-<span id="umlinst-fneg"></span><h3><a class="toc-backref" href="#id293" role="doc-backlink">FNEG</a><a class="headerlink" href="#fneg" title="Link to this heading">¶</a></h3>
-<p>Negate a floating point number.</p>
+<section id="fdiv">
+<span id="umlinst-fdiv"></span><h3><a class="toc-backref" href="#id296" role="doc-backlink">FDIV</a><a class="headerlink" href="#fdiv" title="Link to this heading">¶</a></h3>
+<p>Divide a floating point number by another floating point number.</p>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Disassembly</p></th>
@@ -4911,26 +4956,28 @@ otherwise.</p>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fsneg</span>   <span class="n">dst</span><span class="p">,</span><span class="n">src</span>
-<span class="n">fdneg</span>   <span class="n">dst</span><span class="p">,</span><span class="n">src</span>
+<tr class="row-even"><td><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fsdiv</span>   <span class="n">dst</span><span class="p">,</span><span class="n">src1</span><span class="p">,</span><span class="n">src2</span>
+<span class="n">fddiv</span>   <span class="n">dst</span><span class="p">,</span><span class="n">src1</span><span class="p">,</span><span class="n">src2</span>
 </pre></div>
 </div>
 </td>
-<td><div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="n">UML_FSNEG</span><span class="p">(</span><span class="n">block</span><span class="p">,</span><span class="w"> </span><span class="n">dst</span><span class="p">,</span><span class="w"> </span><span class="n">src</span><span class="p">);</span>
-<span class="n">UML_FDNEG</span><span class="p">(</span><span class="n">block</span><span class="p">,</span><span class="w"> </span><span class="n">dst</span><span class="p">,</span><span class="w"> </span><span class="n">src</span><span class="p">);</span>
+<td><div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="n">UML_FSDIV</span><span class="p">(</span><span class="n">block</span><span class="p">,</span><span class="w"> </span><span class="n">dst</span><span class="p">,</span><span class="w"> </span><span class="n">src1</span><span class="p">,</span><span class="w"> </span><span class="n">src2</span><span class="p">);</span>
+<span class="n">UML_FDDIV</span><span class="p">(</span><span class="n">block</span><span class="p">,</span><span class="w"> </span><span class="n">dst</span><span class="p">,</span><span class="w"> </span><span class="n">src1</span><span class="p">,</span><span class="w"> </span><span class="n">src2</span><span class="p">);</span>
 </pre></div>
 </div>
 </td>
 </tr>
 </tbody>
 </table>
-<p>Calculates <code class="docutils literal notranslate"><span class="pre">dst</span> <span class="pre">=</span> <span class="pre">-src</span></code>.</p>
+<p>Calculates <code class="docutils literal notranslate"><span class="pre">dst</span> <span class="pre">=</span> <span class="pre">src1</span> <span class="pre">/</span> <span class="pre">src2</span></code>.</p>
 <section id="id183">
 <h4>Operands<a class="headerlink" href="#id183" title="Link to this heading">¶</a></h4>
 <dl class="simple">
-<dt>dst (32-bit or 64-bit – memory, floating point register)</dt><dd><p>The destination where the result will be stored.</p>
+<dt>dst (32-bit or 64-bit – memory, floating point register)</dt><dd><p>The destination where the quotient will be stored.</p>
 </dd>
-<dt>src (32-bit or 64-bit – memory, floating point register)</dt><dd><p>The value to be negated.</p>
+<dt>src1 (32-bit or 64-bit – memory, floating point register)</dt><dd><p>The dividend (the value to divide).</p>
+</dd>
+<dt>src2 (32-bit or 64-bit – memory, floating point register)</dt><dd><p>The divisor (the value to divide by).</p>
 </dd>
 </dl>
 </section>
@@ -4954,9 +5001,9 @@ otherwise.</p>
 <p>No simplifications are applied to this instruction.</p>
 </section>
 </section>
-<section id="fabs">
-<span id="umlinst-fabs"></span><h3><a class="toc-backref" href="#id294" role="doc-backlink">FABS</a><a class="headerlink" href="#fabs" title="Link to this heading">¶</a></h3>
-<p>Calculate the absolute value of a floating point number.</p>
+<section id="fneg">
+<span id="umlinst-fneg"></span><h3><a class="toc-backref" href="#id297" role="doc-backlink">FNEG</a><a class="headerlink" href="#fneg" title="Link to this heading">¶</a></h3>
+<p>Negate a floating point number.</p>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Disassembly</p></th>
@@ -4964,25 +5011,26 @@ otherwise.</p>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fsabs</span>   <span class="n">dst</span><span class="p">,</span><span class="n">src</span>
-<span class="n">fdabs</span>   <span class="n">dst</span><span class="p">,</span><span class="n">src</span>
+<tr class="row-even"><td><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fsneg</span>   <span class="n">dst</span><span class="p">,</span><span class="n">src</span>
+<span class="n">fdneg</span>   <span class="n">dst</span><span class="p">,</span><span class="n">src</span>
 </pre></div>
 </div>
 </td>
-<td><div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="n">UML_FSABS</span><span class="p">(</span><span class="n">block</span><span class="p">,</span><span class="w"> </span><span class="n">dst</span><span class="p">,</span><span class="w"> </span><span class="n">src</span><span class="p">);</span>
-<span class="n">UML_FDABS</span><span class="p">(</span><span class="n">block</span><span class="p">,</span><span class="w"> </span><span class="n">dst</span><span class="p">,</span><span class="w"> </span><span class="n">src</span><span class="p">);</span>
+<td><div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="n">UML_FSNEG</span><span class="p">(</span><span class="n">block</span><span class="p">,</span><span class="w"> </span><span class="n">dst</span><span class="p">,</span><span class="w"> </span><span class="n">src</span><span class="p">);</span>
+<span class="n">UML_FDNEG</span><span class="p">(</span><span class="n">block</span><span class="p">,</span><span class="w"> </span><span class="n">dst</span><span class="p">,</span><span class="w"> </span><span class="n">src</span><span class="p">);</span>
 </pre></div>
 </div>
 </td>
 </tr>
 </tbody>
 </table>
+<p>Calculates <code class="docutils literal notranslate"><span class="pre">dst</span> <span class="pre">=</span> <span class="pre">-src</span></code>.</p>
 <section id="id186">
 <h4>Operands<a class="headerlink" href="#id186" title="Link to this heading">¶</a></h4>
 <dl class="simple">
 <dt>dst (32-bit or 64-bit – memory, floating point register)</dt><dd><p>The destination where the result will be stored.</p>
 </dd>
-<dt>src (32-bit or 64-bit – memory, floating point register)</dt><dd><p>The value to calculate the absolute value of.</p>
+<dt>src (32-bit or 64-bit – memory, floating point register)</dt><dd><p>The value to be negated.</p>
 </dd>
 </dl>
 </section>
@@ -5006,9 +5054,9 @@ otherwise.</p>
 <p>No simplifications are applied to this instruction.</p>
 </section>
 </section>
-<section id="fsqrt">
-<span id="umlinst-fsqrt"></span><h3><a class="toc-backref" href="#id295" role="doc-backlink">FSQRT</a><a class="headerlink" href="#fsqrt" title="Link to this heading">¶</a></h3>
-<p>Calculate the square root of a floating point number.</p>
+<section id="fabs">
+<span id="umlinst-fabs"></span><h3><a class="toc-backref" href="#id298" role="doc-backlink">FABS</a><a class="headerlink" href="#fabs" title="Link to this heading">¶</a></h3>
+<p>Calculate the absolute value of a floating point number.</p>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Disassembly</p></th>
@@ -5016,13 +5064,13 @@ otherwise.</p>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fssqrt</span>  <span class="n">dst</span><span class="p">,</span><span class="n">src</span>
-<span class="n">fdsqrt</span>  <span class="n">dst</span><span class="p">,</span><span class="n">src</span>
+<tr class="row-even"><td><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fsabs</span>   <span class="n">dst</span><span class="p">,</span><span class="n">src</span>
+<span class="n">fdabs</span>   <span class="n">dst</span><span class="p">,</span><span class="n">src</span>
 </pre></div>
 </div>
 </td>
-<td><div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="n">UML_FSSQRT</span><span class="p">(</span><span class="n">block</span><span class="p">,</span><span class="w"> </span><span class="n">dst</span><span class="p">,</span><span class="w"> </span><span class="n">src</span><span class="p">);</span>
-<span class="n">UML_FDSQRT</span><span class="p">(</span><span class="n">block</span><span class="p">,</span><span class="w"> </span><span class="n">dst</span><span class="p">,</span><span class="w"> </span><span class="n">src</span><span class="p">);</span>
+<td><div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="n">UML_FSABS</span><span class="p">(</span><span class="n">block</span><span class="p">,</span><span class="w"> </span><span class="n">dst</span><span class="p">,</span><span class="w"> </span><span class="n">src</span><span class="p">);</span>
+<span class="n">UML_FDABS</span><span class="p">(</span><span class="n">block</span><span class="p">,</span><span class="w"> </span><span class="n">dst</span><span class="p">,</span><span class="w"> </span><span class="n">src</span><span class="p">);</span>
 </pre></div>
 </div>
 </td>
@@ -5032,9 +5080,9 @@ otherwise.</p>
 <section id="id189">
 <h4>Operands<a class="headerlink" href="#id189" title="Link to this heading">¶</a></h4>
 <dl class="simple">
-<dt>dst (32-bit or 64-bit – memory, floating point register)</dt><dd><p>The destination where the square root will be stored.</p>
+<dt>dst (32-bit or 64-bit – memory, floating point register)</dt><dd><p>The destination where the result will be stored.</p>
 </dd>
-<dt>src (32-bit or 64-bit – memory, floating point register)</dt><dd><p>The value to calculate the square root of.</p>
+<dt>src (32-bit or 64-bit – memory, floating point register)</dt><dd><p>The value to calculate the absolute value of.</p>
 </dd>
 </dl>
 </section>
@@ -5058,11 +5106,9 @@ otherwise.</p>
 <p>No simplifications are applied to this instruction.</p>
 </section>
 </section>
-<section id="frecip">
-<span id="umlinst-frecip"></span><h3><a class="toc-backref" href="#id296" role="doc-backlink">FRECIP</a><a class="headerlink" href="#frecip" title="Link to this heading">¶</a></h3>
-<p>Calculate an approximate reciprocal value of a floating point number.
-The algorithm used, precision and nature of inaccuracies in the
-approximation are unspecified.</p>
+<section id="fsqrt">
+<span id="umlinst-fsqrt"></span><h3><a class="toc-backref" href="#id299" role="doc-backlink">FSQRT</a><a class="headerlink" href="#fsqrt" title="Link to this heading">¶</a></h3>
+<p>Calculate the square root of a floating point number.</p>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Disassembly</p></th>
@@ -5070,13 +5116,13 @@ approximation are unspecified.</p>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fsabs</span>   <span class="n">dst</span><span class="p">,</span><span class="n">src</span>
-<span class="n">fdabs</span>   <span class="n">dst</span><span class="p">,</span><span class="n">src</span>
+<tr class="row-even"><td><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fssqrt</span>  <span class="n">dst</span><span class="p">,</span><span class="n">src</span>
+<span class="n">fdsqrt</span>  <span class="n">dst</span><span class="p">,</span><span class="n">src</span>
 </pre></div>
 </div>
 </td>
-<td><div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="n">UML_FSABS</span><span class="p">(</span><span class="n">block</span><span class="p">,</span><span class="w"> </span><span class="n">dst</span><span class="p">,</span><span class="w"> </span><span class="n">src</span><span class="p">);</span>
-<span class="n">UML_FDABS</span><span class="p">(</span><span class="n">block</span><span class="p">,</span><span class="w"> </span><span class="n">dst</span><span class="p">,</span><span class="w"> </span><span class="n">src</span><span class="p">);</span>
+<td><div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="n">UML_FSSQRT</span><span class="p">(</span><span class="n">block</span><span class="p">,</span><span class="w"> </span><span class="n">dst</span><span class="p">,</span><span class="w"> </span><span class="n">src</span><span class="p">);</span>
+<span class="n">UML_FDSQRT</span><span class="p">(</span><span class="n">block</span><span class="p">,</span><span class="w"> </span><span class="n">dst</span><span class="p">,</span><span class="w"> </span><span class="n">src</span><span class="p">);</span>
 </pre></div>
 </div>
 </td>
@@ -5086,9 +5132,9 @@ approximation are unspecified.</p>
 <section id="id192">
 <h4>Operands<a class="headerlink" href="#id192" title="Link to this heading">¶</a></h4>
 <dl class="simple">
-<dt>dst (32-bit or 64-bit – memory, floating point register)</dt><dd><p>The destination where the result will be stored.</p>
+<dt>dst (32-bit or 64-bit – memory, floating point register)</dt><dd><p>The destination where the square root will be stored.</p>
 </dd>
-<dt>src (32-bit or 64-bit – memory, floating point register)</dt><dd><p>The value to approximate the reciprocal of.</p>
+<dt>src (32-bit or 64-bit – memory, floating point register)</dt><dd><p>The value to calculate the square root of.</p>
 </dd>
 </dl>
 </section>
@@ -5112,11 +5158,11 @@ approximation are unspecified.</p>
 <p>No simplifications are applied to this instruction.</p>
 </section>
 </section>
-<section id="frsqrt">
-<span id="umlinst-frsqrt"></span><h3><a class="toc-backref" href="#id297" role="doc-backlink">FRSQRT</a><a class="headerlink" href="#frsqrt" title="Link to this heading">¶</a></h3>
-<p>Calculate an approximate reciprocal value of the square root of a
-floating point number.  The algorithm used, precision and nature of
-inaccuracies in the approximation are unspecified.</p>
+<section id="frecip">
+<span id="umlinst-frecip"></span><h3><a class="toc-backref" href="#id300" role="doc-backlink">FRECIP</a><a class="headerlink" href="#frecip" title="Link to this heading">¶</a></h3>
+<p>Calculate an approximate reciprocal value of a floating point number.
+The algorithm used, precision and nature of inaccuracies in the
+approximation are unspecified.</p>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Disassembly</p></th>
@@ -5124,13 +5170,13 @@ inaccuracies in the approximation are unspecified.</p>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fsrsqrt</span> <span class="n">dst</span><span class="p">,</span><span class="n">src</span>
-<span class="n">fdrsqrt</span> <span class="n">dst</span><span class="p">,</span><span class="n">src</span>
+<tr class="row-even"><td><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fsabs</span>   <span class="n">dst</span><span class="p">,</span><span class="n">src</span>
+<span class="n">fdabs</span>   <span class="n">dst</span><span class="p">,</span><span class="n">src</span>
 </pre></div>
 </div>
 </td>
-<td><div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="n">UML_FSRSQRT</span><span class="p">(</span><span class="n">block</span><span class="p">,</span><span class="w"> </span><span class="n">dst</span><span class="p">,</span><span class="w"> </span><span class="n">src</span><span class="p">);</span>
-<span class="n">UML_FDRSQRT</span><span class="p">(</span><span class="n">block</span><span class="p">,</span><span class="w"> </span><span class="n">dst</span><span class="p">,</span><span class="w"> </span><span class="n">src</span><span class="p">);</span>
+<td><div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="n">UML_FSABS</span><span class="p">(</span><span class="n">block</span><span class="p">,</span><span class="w"> </span><span class="n">dst</span><span class="p">,</span><span class="w"> </span><span class="n">src</span><span class="p">);</span>
+<span class="n">UML_FDABS</span><span class="p">(</span><span class="n">block</span><span class="p">,</span><span class="w"> </span><span class="n">dst</span><span class="p">,</span><span class="w"> </span><span class="n">src</span><span class="p">);</span>
 </pre></div>
 </div>
 </td>
@@ -5142,7 +5188,7 @@ inaccuracies in the approximation are unspecified.</p>
 <dl class="simple">
 <dt>dst (32-bit or 64-bit – memory, floating point register)</dt><dd><p>The destination where the result will be stored.</p>
 </dd>
-<dt>src (32-bit or 64-bit – memory, floating point register)</dt><dd><p>The value to approximate the reciprocal of the square root of.</p>
+<dt>src (32-bit or 64-bit – memory, floating point register)</dt><dd><p>The value to approximate the reciprocal of.</p>
 </dd>
 </dl>
 </section>
@@ -5166,12 +5212,11 @@ inaccuracies in the approximation are unspecified.</p>
 <p>No simplifications are applied to this instruction.</p>
 </section>
 </section>
-<section id="frnds">
-<span id="umlinst-frnds"></span><h3><a class="toc-backref" href="#id298" role="doc-backlink">FRNDS</a><a class="headerlink" href="#frnds" title="Link to this heading">¶</a></h3>
-<p>Round a 64-bit floating point value to 32-bit precision.  The current
-default rounding type set using the <a class="reference internal" href="#umlinst-setfmod"><span class="std std-ref">SETFMOD</span></a> is
-used.  Note that the instruction size must always be 64 bits for this
-instruction.</p>
+<section id="frsqrt">
+<span id="umlinst-frsqrt"></span><h3><a class="toc-backref" href="#id301" role="doc-backlink">FRSQRT</a><a class="headerlink" href="#frsqrt" title="Link to this heading">¶</a></h3>
+<p>Calculate an approximate reciprocal value of the square root of a
+floating point number.  The algorithm used, precision and nature of
+inaccuracies in the approximation are unspecified.</p>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Disassembly</p></th>
@@ -5179,11 +5224,13 @@ instruction.</p>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fdrnds</span>  <span class="n">dst</span><span class="p">,</span><span class="n">src</span>
+<tr class="row-even"><td><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fsrsqrt</span> <span class="n">dst</span><span class="p">,</span><span class="n">src</span>
+<span class="n">fdrsqrt</span> <span class="n">dst</span><span class="p">,</span><span class="n">src</span>
 </pre></div>
 </div>
 </td>
-<td><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">UML_FDRNDS</span><span class="p">(</span><span class="n">block</span><span class="p">,</span> <span class="n">dst</span><span class="p">,</span> <span class="n">src</span><span class="p">);</span>
+<td><div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="n">UML_FSRSQRT</span><span class="p">(</span><span class="n">block</span><span class="p">,</span><span class="w"> </span><span class="n">dst</span><span class="p">,</span><span class="w"> </span><span class="n">src</span><span class="p">);</span>
+<span class="n">UML_FDRSQRT</span><span class="p">(</span><span class="n">block</span><span class="p">,</span><span class="w"> </span><span class="n">dst</span><span class="p">,</span><span class="w"> </span><span class="n">src</span><span class="p">);</span>
 </pre></div>
 </div>
 </td>
@@ -5193,9 +5240,9 @@ instruction.</p>
 <section id="id198">
 <h4>Operands<a class="headerlink" href="#id198" title="Link to this heading">¶</a></h4>
 <dl class="simple">
-<dt>dst (64-bit – memory, floating point register)</dt><dd><p>The destination where the rounded value will be stored.</p>
+<dt>dst (32-bit or 64-bit – memory, floating point register)</dt><dd><p>The destination where the result will be stored.</p>
 </dd>
-<dt>src (64-bit – memory, floating point register)</dt><dd><p>The floating point value to round to 32-bit precision.</p>
+<dt>src (32-bit or 64-bit – memory, floating point register)</dt><dd><p>The value to approximate the reciprocal of the square root of.</p>
 </dd>
 </dl>
 </section>
@@ -5219,12 +5266,12 @@ instruction.</p>
 <p>No simplifications are applied to this instruction.</p>
 </section>
 </section>
-</section>
-<section id="floating-point-conversion">
-<span id="umlinst-fpconv"></span><h2><a class="toc-backref" href="#id299" role="doc-backlink">Floating point conversion</a><a class="headerlink" href="#floating-point-conversion" title="Link to this heading">¶</a></h2>
-<section id="ftoint">
-<span id="umlinst-ftoint"></span><h3><a class="toc-backref" href="#id300" role="doc-backlink">FTOINT</a><a class="headerlink" href="#ftoint" title="Link to this heading">¶</a></h3>
-<p>Convert a floating point number to a signed two’s complement integer.</p>
+<section id="frnds">
+<span id="umlinst-frnds"></span><h3><a class="toc-backref" href="#id302" role="doc-backlink">FRNDS</a><a class="headerlink" href="#frnds" title="Link to this heading">¶</a></h3>
+<p>Round a 64-bit floating point value to 32-bit precision.  The current
+default rounding type set using the <a class="reference internal" href="#umlinst-setfmod"><span class="std std-ref">SETFMOD</span></a> is
+used.  Note that the instruction size must always be 64 bits for this
+instruction.</p>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Disassembly</p></th>
@@ -5232,13 +5279,11 @@ instruction.</p>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fstoint</span> <span class="n">dst</span><span class="p">,</span><span class="n">src</span><span class="p">,</span><span class="n">size</span><span class="p">,</span><span class="nb">round</span>
-<span class="n">fdtoint</span> <span class="n">dst</span><span class="p">,</span><span class="n">src</span><span class="p">,</span><span class="n">size</span><span class="p">,</span><span class="nb">round</span>
+<tr class="row-even"><td><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fdrnds</span>  <span class="n">dst</span><span class="p">,</span><span class="n">src</span>
 </pre></div>
 </div>
 </td>
-<td><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">UML_FSTOINT</span><span class="p">(</span><span class="n">block</span><span class="p">,</span> <span class="n">dst</span><span class="p">,</span> <span class="n">src</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="nb">round</span><span class="p">);</span>
-<span class="n">UML_FDTOINT</span><span class="p">(</span><span class="n">block</span><span class="p">,</span> <span class="n">dst</span><span class="p">,</span> <span class="n">src</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="nb">round</span><span class="p">);</span>
+<td><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">UML_FDRNDS</span><span class="p">(</span><span class="n">block</span><span class="p">,</span> <span class="n">dst</span><span class="p">,</span> <span class="n">src</span><span class="p">);</span>
 </pre></div>
 </div>
 </td>
@@ -5248,23 +5293,9 @@ instruction.</p>
 <section id="id201">
 <h4>Operands<a class="headerlink" href="#id201" title="Link to this heading">¶</a></h4>
 <dl class="simple">
-<dt>dst (32-bit or 64-bit – memory, integer register)</dt><dd><p>The destination where the integer value will be stored.  The
-size/format is controlled by the <code class="docutils literal notranslate"><span class="pre">size</span></code> operand.</p>
+<dt>dst (64-bit – memory, floating point register)</dt><dd><p>The destination where the rounded value will be stored.</p>
 </dd>
-<dt>src (32-bit or 64-bit – memory, floating point register)</dt><dd><p>The floating point value to convert to an integer.  The instruction
-size sets the size/format of this operand.</p>
-</dd>
-<dt>size (access size)</dt><dd><p>The size of the result.  Must be <code class="docutils literal notranslate"><span class="pre">SIZE_DWORD</span></code> (32-bit) or
-<code class="docutils literal notranslate"><span class="pre">SIZE_QWORD</span></code> (64-bit).  Note that this operand controls the size
-of the <code class="docutils literal notranslate"><span class="pre">dst</span></code> operand while the instruction size sets the size of
-the <code class="docutils literal notranslate"><span class="pre">src</span></code> operand.</p>
-</dd>
-<dt>round (rounding type)</dt><dd><p>The rounding type to use.  Must be <code class="docutils literal notranslate"><span class="pre">ROUND_ROUND</span></code> (round to
-nearest), <code class="docutils literal notranslate"><span class="pre">ROUND_CEIL</span></code> (round toward positive infinity),
-<code class="docutils literal notranslate"><span class="pre">ROUND_FLOOR</span></code> (round toward negative infinity), <code class="docutils literal notranslate"><span class="pre">ROUND_TRUNC</span></code>
-(round toward zero) or <code class="docutils literal notranslate"><span class="pre">ROUND_DEFAULT</span></code> (use the current default
-rounding type set using the <a class="reference internal" href="#umlinst-setfmod"><span class="std std-ref">SETFMOD</span></a>
-instruction).</p>
+<dt>src (64-bit – memory, floating point register)</dt><dd><p>The floating point value to round to 32-bit precision.</p>
 </dd>
 </dl>
 </section>
@@ -5288,8 +5319,77 @@ instruction).</p>
 <p>No simplifications are applied to this instruction.</p>
 </section>
 </section>
+</section>
+<section id="floating-point-conversion">
+<span id="umlinst-fpconv"></span><h2><a class="toc-backref" href="#id303" role="doc-backlink">Floating point conversion</a><a class="headerlink" href="#floating-point-conversion" title="Link to this heading">¶</a></h2>
+<section id="ftoint">
+<span id="umlinst-ftoint"></span><h3><a class="toc-backref" href="#id304" role="doc-backlink">FTOINT</a><a class="headerlink" href="#ftoint" title="Link to this heading">¶</a></h3>
+<p>Convert a floating point number to a signed two’s complement integer.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Disassembly</p></th>
+<th class="head"><p>Usage</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fstoint</span> <span class="n">dst</span><span class="p">,</span><span class="n">src</span><span class="p">,</span><span class="n">size</span><span class="p">,</span><span class="nb">round</span>
+<span class="n">fdtoint</span> <span class="n">dst</span><span class="p">,</span><span class="n">src</span><span class="p">,</span><span class="n">size</span><span class="p">,</span><span class="nb">round</span>
+</pre></div>
+</div>
+</td>
+<td><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">UML_FSTOINT</span><span class="p">(</span><span class="n">block</span><span class="p">,</span> <span class="n">dst</span><span class="p">,</span> <span class="n">src</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="nb">round</span><span class="p">);</span>
+<span class="n">UML_FDTOINT</span><span class="p">(</span><span class="n">block</span><span class="p">,</span> <span class="n">dst</span><span class="p">,</span> <span class="n">src</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="nb">round</span><span class="p">);</span>
+</pre></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<section id="id204">
+<h4>Operands<a class="headerlink" href="#id204" title="Link to this heading">¶</a></h4>
+<dl class="simple">
+<dt>dst (32-bit or 64-bit – memory, integer register)</dt><dd><p>The destination where the integer value will be stored.  The
+size/format is controlled by the <code class="docutils literal notranslate"><span class="pre">size</span></code> operand.</p>
+</dd>
+<dt>src (32-bit or 64-bit – memory, floating point register)</dt><dd><p>The floating point value to convert to an integer.  The instruction
+size sets the size/format of this operand.</p>
+</dd>
+<dt>size (access size)</dt><dd><p>The size of the result.  Must be <code class="docutils literal notranslate"><span class="pre">SIZE_DWORD</span></code> (32-bit) or
+<code class="docutils literal notranslate"><span class="pre">SIZE_QWORD</span></code> (64-bit).  Note that this operand controls the size
+of the <code class="docutils literal notranslate"><span class="pre">dst</span></code> operand while the instruction size sets the size of
+the <code class="docutils literal notranslate"><span class="pre">src</span></code> operand.</p>
+</dd>
+<dt>round (rounding type)</dt><dd><p>The rounding type to use.  Must be <code class="docutils literal notranslate"><span class="pre">ROUND_ROUND</span></code> (round to
+nearest), <code class="docutils literal notranslate"><span class="pre">ROUND_CEIL</span></code> (round toward positive infinity),
+<code class="docutils literal notranslate"><span class="pre">ROUND_FLOOR</span></code> (round toward negative infinity), <code class="docutils literal notranslate"><span class="pre">ROUND_TRUNC</span></code>
+(round toward zero) or <code class="docutils literal notranslate"><span class="pre">ROUND_DEFAULT</span></code> (use the current default
+rounding type set using the <a class="reference internal" href="#umlinst-setfmod"><span class="std std-ref">SETFMOD</span></a>
+instruction).</p>
+</dd>
+</dl>
+</section>
+<section id="id205">
+<h4>Flags<a class="headerlink" href="#id205" title="Link to this heading">¶</a></h4>
+<dl class="simple">
+<dt>carry (C)</dt><dd><p>Undefined.</p>
+</dd>
+<dt>overflow (V)</dt><dd><p>Undefined.</p>
+</dd>
+<dt>zero (Z)</dt><dd><p>Undefined.</p>
+</dd>
+<dt>sign (S)</dt><dd><p>Undefined.</p>
+</dd>
+<dt>unordered (U)</dt><dd><p>Undefined.</p>
+</dd>
+</dl>
+</section>
+<section id="id206">
+<h4>Simplification rules<a class="headerlink" href="#id206" title="Link to this heading">¶</a></h4>
+<p>No simplifications are applied to this instruction.</p>
+</section>
+</section>
 <section id="ffrint">
-<span id="umlinst-ffrint"></span><h3><a class="toc-backref" href="#id301" role="doc-backlink">FFRINT</a><a class="headerlink" href="#ffrint" title="Link to this heading">¶</a></h3>
+<span id="umlinst-ffrint"></span><h3><a class="toc-backref" href="#id305" role="doc-backlink">FFRINT</a><a class="headerlink" href="#ffrint" title="Link to this heading">¶</a></h3>
 <p>Convert a signed two’s complement integer to a floating point number.</p>
 <table class="docutils align-default">
 <thead>
@@ -5311,8 +5411,8 @@ instruction).</p>
 </tr>
 </tbody>
 </table>
-<section id="id204">
-<h4>Operands<a class="headerlink" href="#id204" title="Link to this heading">¶</a></h4>
+<section id="id207">
+<h4>Operands<a class="headerlink" href="#id207" title="Link to this heading">¶</a></h4>
 <dl class="simple">
 <dt>dst (32-bit or 64-bit – memory, floating point register)</dt><dd><p>The destination where the floating point value will be stored.  The
 instruction size sets the size/format of this operand.</p>
@@ -5327,8 +5427,8 @@ the <code class="docutils literal notranslate"><span class="pre">dst</span></cod
 </dd>
 </dl>
 </section>
-<section id="id205">
-<h4>Flags<a class="headerlink" href="#id205" title="Link to this heading">¶</a></h4>
+<section id="id208">
+<h4>Flags<a class="headerlink" href="#id208" title="Link to this heading">¶</a></h4>
 <dl class="simple">
 <dt>carry (C)</dt><dd><p>Undefined.</p>
 </dd>
@@ -5342,8 +5442,8 @@ the <code class="docutils literal notranslate"><span class="pre">dst</span></cod
 </dd>
 </dl>
 </section>
-<section id="id206">
-<h4>Simplification rules<a class="headerlink" href="#id206" title="Link to this heading">¶</a></h4>
+<section id="id209">
+<h4>Simplification rules<a class="headerlink" href="#id209" title="Link to this heading">¶</a></h4>
 <ul class="simple">
 <li><p>Immediate values for the <code class="docutils literal notranslate"><span class="pre">src</span></code> operand are truncated to the size set
 using the <code class="docutils literal notranslate"><span class="pre">size</span></code> operand.</p></li>
@@ -5351,7 +5451,7 @@ using the <code class="docutils literal notranslate"><span class="pre">size</spa
 </section>
 </section>
 <section id="ffrflt">
-<span id="umlinst-ffrflt"></span><h3><a class="toc-backref" href="#id302" role="doc-backlink">FFRFLT</a><a class="headerlink" href="#ffrflt" title="Link to this heading">¶</a></h3>
+<span id="umlinst-ffrflt"></span><h3><a class="toc-backref" href="#id306" role="doc-backlink">FFRFLT</a><a class="headerlink" href="#ffrflt" title="Link to this heading">¶</a></h3>
 <p>Convert between floating point formats.  The current default rounding
 type set using the <a class="reference internal" href="#umlinst-setfmod"><span class="std std-ref">SETFMOD</span></a> is used if
 applicable.</p>
@@ -5375,8 +5475,8 @@ applicable.</p>
 </tr>
 </tbody>
 </table>
-<section id="id207">
-<h4>Operands<a class="headerlink" href="#id207" title="Link to this heading">¶</a></h4>
+<section id="id210">
+<h4>Operands<a class="headerlink" href="#id210" title="Link to this heading">¶</a></h4>
 <dl class="simple">
 <dt>dst (32-bit or 64-bit – memory, floating point register)</dt><dd><p>The destination where the converted value will be stored.  The
 instruction size sets the size/format of this operand.</p>
@@ -5391,8 +5491,8 @@ the <code class="docutils literal notranslate"><span class="pre">dst</span></cod
 </dd>
 </dl>
 </section>
-<section id="id208">
-<h4>Flags<a class="headerlink" href="#id208" title="Link to this heading">¶</a></h4>
+<section id="id211">
+<h4>Flags<a class="headerlink" href="#id211" title="Link to this heading">¶</a></h4>
 <dl class="simple">
 <dt>carry (C)</dt><dd><p>Undefined.</p>
 </dd>
@@ -5406,8 +5506,8 @@ the <code class="docutils literal notranslate"><span class="pre">dst</span></cod
 </dd>
 </dl>
 </section>
-<section id="id209">
-<h4>Simplification rules<a class="headerlink" href="#id209" title="Link to this heading">¶</a></h4>
+<section id="id212">
+<h4>Simplification rules<a class="headerlink" href="#id212" title="Link to this heading">¶</a></h4>
 <ul class="simple">
 <li><p>Converted to <a class="reference internal" href="#umlinst-fmov"><span class="std std-ref">FMOV</span></a> or <a class="reference internal" href="#umlinst-nop"><span class="std std-ref">NOP</span></a> if
 the <code class="docutils literal notranslate"><span class="pre">dst</span></code> and <code class="docutils literal notranslate"><span class="pre">src</span></code> operands have the same size/format.</p></li>
