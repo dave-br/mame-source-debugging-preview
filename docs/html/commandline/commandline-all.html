@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Universal Command-line Options &mdash; MAME Documentation 0.283 documentation</title>
+  <title>Universal Command-line Options &mdash; MAME Documentation 0.284 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
 
@@ -13,7 +13,7 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/documentation_options.js?v=dfedea7a"></script>
+        <script src="../_static/documentation_options.js?v=14647ab7"></script>
         <script src="../_static/doctools.js?v=9bcbadda"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
@@ -35,7 +35,7 @@
             MAME Documentation
           </a>
               <div class="version">
-                0.283
+                0.284
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -2463,7 +2463,7 @@ via the Video Options menu in the user interface.</p>
 full-sized system display and the artwork will fill the empty space on
 the sides as much as possible.</p>
 </div>
-<p id="mame-commandline-fallbackartwork"><strong>-fallback_artwork</strong></p>
+<p id="mame-commandline-fallbackartwork"><strong>-fallback_artwork</strong> <em>&lt;artwork name&gt;</em></p>
 <blockquote>
 <div><p>Specifies fallback artwork if no external artwork or internal driver layout
 is defined. If external artwork for the system is present or a layout is
@@ -2481,11 +2481,26 @@ included in the driver for the system, then that will take precedence.</p>
 <code class="docutils literal notranslate"><span class="pre">horizontal.ini</span></code> and <code class="docutils literal notranslate"><span class="pre">vertical.ini</span></code> to specify different
 fallback artwork choices for horizontal and vertical systems.</p>
 </div>
-<p id="mame-commandline-overrideartwork"><strong>-override_artwork</strong></p>
+<p id="mame-commandline-overrideartwork"><strong>-override_artwork</strong> <em>&lt;artwork name&gt;</em></p>
 <blockquote>
 <div><p>Specifies override artwork for external artwork and internal driver layout.</p>
 <dl>
 <dt>Example:</dt><dd><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mame<span class="w"> </span>galaga<span class="w"> </span>-override_artwork<span class="w"> </span>puckman
+</pre></div>
+</div>
+</dd>
+</dl>
+</div></blockquote>
+<p id="mame-commandline-artworkfont"><strong>-artwork_font</strong> / <strong>-artfont</strong> <em>&lt;fontname&gt;</em></p>
+<blockquote>
+<div><p>Specifies the font to use for artwork text elements.  The same
+considerations apply as for the UI font (see the <a class="reference internal" href="#mame-commandline-uifont"><span class="std std-ref">uifont option</span></a>).</p>
+<p>Note that artwork is typically designed around a sans serif font with tight
+character spacing (e.g. <strong>Tahoma</strong>, which is the default on Windows).  Using
+a font with wider character spacing or a fixed pitch font (e.g. a Courier
+family font) may result in text positioning issues.</p>
+<dl>
+<dt>Example:</dt><dd><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mame<span class="w"> </span>starwbc<span class="w"> </span>-artwork_font<span class="w"> </span><span class="s2">&quot;Comic Sans MS&quot;</span>
 </pre></div>
 </div>
 </dd>
@@ -3773,11 +3788,19 @@ with this turned off and vice-versa.</em></p>
 </div></blockquote>
 <p id="mame-commandline-uifont"><strong>-uifont</strong> <em>&lt;fontname&gt;</em></p>
 <blockquote>
-<div><p>Specifies the name of a font file to use for the UI font. If this font
-cannot be found or cannot be loaded, the system will fall back to its
-built-in UI font. On some platforms <em>fontname</em> can be a system font name
-instead of a BDF font file.</p>
-<p>The default is <code class="docutils literal notranslate"><span class="pre">default</span></code> (use the OSD-determined default font).</p>
+<div><p>Specifies the font to use for UI text. If this font cannot be found or
+cannot be loaded, MAME will fall back to its built-in UI font.  Supported
+fonts depend on the platform and selected UI font provider module.  In some
+configurations, <em>fontname</em> can be a system font name or a path to a TrueType
+font file.  In all cases, a path to  a BDF (Adobe Glyph Bitmap Distribution
+Format) font file can be used.</p>
+<p>Note that characters available depend on the font, and many fonts do not
+cover multiple writing systems and languages, or symbols like arrows.
+Depending on the configuration, MAME may not automatically substitute
+characters from other fonts.  Characters that are not available may be
+replaced with substitute glyphs (often rectangles).</p>
+<p>The default is <code class="docutils literal notranslate"><span class="pre">default</span></code> (use the default font determined by the UI font
+provider module).</p>
 <dl>
 <dt>Example:</dt><dd><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mame<span class="w"> </span>-uifont<span class="w"> </span><span class="s2">&quot;Comic Sans MS&quot;</span>
 </pre></div>
