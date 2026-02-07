@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Linux Lightguns &mdash; MAME Documentation 0.284 documentation</title>
+  <title>Linux Lightguns &mdash; MAME Documentation 0.285 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
 
@@ -13,7 +13,7 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/documentation_options.js?v=14647ab7"></script>
+        <script src="../_static/documentation_options.js?v=b01cfeae"></script>
         <script src="../_static/doctools.js?v=9bcbadda"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
@@ -35,7 +35,7 @@
             MAME Documentation
           </a>
               <div class="version">
-                0.284
+                0.285
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -99,67 +99,73 @@
              
   <section id="linux-lightguns">
 <h1>Linux Lightguns<a class="headerlink" href="#linux-lightguns" title="Link to this heading">¶</a></h1>
-<p>Many lightguns (especially the Ultimarc AimTrak) may work better in MAME under Linux when using a slightly more complicated configuration. The instructions here are for getting an AimTrak working on Ubuntu using udev and Xorg, but other Linux distributions and lightguns may work with some changes to the steps.</p>
+<p>Many lightguns (especially the Ultimarc AimTrak) may work better in MAME under
+Linux when using a slightly more complicated configuration. The instructions
+here are for getting an AimTrak working on Ubuntu using udev and Xorg, but other
+Linux distributions and lightguns may work with some changes to the steps.</p>
 <section id="configure-udev-rules">
 <h2>Configure udev rules<a class="headerlink" href="#configure-udev-rules" title="Link to this heading">¶</a></h2>
-<p>For the AimTrak, each lightgun exposes several USB devices once connected: 2 mouse emulation devices, and 1 joystick emulation device. We need to instruct libinput via udev to ignore all but the correct emulated mouse device. This prevents each lightgun from producing multiple mouse devices, which would result in non-deterministic selection between the &quot;good&quot; and &quot;bad&quot; emulated mouse devices by Xorg.</p>
-<p>Create a new file named <code class="docutils literal notranslate"><span class="pre">/etc/udev/rules.d/65-aimtrak.rules</span></code> and place the following contents into it:</p>
-<div class="line-block">
-<div class="line"># Set mode (0666) &amp; disable libinput handling to avoid X11 picking up the wrong</div>
-<div class="line"># interfaces/devices.</div>
-<div class="line">SUBSYSTEMS==&quot;usb&quot;, ATTRS{idVendor}==&quot;d209&quot;, ATTRS{idProduct}==&quot;160*&quot;,</div>
-<div class="line-block">
-<div class="line">MODE=&quot;0666&quot;, ENV{ID_INPUT}=&quot;&quot;, ENV{LIBINPUT_IGNORE_DEVICE}=&quot;1&quot;</div>
-<div class="line"><br /></div>
+<p>For the AimTrak, each lightgun exposes several USB devices once connected: 2
+mouse emulation devices, and 1 joystick emulation device. We need to instruct
+libinput via udev to ignore all but the correct emulated mouse device. This
+prevents each lightgun from producing multiple mouse devices, which would result
+in non-deterministic selection between the &quot;good&quot; and &quot;bad&quot; emulated mouse
+devices by Xorg.</p>
+<p>Create a new file named <code class="docutils literal notranslate"><span class="pre">/etc/udev/rules.d/65-aimtrak.rules</span></code> and place the
+following contents into it:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set mode (0666) &amp; disable libinput handling to avoid X11 picking up the wrong</span>
+<span class="c1"># interfaces/devices.</span>
+<span class="n">SUBSYSTEMS</span><span class="o">==</span><span class="s2">&quot;usb&quot;</span><span class="p">,</span> <span class="n">ATTRS</span><span class="p">{</span><span class="n">idVendor</span><span class="p">}</span><span class="o">==</span><span class="s2">&quot;d209&quot;</span><span class="p">,</span> <span class="n">ATTRS</span><span class="p">{</span><span class="n">idProduct</span><span class="p">}</span><span class="o">==</span><span class="s2">&quot;160*&quot;</span><span class="p">,</span>
+   <span class="n">MODE</span><span class="o">=</span><span class="s2">&quot;0666&quot;</span><span class="p">,</span> <span class="n">ENV</span><span class="p">{</span><span class="n">ID_INPUT</span><span class="p">}</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">ENV</span><span class="p">{</span><span class="n">LIBINPUT_IGNORE_DEVICE</span><span class="p">}</span><span class="o">=</span><span class="s2">&quot;1&quot;</span>
+
+<span class="c1"># For ID_USB_INTERFACE_NUM==2, re-enable libinput handling.</span>
+<span class="n">SUBSYSTEMS</span><span class="o">==</span><span class="s2">&quot;usb&quot;</span><span class="p">,</span> <span class="n">ATTRS</span><span class="p">{</span><span class="n">idVendor</span><span class="p">}</span><span class="o">==</span><span class="s2">&quot;d209&quot;</span><span class="p">,</span> <span class="n">ATTRS</span><span class="p">{</span><span class="n">idProduct</span><span class="p">}</span><span class="o">==</span><span class="s2">&quot;160*&quot;</span><span class="p">,</span>
+    <span class="n">ENV</span><span class="p">{</span><span class="n">ID_USB_INTERFACE_NUM</span><span class="p">}</span><span class="o">==</span><span class="s2">&quot;02&quot;</span><span class="p">,</span> <span class="n">ENV</span><span class="p">{</span><span class="n">ID_INPUT</span><span class="p">}</span><span class="o">=</span><span class="s2">&quot;1&quot;</span><span class="p">,</span>
+    <span class="n">ENV</span><span class="p">{</span><span class="n">LIBINPUT_IGNORE_DEVICE</span><span class="p">}</span><span class="o">=</span><span class="s2">&quot;0&quot;</span>
+</pre></div>
 </div>
-<div class="line"># For ID_USB_INTERFACE_NUM==2, re-enable libinput handling.</div>
-<div class="line">SUBSYSTEMS==&quot;usb&quot;, ATTRS{idVendor}==&quot;d209&quot;, ATTRS{idProduct}==&quot;160*&quot;,</div>
-<div class="line-block">
-<div class="line">ENV{ID_USB_INTERFACE_NUM}==&quot;02&quot;, ENV{ID_INPUT}=&quot;1&quot;,</div>
-<div class="line">ENV{LIBINPUT_IGNORE_DEVICE}=&quot;0&quot;</div>
-<div class="line"><br /></div>
-</div>
-</div>
-<p>This configuration will be correct for the AimTrak lightguns, however each brand of lightgun will require their own settings.</p>
+<p>This configuration will be correct for the AimTrak lightguns, however each brand
+of lightgun will require their own settings.</p>
 </section>
 <section id="configure-xorg-inputs">
 <h2>Configure Xorg inputs<a class="headerlink" href="#configure-xorg-inputs" title="Link to this heading">¶</a></h2>
-<p>Next, we'll configure Xorg to treat the lightguns as a &quot;Floating&quot; device. This is important for multiple lightguns to work correctly and ensures each gun's emulated mouse pointer is NOT merged with the main system mouse pointer.</p>
+<p>Next, we'll configure Xorg to treat the lightguns as a &quot;Floating&quot; device. This
+is important for multiple lightguns to work correctly and ensures each gun's
+emulated mouse pointer is NOT merged with the main system mouse pointer.</p>
 <p>In <code class="docutils literal notranslate"><span class="pre">/etc/X11/xorg.conf.d/60-aimtrak.conf</span></code> we will need:</p>
-<div class="line-block">
-<div class="line">Section &quot;InputClass&quot;</div>
-<div class="line-block">
-<div class="line">Identifier &quot;AimTrak Guns&quot;</div>
-<div class="line">MatchDevicePath &quot;/dev/input/event*&quot;</div>
-<div class="line">MatchUSBID &quot;d209:160*&quot;</div>
-<div class="line">Driver &quot;libinput&quot;</div>
-<div class="line">Option &quot;Floating&quot; &quot;yes&quot;</div>
-<div class="line">Option &quot;AutoServerLayout&quot; &quot;no&quot;</div>
-</div>
-<div class="line">EndSection</div>
-<div class="line"><br /></div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Section</span> <span class="s2">&quot;InputClass&quot;</span>
+    <span class="n">Identifier</span> <span class="s2">&quot;AimTrak Guns&quot;</span>
+    <span class="n">MatchDevicePath</span> <span class="s2">&quot;/dev/input/event*&quot;</span>
+    <span class="n">MatchUSBID</span> <span class="s2">&quot;d209:160*&quot;</span>
+    <span class="n">Driver</span> <span class="s2">&quot;libinput&quot;</span>
+    <span class="n">Option</span> <span class="s2">&quot;Floating&quot;</span> <span class="s2">&quot;yes&quot;</span>
+    <span class="n">Option</span> <span class="s2">&quot;AutoServerLayout&quot;</span> <span class="s2">&quot;no&quot;</span>
+<span class="n">EndSection</span>
+</pre></div>
 </div>
 </section>
 <section id="configure-mame">
 <h2>Configure MAME<a class="headerlink" href="#configure-mame" title="Link to this heading">¶</a></h2>
-<p>Next, we'll need to configure MAME via <code class="docutils literal notranslate"><span class="pre">mame.ini</span></code> to use the new lightgun device(s).</p>
-<ul class="simple">
-<li><p>lightgun 1</p></li>
-<li><p>lightgun_device lightgun</p></li>
-<li><p>lightgunprovider x11</p></li>
-</ul>
-<p>These first three lines tell MAME to enable lightgun support, to tell MAME that we're using a lightgun instead of a mouse, and to use the x11 provider.</p>
-<ul class="simple">
-<li><p>lightgun_index1 &quot;Ultimarc ATRAK Device #1&quot;</p></li>
-<li><p>lightgun_index2 &quot;Ultimarc ATRAK Device #2&quot;</p></li>
-<li><p>lightgun_index3 &quot;Ultimarc ATRAK Device #3&quot;</p></li>
-<li><p>lightgun_index4 &quot;Ultimarc ATRAK Device #4&quot;</p></li>
-</ul>
-<p>These next lines then tell MAME to keep lightguns consistent across sessions.</p>
-<ul class="simple">
-<li><p>offscreen_reload 1</p></li>
-</ul>
-<p>Lastly, as most lightgun games require offscreen reloading and we're using a device that actually can point away from the screen, we enable that functionality.</p>
+<p>Next, we'll need to configure MAME via <code class="docutils literal notranslate"><span class="pre">mame.ini</span></code> to use the new lightgun
+device(s):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lightgun</span> <span class="mi">1</span>
+<span class="n">lightgun_device</span> <span class="n">lightgun</span>
+<span class="n">lightgunprovider</span> <span class="n">x11</span>
+</pre></div>
+</div>
+<p>These first three lines tell MAME to enable lightgun support, to tell MAME that
+we're using a lightgun instead of a mouse, and to use the x11 provider:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lightgun_index1</span> <span class="s2">&quot;Ultimarc ATRAK Device #1&quot;</span>
+<span class="n">lightgun_index2</span> <span class="s2">&quot;Ultimarc ATRAK Device #2&quot;</span>
+<span class="n">lightgun_index3</span> <span class="s2">&quot;Ultimarc ATRAK Device #3&quot;</span>
+<span class="n">lightgun_index4</span> <span class="s2">&quot;Ultimarc ATRAK Device #4&quot;</span>
+</pre></div>
+</div>
+<p>Lastly, as many lightgun games require aiming away from the screen and firing to
+reload, you may reloading and we're using a device that represents that as a
+separate button, you will need to configure the <a class="reference internal" href="../plugins/offscreenreload.html#plugins-offscreenreload"><span class="std std-ref">off-screen reload helper
+plugin</span></a> or <a class="reference internal" href="../plugins/inputmacro.html#plugins-inputmacro"><span class="std std-ref">input macro plugin</span></a> to translate this to the axis and button inputs that these
+games expect.</p>
 </section>
 </section>
 
@@ -174,7 +180,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 1997-2025, MAMEdev and contributors.</p>
+    <p>&#169; Copyright 1997-2026, MAMEdev and contributors.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
