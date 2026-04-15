@@ -165,6 +165,37 @@ D   3 : c:\project\BlocksXU.obj_blocku_relocated.mdi
 	<a href="https://github.com/dave-br/mame-source-debugging-preview/tree/main/extras/MmuSample">sample</a>
 	for more information.</p>
 
+<h2 id="tracing">Tracing with source</h2>
+
+<p>
+	When using the MAME debugger tracing feature, original source will automatically appear next to the
+	disassembly when available.  So long as source-level debugging is
+	<a href="html/debugger/index.html#source-level-debugging">enabled</a>,
+	nothing extra needs to be done for this to work.
+</p>
+<p>
+	Tracing is a feature already available in official MAME builds.  You initiate tracing
+	from the debugger console window with the trace command.  For example:
+</p>
+<p>
+	<code class="docutils literal notranslate"><span class="pre">trace output.tr.txt,0,noloop,{tracelog "A=%02X,B=%02X,X=%04X,Y=%04X,U=%04X,S=%04X,CC=%02X ",a,b,x,y,u,s,cc}</span></code>
+</p>
+<p>
+	The above command turns on tracing, sets output.tr.txt as the output file, and most importantly, runs the
+	specified tracelog command on each instruction.  The tracelog command writes the formatted string
+	to the trace file, and automatically includes disassembly.  In the preview repo with source-debugging
+	enabled, the above remains true with the addition of the original source line automatically printing
+	after the disassembly when available.  If an instruction is traced for which there is no
+	source, then this feature reverts back to the original behavior, printing only the disassembly
+	and formatted string.
+</p>
+<p>
+	As usual, when you want to turn off tracing, you would use this command:
+</p>
+<p>
+	<code class="docutils literal notranslate"><span class="pre">trace off</span></code>
+</p>
+
 <h2>Other Pages</h2>
 <ul class="simple">
 <li><p><a href="index.html">Home</a></p></li>
