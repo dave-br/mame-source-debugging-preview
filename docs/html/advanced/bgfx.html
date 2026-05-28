@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>BGFX Effects for (nearly) Everyone &mdash; MAME Documentation 0.287 documentation</title>
+  <title>BGFX Effects for (nearly) Everyone &mdash; MAME Documentation 0.288 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
 
@@ -13,7 +13,7 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/documentation_options.js?v=239cf0dd"></script>
+        <script src="../_static/documentation_options.js?v=cb86531f"></script>
         <script src="../_static/doctools.js?v=9bcbadda"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
@@ -35,7 +35,7 @@
             MAME Documentation
           </a>
               <div class="version">
-                0.287
+                0.288
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -159,7 +159,7 @@ make sure the following options are set correctly:</p>
 </ul>
 <p>Now, you may want to take a moment to look below at the Configuration Settings
 section to see how to set up these next options.</p>
-<p>As explained in <a class="reference internal" href="multiconfig.html#advanced-multi-cfg"><span class="std std-ref">Order of Config Loading</span></a>, MAME has a order in which it
+<p>As explained in <a class="reference internal" href="multiconfig.html#advanced-multicfg-order"><span class="std std-ref">Order of Configurattion File Loading</span></a>, MAME has a order in which it
 processes INI files.  The BGFX settings can be edited in <code class="docutils literal notranslate"><span class="pre">mame.ini</span></code>, but to
 take full advantage of the power of MAME’s configuration files, you’ll want to
 copy the BGFX settings from <code class="docutils literal notranslate"><span class="pre">mame.ini</span></code> to one of the other configuration files
@@ -175,21 +175,21 @@ game.</p>
 the <em>bgfx</em> folder in your MAME installation folder.</p>
 </dd>
 <dt>bgfx_backend</dt><dd><p>Selects a rendering backend for BGFX to use.  Possible choices include
-<code class="docutils literal notranslate"><span class="pre">auto</span></code>, <code class="docutils literal notranslate"><span class="pre">d3d9</span></code>, <code class="docutils literal notranslate"><span class="pre">d3d11</span></code>, <code class="docutils literal notranslate"><span class="pre">d3d12</span></code>, <code class="docutils literal notranslate"><span class="pre">opengl</span></code>, <code class="docutils literal notranslate"><span class="pre">gles</span></code>, <code class="docutils literal notranslate"><span class="pre">metal</span></code>, and
-<code class="docutils literal notranslate"><span class="pre">vulkan</span></code>. The default is <code class="docutils literal notranslate"><span class="pre">auto</span></code>, which will let MAME choose the
+<code class="docutils literal notranslate"><span class="pre">auto</span></code>, <code class="docutils literal notranslate"><span class="pre">d3d9</span></code>, <code class="docutils literal notranslate"><span class="pre">d3d11</span></code>, <code class="docutils literal notranslate"><span class="pre">d3d12</span></code>, <code class="docutils literal notranslate"><span class="pre">opengl</span></code>, <code class="docutils literal notranslate"><span class="pre">gles</span></code>, <code class="docutils literal notranslate"><span class="pre">metal</span></code>,
+and <code class="docutils literal notranslate"><span class="pre">vulkan</span></code>. The default is <code class="docutils literal notranslate"><span class="pre">auto</span></code>, which will let MAME choose the
 best selection for you.</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">d3d9</span></code> -- Direct3D 9.0 Renderer (Requires Windows XP or higher)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">d3d11</span></code> -- Direct3D 11.0 Renderer (Requires Windows Vista with
-Direct3D 11 update, or Windows 7 or higher)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">d3d12</span></code> -- Direct3D 12.0 Renderer (Requires Windows 10 or higher)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">d3d9</span></code> -- Direct3D 9.0 Renderer (May require the DirectX End-User
+Runtime to be installed)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">d3d11</span></code> -- Direct3D 11.0 Renderer</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">d3d12</span></code> -- Direct3D 12.0 Renderer</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">opengl</span></code> -- OpenGL Renderer (Requires OpenGL drivers, may work better on
 some video cards, supported on Linux and macOS)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">gles</span></code> -- OpenGL ES Renderer (Supported with some low-power GPUs)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">metal</span></code> -- Apple Metal Graphics API (Requires macOS 10.11 El Capitan or
 newer)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">vulkan</span></code> -- Vulkan Renderer (Requires Windows or Linux with compatible
-GPU drivers.</p></li>
+GPU drivers)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">auto</span></code> -- MAME will automatically choose the best selection for you.</p></li>
 </ul>
 </dd>
